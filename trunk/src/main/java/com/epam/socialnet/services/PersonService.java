@@ -16,4 +16,6 @@ public interface PersonService {
 	
 	public Person getCurrentPerson();
 	
+	public List<Person> getFriends();
+	
 }

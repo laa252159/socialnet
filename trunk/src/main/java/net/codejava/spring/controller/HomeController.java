@@ -31,11 +31,8 @@ public class HomeController {
 	
 	@RequestMapping(value="/")
 	public ModelAndView home(ModelAndView model) throws IOException{
-		
-		List<Person> listOfFriends = personService.list();
-		
 		model.addObject("personInfo", personService.getCurrentPerson());
-		model.addObject("listOfFriends", listOfFriends);
+		model.addObject("listOfFriends", personService.getFriends());
 		model.setViewName("main");
 		
 		return model;
@@ -43,12 +40,16 @@ public class HomeController {
 	
 	@RequestMapping(value="/goHome")
 	public ModelAndView goHome(ModelAndView model) throws IOException{
-		
-		List<Person> listOfFriends = personService.list();
-		
-		model.addObject("listOfFriends", listOfFriends);
-		model.setViewName("main");
-		
+		return home(model);
+	}
+	
+	@RequestMapping(value = "/viewPerson", method = RequestMethod.GET)
+	public ModelAndView viewPerson(HttpServletRequest request) {
+		long personId = Long.parseLong(request.getParameter("id"));
+		Person person = personService.get(personId);
+		ModelAndView model = new ModelAndView("main");
+		model.addObject("listOfFriends", personService.getFriends());
+		model.addObject("personInfo", personService.get(personId));
 		return model;
 	}
 	
@@ -85,16 +86,6 @@ public class HomeController {
 		long personId = Long.parseLong(request.getParameter("id"));
 		Person person = personService.get(personId);
 		ModelAndView model = new ModelAndView("PersonFormEdit");
-		model.addObject("person", person);
-		
-		return model;
-	}
-	
-	@RequestMapping(value = "/viewPerson", method = RequestMethod.GET)
-	public ModelAndView viewPerson(HttpServletRequest request) {
-		long personId = Long.parseLong(request.getParameter("id"));
-		Person person = personService.get(personId);
-		ModelAndView model = new ModelAndView("PersonFormView");
 		model.addObject("person", person);
 		
 		return model;

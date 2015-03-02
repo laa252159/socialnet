@@ -40,8 +40,14 @@ public class PersonServiceImpl implements PersonService {
 	@Override
 	public Person getCurrentPerson() {
 		//TODO get Current user ID from session, and get it from DAO by ID
-		Person person = new Person(1000, "Alex");
+		Person person = new Person(1000, "Me");
 		return person;
+	}
+
+	@Override
+	public List<Person> getFriends() {
+		// TODO change logic!!!
+		return personDAO.list();
 	}
 	
 	

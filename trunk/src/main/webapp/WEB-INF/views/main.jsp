@@ -11,7 +11,6 @@
 <body>
 	<div align="left">
 		<a href="goHome"><h1>Social NET</h1></a>
-		PAGE
 		<table width="100%">
 			<tr>
 				<td>
