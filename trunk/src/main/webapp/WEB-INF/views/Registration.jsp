@@ -10,24 +10,24 @@
     </head>
     <body>
     	<div align="center">
-	        <h1>List of my friends</h1>
-	        <%-- <h3><a href="newPerson">New Person</a></h3> --%>
+	        <h1>Person List</h1>
+	        <h3><a href="newPerson">New Person</a></h3>
 	        <table border="1">
 	        	<th>No</th>
 	        	<th>ID</th>
 	        	<th>LOGIN</th>
 	        	<th>PASSWORD</th>
 	        	
-				<c:forEach var="friend" items="${listOfFriends}" varStatus="status">
+				<c:forEach var="person" items="${listPerson}" varStatus="status">
 	        	<tr>
 	        		<td>${status.index + 1}</td>
-					<td>${friend.id}</td>
-					<td>${friend.login}</td>
-					<td>${friend.password}</td>
+					<td>${person.id}</td>
+					<td>${person.login}</td>
+					<td>${person.password}</td>
 					<td>
-						<a href="viewPerson?id=${friend.id}">View</a>
+						<a href="editPerson?id=${person.id}">Edit</a>
 						&nbsp;&nbsp;&nbsp;&nbsp;
-						<a href="deletePersonFromFriends?id=${friend.id}">Delete from friends</a>
+						<a href="deletePerson?id=${person.id}">Delete</a>
 					</td>
 							
 	        	</tr>

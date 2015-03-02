@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.epam.socialnet.services.PersonService;
+
 /**
  * This controller routes accesses to the application to the appropriate
  * hanlder methods. 
@@ -25,15 +27,27 @@ import org.springframework.web.servlet.ModelAndView;
 public class HomeController {
 
 	@Autowired
-	private PersonDAO personDAO;
+	private PersonService personService;
 	
 	@RequestMapping(value="/")
-	public ModelAndView listPerson(ModelAndView model) throws IOException{
+	public ModelAndView home(ModelAndView model) throws IOException{
 		
-		List<Person> listOfFriends = personDAO.list();
+		List<Person> listOfFriends = personService.list();
+		
+		model.addObject("personInfo", personService.getCurrentPerson());
+		model.addObject("listOfFriends", listOfFriends);
+		model.setViewName("main");
+		
+		return model;
+	}
+	
+	@RequestMapping(value="/goHome")
+	public ModelAndView goHome(ModelAndView model) throws IOException{
+		
+		List<Person> listOfFriends = personService.list();
 		
 		model.addObject("listOfFriends", listOfFriends);
-		model.setViewName("home");
+		model.setViewName("main");
 		
 		return model;
 	}
@@ -48,14 +62,14 @@ public class HomeController {
 	
 	@RequestMapping(value = "/savePerson", method = RequestMethod.POST)
 	public ModelAndView savePerson(@ModelAttribute Person person) {
-		personDAO.saveOrUpdate(person);		
+		personService.saveOrUpdate(person);		
 		return new ModelAndView("redirect:/");
 	}
 	
 	@RequestMapping(value = "/deletePerson", method = RequestMethod.GET)
 	public ModelAndView deletePerson(HttpServletRequest request) {
 		long personId = Long.parseLong(request.getParameter("id"));
-		personDAO.delete(personId);
+		personService.delete(personId);
 		return new ModelAndView("redirect:/");
 	}
 	
@@ -69,7 +83,7 @@ public class HomeController {
 	@RequestMapping(value = "/editPerson", method = RequestMethod.GET)
 	public ModelAndView editPerson(HttpServletRequest request) {
 		long personId = Long.parseLong(request.getParameter("id"));
-		Person person = personDAO.get(personId);
+		Person person = personService.get(personId);
 		ModelAndView model = new ModelAndView("PersonFormEdit");
 		model.addObject("person", person);
 		
@@ -79,7 +93,7 @@ public class HomeController {
 	@RequestMapping(value = "/viewPerson", method = RequestMethod.GET)
 	public ModelAndView viewPerson(HttpServletRequest request) {
 		long personId = Long.parseLong(request.getParameter("id"));
-		Person person = personDAO.get(personId);
+		Person person = personService.get(personId);
 		ModelAndView model = new ModelAndView("PersonFormView");
 		model.addObject("person", person);
 		
