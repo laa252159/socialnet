@@ -29,8 +29,10 @@ public class HomeController {
 	
 	@RequestMapping(value="/")
 	public ModelAndView listPerson(ModelAndView model) throws IOException{
-		List<Person> listPerson = personDAO.list();
-		model.addObject("listPerson", listPerson);
+		
+		List<Person> listOfFriends = personDAO.list();
+		
+		model.addObject("listOfFriends", listOfFriends);
 		model.setViewName("home");
 		
 		return model;
@@ -57,11 +59,28 @@ public class HomeController {
 		return new ModelAndView("redirect:/");
 	}
 	
+	@RequestMapping(value = "/deletePersonFromFriends", method = RequestMethod.GET)
+	public ModelAndView deletePersonFromFriends(HttpServletRequest request) {
+		long personId = Long.parseLong(request.getParameter("id"));
+		//TODO добавить удаление из друзей
+		return new ModelAndView("redirect:/");
+	}
+	
 	@RequestMapping(value = "/editPerson", method = RequestMethod.GET)
 	public ModelAndView editPerson(HttpServletRequest request) {
 		long personId = Long.parseLong(request.getParameter("id"));
 		Person person = personDAO.get(personId);
-		ModelAndView model = new ModelAndView("PersonForm");
+		ModelAndView model = new ModelAndView("PersonFormEdit");
+		model.addObject("person", person);
+		
+		return model;
+	}
+	
+	@RequestMapping(value = "/viewPerson", method = RequestMethod.GET)
+	public ModelAndView viewPerson(HttpServletRequest request) {
+		long personId = Long.parseLong(request.getParameter("id"));
+		Person person = personDAO.get(personId);
+		ModelAndView model = new ModelAndView("PersonFormView");
 		model.addObject("person", person);
 		
 		return model;
