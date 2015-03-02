@@ -1,9 +1,12 @@
 package net.codejava.spring.config;
 
+import java.util.List;
+
 import javax.sql.DataSource;
 
 import net.codejava.spring.dao.PersonDAO;
 import net.codejava.spring.dao.PersonDAOImpl;
+import net.codejava.spring.model.Person;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -14,6 +17,9 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+import com.epam.socialnet.services.PersonService;
+import com.epam.socialnet.services.PersonServiceImpl;
 
 @Configuration
 @ComponentScan(basePackages="net.codejava.spring")
@@ -45,7 +51,12 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 	}
 	
 	@Bean
-	public PersonDAO getContactDAO() {
+	public PersonDAO getPersonDAO() {
 		return new PersonDAOImpl(getDataSource());
+	}
+	
+	@Bean
+	public PersonService getPersonService() {
+		return new PersonServiceImpl(getPersonDAO()); 
 	}
 }
