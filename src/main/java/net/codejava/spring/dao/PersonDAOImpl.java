@@ -7,12 +7,12 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import net.codejava.spring.model.Person;
-
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
+
+import com.epam.socialnet.model.Person;
 
 /**
  * An implementation of the PersonDAO interface.

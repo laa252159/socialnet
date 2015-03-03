@@ -4,8 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.epam.socialnet.model.Person;
+
 import net.codejava.spring.dao.PersonDAO;
-import net.codejava.spring.model.Person;
 
 public class PersonServiceImpl implements PersonService {
 

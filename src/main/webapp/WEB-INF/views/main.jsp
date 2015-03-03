@@ -13,22 +13,34 @@
 		<a href="goHome"><h1>Social NET</h1></a>
 		<table width="100%">
 			<tr>
-				<td>
-					<%-- LEFT TOP --%> 
-					PAGE OF ${personInfo.login} 
-					
-
+				<td>PAGE OF ${personInfo.login} <br /> <%-- LEFT TOP --%>
+					<table>
+						<tr>
+							<td>First Name</td>
+							<td>${personInfo.fName}</td>
+						</tr>
+						<tr>
+							<td>Last Name</td>
+							<td>${personInfo.fName}</td>
+						</tr>
+						<tr>
+							<td>Data of birth</td>
+							<td>${personInfo.dob}</td>
+						</tr>
+						<tr>
+							<td>Address</td>
+							<td>${personInfo.address}</td>
+						</tr>
+					</table>
 				</td>
 				<td>
-					<%-- RIGHT TOP --%>
-					My friends: </br>
+					<%-- RIGHT TOP --%> My friends: </br>
 					<ul>
 						<c:forEach var="friend" items="${listOfFriends}"
 							varStatus="status">
 							<li><a href="viewPerson?id=${friend.id}">${status.index + 1}
 									&nbsp; ${friend.id} &nbsp; ${friend.login} &nbsp;
-									${friend.password} &nbsp; </a>
-						    </li>
+									${friend.password} &nbsp; </a></li>
 						</c:forEach>
 					</ul>
 				</td>
