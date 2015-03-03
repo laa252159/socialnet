@@ -2,7 +2,7 @@ package com.epam.socialnet.services;
 
 import java.util.List;
 
-import net.codejava.spring.model.Person;
+import com.epam.socialnet.model.Person;
 
 public interface PersonService {
 	

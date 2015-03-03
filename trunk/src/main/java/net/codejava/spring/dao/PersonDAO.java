@@ -2,7 +2,7 @@ package net.codejava.spring.dao;
 
 import java.util.List;
 
-import net.codejava.spring.model.Person;
+import com.epam.socialnet.model.Person;
 
 /**
  * Defines DAO operations for the person model.
