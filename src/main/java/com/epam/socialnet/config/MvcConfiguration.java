@@ -18,7 +18,7 @@ import com.epam.socialnet.services.PersonService;
 import com.epam.socialnet.services.PersonServiceImpl;
 
 @Configuration
-@ComponentScan(basePackages="net.codejava.spring")
+@ComponentScan(basePackages="com.epam.socialnet")
 @EnableWebMvc
 public class MvcConfiguration extends WebMvcConfigurerAdapter{
 
