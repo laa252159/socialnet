@@ -2,11 +2,8 @@ package com.epam.socialnet.services;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
+import com.epam.socialnet.dao.PersonDAO;
 import com.epam.socialnet.model.Person;
-
-import net.codejava.spring.dao.PersonDAO;
 
 public class PersonServiceImpl implements PersonService {
 

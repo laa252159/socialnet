@@ -1,11 +1,6 @@
-package net.codejava.spring.config;
-
-import java.util.List;
+package com.epam.socialnet.config;
 
 import javax.sql.DataSource;
-
-import net.codejava.spring.dao.PersonDAO;
-import net.codejava.spring.dao.PersonDAOImpl;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -17,7 +12,8 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-import com.epam.socialnet.model.Person;
+import com.epam.socialnet.dao.PersonDAO;
+import com.epam.socialnet.dao.PersonDAOImpl;
 import com.epam.socialnet.services.PersonService;
 import com.epam.socialnet.services.PersonServiceImpl;
 

@@ -1,14 +1,9 @@
-package net.codejava.spring.dao;
+package com.epam.socialnet.dao;
 
 import java.util.List;
 
 import com.epam.socialnet.model.Person;
 
-/**
- * Defines DAO operations for the person model.
- * @author www.codejava.net
- *
- */
 public interface PersonDAO {
 	
 	public void saveOrUpdate(Person person);

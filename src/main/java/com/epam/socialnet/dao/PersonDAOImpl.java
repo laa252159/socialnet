@@ -1,8 +1,7 @@
-package net.codejava.spring.dao;
+package com.epam.socialnet.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -14,11 +13,6 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.epam.socialnet.model.Person;
 
-/**
- * An implementation of the PersonDAO interface.
- * @author www.codejava.net
- *
- */
 public class PersonDAOImpl implements PersonDAO {
 
 	private JdbcTemplate jdbcTemplate;

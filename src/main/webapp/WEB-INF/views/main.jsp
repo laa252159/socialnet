@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div align="left">
-		<a href="goHome"><h1>Social NET</h1></a>
+		<h1><a href="goHome">Social NET</a></h1>
 		<table width="100%">
 			<tr>
 				<td>PAGE OF ${personInfo.login} <br /> <%-- LEFT TOP --%>
@@ -34,7 +34,7 @@
 					</table>
 				</td>
 				<td>
-					<%-- RIGHT TOP --%> My friends: </br>
+					<%-- RIGHT TOP --%> My friends: <br>
 					<ul>
 						<c:forEach var="friend" items="${listOfFriends}"
 							varStatus="status">
