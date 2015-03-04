@@ -11,7 +11,7 @@
 <!-- Bootstrap -->
 <link href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
 </head>
-<body>
+<body background="<c:url value='/images/sky.jpg'/>">
 <div class="container">
   <h2>Social NET</h2>
   <p></p>
