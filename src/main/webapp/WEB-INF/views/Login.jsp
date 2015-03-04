@@ -21,19 +21,17 @@
 		<br> <br> <br> <br> <br> <br> <br>
 		<br> <br> <br> <br> <br> <br>
 		<div align="center">
-			<form:form action="savePerson" method="post" modelAttribute="person"
-				class="form-inline" role="form">
+			<form:form action="credentials" method="post" modelAttribute="person" class="form-inline">
 				<div class="form-group">
-					<label for="email">Email:</label> <input type="login"
-						class="form-control" id="login" placeholder="Enter login">
+					<label for="email">Login:</label> <form:input path="login" class="form-control"/>
 				</div>
 				<div class="form-group">
-					<label for="pwd">Password:</label> <input type="password"
-						class="form-control" id="pwd" placeholder="Enter password">
+					<label for="pwd">Password:</label> <form:password path="password" class="form-control"/>
 				</div>
-				<div class="checkbox">
+				<!-- <div class="checkbox">
 					<label><input type="checkbox"> Remember me</label>
-				</div>
+				</div> -->
+				&nbsp;&nbsp;&nbsp;
 				<button type="submit" class="btn btn-default">Submit</button>
 			</form:form>
 		</div>

@@ -36,8 +36,23 @@ public class HomeController {
 
 	@RequestMapping(value = "/login")
 	public ModelAndView login(ModelAndView model) throws IOException {
+		Person person = new Person();
+		model.addObject("person", person);
 		model.setViewName("Login");
+
 		return model;
+	}
+	
+	@RequestMapping(value = "/credentials")
+	public ModelAndView loginEnter(@ModelAttribute Person person) throws IOException {
+		System.out.println(person.getLogin());
+		return new ModelAndView("redirect:/");
+	}
+	
+	@RequestMapping(value = "/savePerson", method = RequestMethod.POST)
+	public ModelAndView savePerson(@ModelAttribute Person person) {
+		personService.saveOrUpdate(person);
+		return new ModelAndView("redirect:/");
 	}
 
 	@RequestMapping(value = "/viewPerson", method = RequestMethod.GET)
@@ -56,12 +71,6 @@ public class HomeController {
 		model.addObject("person", newPerson);
 		model.setViewName("PersonForm");
 		return model;
-	}
-
-	@RequestMapping(value = "/savePerson", method = RequestMethod.POST)
-	public ModelAndView savePerson(@ModelAttribute Person person) {
-		personService.saveOrUpdate(person);
-		return new ModelAndView("redirect:/");
 	}
 
 	@RequestMapping(value = "/deletePerson", method = RequestMethod.GET)
