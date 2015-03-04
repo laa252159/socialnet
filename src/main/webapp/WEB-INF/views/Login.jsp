@@ -13,20 +13,31 @@
 <link
 	href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />"
 	rel="stylesheet">
+<link href="<c:url value="/resources/css/my.css" />" rel="stylesheet">
 </head>
-<body background="<c:url value='/resources/images/grass.jpg'/>" style="background-size: 90%;">
-	<div class="container">
-		<h2>Social NET</h2>
+<body background="<c:url value='/resources/images/grass.jpg'/>"
+	style="background-size: 90%;">
+	<div id="maincontainer">
+		<div id="topsection">
+			<div class="innertube">
+				<h1>
+					<a href="goHome" class="disablehref,a">Social NET</a>
+				</h1>
+			</div>
+		</div>
 		<p></p>
 		<br> <br> <br> <br> <br> <br> <br>
-		<br> <br> <br> <br> <br> <br>
-		<div align="center">
-			<form:form action="credentials" method="post" modelAttribute="person" class="form-inline">
+		<br> <br> <br> <br>
+		<div class="container">
+			<form:form action="credentials" method="post" modelAttribute="person"
+				class="form-inline">
 				<div class="form-group">
-					<label for="email">Login:</label> <form:input path="login" class="form-control"/>
+					<label for="email">Login:</label>
+					<form:input path="login" class="form-control" />
 				</div>
 				<div class="form-group">
-					<label for="pwd">Password:</label> <form:password path="password" class="form-control"/>
+					<label for="pwd">Password:</label>
+					<form:password path="password" class="form-control" />
 				</div>
 				<!-- <div class="checkbox">
 					<label><input type="checkbox"> Remember me</label>

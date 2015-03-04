@@ -1,0 +1,125 @@
+@CHARSET "UTF-8";
+
+body {
+	margin: 0;
+	padding: 0;
+	line-height: 1.5em;
+}
+
+b {
+	font-size: 110%;
+}
+
+em {
+	color: red;
+}
+
+#maincontainer {
+	width: 840px; /*Width of main container*/
+	margin: 0 auto; /*Center container on page*/
+}
+
+#topsection {
+	#background: #EAEAEA;
+	height: 80px; /*Height of top section*/
+}
+
+#topsection h1 {
+	margin: 0;
+	padding-top: 15px;
+}
+
+#contentwrapper {
+	float: left;
+	width: 100%;
+}
+
+#contentcolumn {
+	margin-right: 370px;
+	/*Margin for content column. Should be (RightColumnWidth + LeftColumnWidth)*/
+}
+
+#photo {
+	float: left;
+	width: 180px; /*Width of left column in pixel*/
+	margin-left: -370px;
+	/*Set margin to -(LeftColumnWidth + RightColumnWidth)*/
+	#background: #C8FC98;
+}
+
+#myfriends {
+	border-left: 1px solid #cecece;
+	float: left;
+	width: 190px; /*Width of right column in pixels*/
+	margin-left: -190px; /*Set margin to -RightColumnWidth*/
+	#background: yellow;
+}
+
+#footer {
+	clear: left;
+	width: 100%;
+	background: black;
+	color: #FFF;
+	text-align: center;
+	padding: 4px 0;
+}
+
+#footer a {
+	color: #FFFF80;
+}
+
+.disablehref{
+	text-decoration: none;
+}
+
+ A {
+    color: red; /* Цвет ссылок */
+    text-decoration: none;
+   }
+ A:visited {
+    color: #cecece; /* Цвет посещенных ссылок */
+    text-decoration: none;
+   }
+ A:active {
+    color: #ffff00; /* Цвет активных ссылок */
+    text-decoration: none;
+   }
+
+.innertube {
+	margin: 10px;
+	/*Margins for inner DIV inside each column (to provide padding)*/
+	margin-top: 0;
+}
+
+/* ####### responsive layout CSS ####### */
+@media ( max-width : 840px) {
+	/* 1st level responsive layout break point- drop right column down*/
+	#maincontainer {
+		width: 100%;
+	}
+	#photo {
+		margin-left: -180px; /*Set margin to -LeftColumnWidth*/
+	}
+	#myfriends {
+		float: none;
+		width: 100%;
+		margin-left: 0;
+		clear: both;
+	}
+	#contentcolumn {
+		margin-right: 180px; /*Set margin to LeftColumnWidth*/
+	}
+}
+
+@media ( max-width : 600px) {
+	/* 2nd level responsive layout break point- drop left column down */
+	#photo {
+		float: none;
+		width: 100%;
+		clear: both;
+		margin-left: 0;
+	}
+	#contentcolumn {
+		margin-right: 0;
+	}
+}
