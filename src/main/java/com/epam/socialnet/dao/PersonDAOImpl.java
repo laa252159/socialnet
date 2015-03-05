@@ -26,16 +26,6 @@ public class PersonDAOImpl implements PersonDAO {
 	public void saveOrUpdate(Person person) {
 		if (person.getId() > 0) {
 			// update
-			
-//			private long id;
-//			private String login;
-//			private String password;
-//			private String fName;
-//			private String lName;
-//			private Date dob;
-//			private String phone;
-//			private String address;
-			
 			String sql = "UPDATE \"PERSONS\" SET "
 					+ "login = ?, "
 					+ "password = ?, "
@@ -110,13 +100,18 @@ public class PersonDAOImpl implements PersonDAO {
 
 			@Override
 			public Person mapRow(ResultSet rs, int rowNum) throws SQLException {
-				Person aPerson = new Person();
+				Person person = new Person();
 	
-				aPerson.setId(rs.getLong("id"));
-				aPerson.setLogin(rs.getString("login"));
-				aPerson.setPassword(rs.getString("password"));
+				person.setId(rs.getLong("id"));
+				person.setLogin(rs.getString("login"));
+				person.setPassword(rs.getString("password"));
+				person.setfName(rs.getString("fn"));
+				person.setlName(rs.getString("ln"));
+				person.setPhone(rs.getString("phone"));
+				person.setAddress(rs.getString("address"));
+				person.setDob(rs.getDate("dob"));
 				
-				return aPerson;
+				return person;
 			}
 			
 		});

@@ -30,15 +30,16 @@
 		<div id="contentwrapper">
 			<div id="contentcolumn">
 				<div class="innertube">
-					<h4>
-						Info about ${person.fName} &nbsp; ${person.lName} 
-					</h4>
+					<h4>Info about ${person.fName} &nbsp; ${person.lName}</h4>
 					<table>
 						<form:form action="savePerson" method="post"
 							modelAttribute="person">
+							<form:hidden path="id" />
+							<form:hidden path="password" />
+							<form:hidden path="login" />
 							<tr>
 								<td>Login:</td>
-								<td><form:label path="login" /></td>
+								<td>${person.login}</td>
 							</tr>
 							<tr>
 								<td>First Name:</td>
@@ -60,12 +61,12 @@
 								<td>Address:</td>
 								<td><form:input path="address" /></td>
 							</tr>
+
 							<tr>
 								<td colspan="2" align="center"><input type="submit"
 									value="Save"></td>
 							</tr>
-							<form:hidden path="id" />
-							<form:hidden path="password" />
+
 						</form:form>
 					</table>
 				</div>

@@ -43,6 +43,15 @@ public class HomeController {
 		return model;
 	}
 	
+	@RequestMapping(value = "/reg")
+	public ModelAndView registration(ModelAndView model) throws IOException {
+		Person person = new Person();
+		model.addObject("person", person);
+		model.setViewName("Registration");
+
+		return model;
+	}
+	
 	@RequestMapping(value = "/credentials")
 	public ModelAndView loginEnter(@ModelAttribute Person person) throws IOException {
 		System.out.println(person.getLogin());

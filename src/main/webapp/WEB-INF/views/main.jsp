@@ -46,6 +46,10 @@
 							<td>Data of birth</td>
 							<td>${personInfo.dob}</td>
 						</tr>
+							<tr>
+							<td>Phone</td>
+							<td>${personInfo.phone}</td>
+						</tr>
 						<tr>
 							<td>Address</td>
 							<td>${personInfo.address}</td>
@@ -77,10 +81,7 @@
 			<div class="innertube" style="margin-left: 30px;">
 				<h4>My Friends (${listOfFriends.size()})</h4>
 				<c:forEach var="friend" items="${listOfFriends}" varStatus="status">
-					<p>
-						<a href="viewPerson?id=${friend.id}" style="color: black;">${friend.login}
-							&nbsp; ${friend.password} &nbsp; </a>
-					</p>
+						<a href="viewPerson?id=${friend.id}" style="color: black;" class="list-group-item">&nbsp;${friend.fName}&nbsp;${friend.lName}</a>
 				</c:forEach>
 			</div>
 		</div>
