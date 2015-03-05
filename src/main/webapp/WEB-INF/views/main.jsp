@@ -14,39 +14,9 @@
 </head>
 <body background="<c:url value='/resources/images/grass.jpg'/>"
 	style="background-size: 90%;">
-	<%-- 	<div align="left">
-		<h1>
-			<a href="goHome">Social NET</a>
-		</h1>
-		<table width="100%">
-			<tr>
-				<td>PAGE OF ${personInfo.login} <br /> LEFT TOP
-					
-				</td>
-				<td>RIGHT TOP My friends: <br>
-					<ul>
-						<c:forEach var="friend" items="${listOfFriends}"
-							varStatus="status">
-							<li><a href="viewPerson?id=${friend.id}">${status.index + 1}
-									&nbsp; ${friend.id} &nbsp; ${friend.login} &nbsp;
-									${friend.password} &nbsp; </a></li>
-						</c:forEach>
-					</ul>
-				</td>
-			</tr>
-			<tr>
-				<td>LEFT BOTTOM</td>
-				<td>RIGHT BOTTOM</td>
-			</tr>
-			<tr></tr>
-		</table>
-	</div> --%>
-
-
-
-
 	<div id="maincontainer">
 
+		<!-- TOP BLOCK  -->
 		<div id="topsection">
 			<div class="innertube">
 				<h1>
@@ -55,11 +25,14 @@
 			</div>
 		</div>
 
+		<!-- PERSON INFO AND CHAT BLOCK  -->
 		<div id="contentwrapper">
 			<div id="contentcolumn">
 				<div class="innertube">
-					<h3>Info about ${personInfo.login}</h3>
-					<!-- BLOCK PERSON INFO  -->
+					<h4>
+						Info about ${personInfo.login} &nbsp; <a
+							href="editPerson?id=${personInfo.id}">[edit]</a>
+					</h4>
 					<table>
 						<tr>
 							<td>First Name</td>
@@ -81,45 +54,43 @@
 
 					<!-- CHAT BLOCK  -->
 					<div>
-						<h3>CHAT whith ${personInfo.login}</h3>
+						<h4>CHAT whith ${personInfo.login}</h4>
 						<textarea rows="10" cols="45"></textarea>
 					</div>
 				</div>
 			</div>
 		</div>
-		
+
 		<!-- PHOTO BLOCK  -->
 		<div id="photo">
 			<div class="innertube">
-				<h3>${personInfo.login} photo</h3>
+				<h4>${personInfo.login}&nbsp;photo</h4>
 				<div style="border: 1px solid #cecece;">
-				<img src="<c:url value="/resources/images/test-photo.png"/>" alt="Mountain View" style="width:160px;height:160px">
+					<img src="<c:url value="/resources/images/test-photo.png"/>"
+						alt="Mountain View" style="width: 160px; height: 160px">
 				</div>
 			</div>
 		</div>
-		
-		
+
+		<!-- FRIENDS BLOCK  -->
 		<div id="myfriends">
-			<!-- FRIENDS BLOCK  -->
 			<div class="innertube" style="margin-left: 30px;">
-				<h3>My Friends</h3>
-				sdsds<br> sdsds<br> sdsds<br> sdsds<br> sdsds<br>
-				sdsds<br>
+				<h4>My Friends (${listOfFriends.size()})</h4>
+				<c:forEach var="friend" items="${listOfFriends}" varStatus="status">
+					<p>
+						<a href="viewPerson?id=${friend.id}" style="color: black;">${friend.login}
+							&nbsp; ${friend.password} &nbsp; </a>
+					</p>
+				</c:forEach>
 			</div>
 		</div>
 
+		<!-- FOOTER BLOCK  -->
 		<!-- 	<div id="footer">
 			<a href="http://www.dynamicdrive.com/style/">Dynamic Drive CSS
 				Library</a>
 		</div> -->
 
 	</div>
-
-
-
-
-
-
-
 </body>
 </html>

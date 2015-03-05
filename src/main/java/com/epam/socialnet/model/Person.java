@@ -2,7 +2,6 @@ package com.epam.socialnet.model;
 
 import java.util.Date;
 
-
 public class Person {
 	private long id;
 	private String login;
@@ -10,8 +9,8 @@ public class Person {
 	private String fName;
 	private String lName;
 	private Date dob;
+	private String phone;
 	private String address;
-	
 
 	public Person() {
 		super();
@@ -77,5 +76,13 @@ public class Person {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 }

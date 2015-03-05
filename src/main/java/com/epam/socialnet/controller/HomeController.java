@@ -91,7 +91,8 @@ public class HomeController {
 	public ModelAndView editPerson(HttpServletRequest request) {
 		long personId = Long.parseLong(request.getParameter("id"));
 		Person person = personService.get(personId);
-		ModelAndView model = new ModelAndView("PersonFormEdit");
+		ModelAndView model = new ModelAndView("EditInfo");
+//		model.addObject("id", person.getId());
 		model.addObject("person", person);
 
 		return model;

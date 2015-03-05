@@ -2,6 +2,7 @@ package com.epam.socialnet.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -25,13 +26,46 @@ public class PersonDAOImpl implements PersonDAO {
 	public void saveOrUpdate(Person person) {
 		if (person.getId() > 0) {
 			// update
-			String sql = "UPDATE \"PERSONS\" SET password = ? WHERE id = ?";
-			jdbcTemplate.update(sql, person.getPassword(), person.getId());
+			
+//			private long id;
+//			private String login;
+//			private String password;
+//			private String fName;
+//			private String lName;
+//			private Date dob;
+//			private String phone;
+//			private String address;
+			
+			String sql = "UPDATE \"PERSONS\" SET "
+					+ "login = ?, "
+					+ "password = ?, "
+					+ "fn = ?, "
+					+ "ln = ?, "
+					+ "dob = ?, "
+					+ "phone = ?, "
+					+ "address = ? "
+					+ " WHERE id = ?";
+			jdbcTemplate.update(sql, 
+					person.getLogin(),
+					person.getPassword(),
+					person.getfName(),
+					person.getlName(),
+					person.getDob(),
+					person.getPhone(),
+					person.getAddress(),
+					person.getId());
 		} else {
 			// insert
-			String sql = "INSERT INTO \"PERSONS\" (login, password)"
-					+ " VALUES (?, ?)";
-			jdbcTemplate.update(sql, person.getLogin(), person.getPassword());
+			String sql = "INSERT INTO \"PERSONS\" (login, password, fn, ln, dob, phone, address)"
+					+ " VALUES (?, ?, ?, ?, ?, ?, ?)";
+			jdbcTemplate.update(sql, 
+					person.getLogin(),
+					person.getPassword(),
+					person.getfName(),
+					person.getlName(),
+					person.getDob(),
+					person.getPhone(),
+					person.getAddress());	
 		}
 	}
 
@@ -55,6 +89,11 @@ public class PersonDAOImpl implements PersonDAO {
 					person.setId(rs.getLong("id"));
 					person.setLogin(rs.getString("login"));
 					person.setPassword(rs.getString("password"));
+					person.setfName(rs.getString("fn"));
+					person.setlName(rs.getString("ln"));
+					person.setPhone(rs.getString("phone"));
+					person.setAddress(rs.getString("address"));
+					person.setDob(rs.getDate("dob"));
 					return person;
 				}
 				

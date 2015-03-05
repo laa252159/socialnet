@@ -5,8 +5,13 @@
 CREATE TABLE "PERSONS"
 (
   id bigserial NOT NULL,
-  login character varying(20)[] NOT NULL,
-  password character varying(20)
+  login character varying(20) NOT NULL,
+  password character varying(20),
+  fn character varying(50),
+  ln character varying(50),
+  dob date,
+  phone character varying(20),
+  address character varying(200)
 )
 WITH (
   OIDS=FALSE
