@@ -31,8 +31,7 @@
 			<div id="contentcolumn">
 				<div class="innertube">
 					<h4>
-						Info about ${person.fName} &nbsp; ${person.lName} <a
-							href="editPerson?id=${personInfo.id}">[edit]</a>
+						Info about ${person.fName} &nbsp; ${person.lName} 
 					</h4>
 					<table>
 						<form:form action="savePerson" method="post"
@@ -59,7 +58,7 @@
 							</tr>
 							<tr>
 								<td>Address:</td>
-								<td><form:textarea path="address" /></td>
+								<td><form:input path="address" /></td>
 							</tr>
 							<tr>
 								<td colspan="2" align="center"><input type="submit"
