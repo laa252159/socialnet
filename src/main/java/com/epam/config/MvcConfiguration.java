@@ -1,4 +1,4 @@
-package com.epam.socialnet.config;
+package com.epam.config;
 
 import javax.sql.DataSource;
 
@@ -18,12 +18,12 @@ import com.epam.socialnet.dao.PersonDAOImpl;
 import com.epam.socialnet.services.PersonService;
 import com.epam.socialnet.services.PersonServiceImpl;
 
-/*@Configuration
+@Configuration
 @ComponentScan(basePackages="com.epam.socialnet")
-@EnableWebMvc*/
+@EnableWebMvc
 public class MvcConfiguration extends WebMvcConfigurerAdapter{
 
-//	@Bean
+	@Bean
 	public ViewResolver getViewResolver(){
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
 		resolver.setPrefix("/WEB-INF/views/");
@@ -31,12 +31,12 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 		return resolver;
 	}
 	
-//	@Override
+	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 	}
 
-//	@Bean
+	@Bean
 	public DataSource getDataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("org.postgresql.Driver");
@@ -47,21 +47,21 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 		return dataSource;
 	}
 	
-//	@Bean
+	@Bean
 	public PersonDAO getPersonDAO() {
 		return new PersonDAOImpl(getDataSource());
 	}
 	
-//	@Bean
+	@Bean
 	public PersonService getPersonService() {
 		return new PersonServiceImpl(getPersonDAO()); 
 	}
 	
-//	@Bean
+	@Bean
 	public CommonsMultipartResolver createMultipartResolver() {
 	    CommonsMultipartResolver resolver=new CommonsMultipartResolver();
 	    resolver.setMaxUploadSize(5 * 1024 * 1024);
-//	    resolver.setDefaultEncoding("utf-8");
+	    resolver.setDefaultEncoding("utf-8");
 	    return resolver;
 	}
 }
