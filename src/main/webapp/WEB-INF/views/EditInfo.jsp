@@ -69,6 +69,13 @@
 
 						</form:form>
 					</table>
+					<form method="post" action="uploadPhoto"
+						enctype="multipart/form-data">
+						<%-- <input type="hidden" name="id_person" value="${person.id}"> --%>
+						Photo to upload: <input type="file" name="file"><br />
+						<input	type="submit" value="Upload"> Press here to upload the
+						file!
+					</form>
 				</div>
 			</div>
 		</div>

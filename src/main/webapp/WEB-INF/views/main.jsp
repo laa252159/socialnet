@@ -30,35 +30,35 @@
 			<div id="contentcolumn">
 				<div class="innertube">
 					<h4>
-						Info about ${personInfo.login} &nbsp; <a
+						Info about ${personInfo.fName}&nbsp;${personInfo.lName}&nbsp; <a
 							href="editPerson?id=${personInfo.id}">[edit]</a>
 					</h4>
-					<table>
+					<table style="margin-left: 20px;">
 						<tr>
-							<td>First Name</td>
+							<td>First Name:&nbsp;</td>
 							<td>${personInfo.fName}</td>
 						</tr>
 						<tr>
-							<td>Last Name</td>
-							<td>${personInfo.fName}</td>
+							<td>Last Name:&nbsp;</td>
+							<td>${personInfo.lName}</td>
 						</tr>
 						<tr>
-							<td>Data of birth</td>
+							<td>Data of birth:&nbsp;</td>
 							<td>${personInfo.dob}</td>
 						</tr>
 							<tr>
-							<td>Phone</td>
+							<td>Phone:&nbsp;</td>
 							<td>${personInfo.phone}</td>
 						</tr>
 						<tr>
-							<td>Address</td>
+							<td>Address:&nbsp;</td>
 							<td>${personInfo.address}</td>
 						</tr>
 					</table>
 
 					<!-- CHAT BLOCK  -->
 					<div>
-						<h4>CHAT whith ${personInfo.login}</h4>
+						<h4>CHAT whith ${personInfo.fName}</h4>
 						<textarea rows="10" cols="45"></textarea>
 					</div>
 				</div>
@@ -68,7 +68,7 @@
 		<!-- PHOTO BLOCK  -->
 		<div id="photo">
 			<div class="innertube">
-				<h4>${personInfo.login}&nbsp;photo</h4>
+				<h4>${personInfo.fName} &nbsp; ${personInfo.lName}</h4>
 				<div style="border: 1px solid #cecece;">
 					<img src="<c:url value="/resources/images/test-photo.png"/>"
 						alt="Mountain View" style="width: 160px; height: 160px">

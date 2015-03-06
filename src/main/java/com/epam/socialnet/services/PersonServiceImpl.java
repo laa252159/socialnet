@@ -1,5 +1,6 @@
 package com.epam.socialnet.services;
 
+import java.util.Date;
 import java.util.List;
 
 import com.epam.socialnet.dao.PersonDAO;
@@ -39,6 +40,11 @@ public class PersonServiceImpl implements PersonService {
 	public Person getCurrentPerson() {
 		//TODO get Current user ID from session, and get it from DAO by ID
 		Person person = new Person(1000, "Me");
+		person.setAddress("Астраханская 1");
+		person.setDob(new Date());
+		person.setfName("Александр");
+		person.setlName("Лобов");
+		person.setPhone("77-77-77");
 		return person;
 	}
 

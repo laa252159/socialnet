@@ -1,5 +1,8 @@
 package com.epam.socialnet.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,8 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.epam.socialnet.model.Person;
@@ -42,7 +49,7 @@ public class HomeController {
 
 		return model;
 	}
-	
+
 	@RequestMapping(value = "/reg")
 	public ModelAndView registration(ModelAndView model) throws IOException {
 		Person person = new Person();
@@ -51,13 +58,14 @@ public class HomeController {
 
 		return model;
 	}
-	
+
 	@RequestMapping(value = "/credentials")
-	public ModelAndView loginEnter(@ModelAttribute Person person) throws IOException {
+	public ModelAndView loginEnter(@ModelAttribute Person person)
+			throws IOException {
 		System.out.println(person.getLogin());
 		return new ModelAndView("redirect:/");
 	}
-	
+
 	@RequestMapping(value = "/savePerson", method = RequestMethod.POST)
 	public ModelAndView savePerson(@ModelAttribute Person person) {
 		personService.saveOrUpdate(person);
@@ -101,9 +109,35 @@ public class HomeController {
 		long personId = Long.parseLong(request.getParameter("id"));
 		Person person = personService.get(personId);
 		ModelAndView model = new ModelAndView("EditInfo");
-//		model.addObject("id", person.getId());
+		// model.addObject("id", person.getId());
 		model.addObject("person", person);
 
 		return model;
 	}
+
+	
+	
+	
+	
+	@RequestMapping(value = "/uploadPhoto", method = RequestMethod.POST)
+    public ModelAndView uploadFileHandler(
+//    		@RequestParam("id_person") String id,
+            @RequestParam("file") MultipartFile file) throws Exception {
+
+//		if (!file.isEmpty()) {
+//			byte[] bytes = file.getBytes();
+//
+//		}
+//
+//		
+//		
+//		long personId = Long.parseLong(id);
+		long personId = 1L;
+		Person person = personService.get(personId);
+		ModelAndView model = new ModelAndView("EditInfo");
+		model.addObject("person", person);
+
+		return model;
+	}
+
 }

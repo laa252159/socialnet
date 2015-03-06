@@ -15,7 +15,7 @@ em {
 }
 
 #maincontainer {
-	width: 840px; /*Width of main container*/
+	width: 1140px; /*Width of main container*/
 	margin: 0 auto; /*Center container on page*/
 }
 
@@ -42,7 +42,7 @@ em {
 #photo {
 	float: left;
 	width: 180px; /*Width of left column in pixel*/
-	margin-left: -370px;
+	margin-left: -620px;
 	/*Set margin to -(LeftColumnWidth + RightColumnWidth)*/
 	#background: #C8FC98;
 }
@@ -50,8 +50,8 @@ em {
 #myfriends {
 	border-left: 1px solid #cecece;
 	float: left;
-	width: 190px; /*Width of right column in pixels*/
-	margin-left: -190px; /*Set margin to -RightColumnWidth*/
+	width: 380px; /*Width of right column in pixels*/
+	margin-left: -390px; /*Set margin to -RightColumnWidth*/
 	#background: yellow;
 }
 
@@ -92,7 +92,7 @@ em {
 }
 
 /* ####### responsive layout CSS ####### */
-@media ( max-width : 840px) {
+@media ( max-width : 1140px) {
 	/* 1st level responsive layout break point- drop right column down*/
 	#maincontainer {
 		width: 100%;

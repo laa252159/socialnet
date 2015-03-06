@@ -11,7 +11,8 @@ CREATE TABLE "PERSONS"
   ln character varying(50),
   dob date,
   phone character varying(20),
-  address character varying(200)
+  address character varying(200),
+  photo bytea[]
 )
 WITH (
   OIDS=FALSE

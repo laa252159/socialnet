@@ -30,9 +30,7 @@
 		<div id="contentwrapper">
 			<div id="contentcolumn">
 				<div class="innertube">
-					<br>
-					<br>
-					<br>
+					<br> <br> <br>
 					<h4>Enter login and password of new user</h4>
 					<br>
 					<form:form action="savePerson" method="post"
@@ -45,13 +43,22 @@
 							<label for="password">Password:</label>
 							<form:input path="password" class="form-control" />
 						</div>
-					<%-- 	<div class="form-group">
-							<label for="password">Repeat password:</label>
-							<form:input path="password" class="form-control" />
-						</div> --%>
+						<div class="form-group">
+							<label for="fname">Name:</label>
+							<form:input path="fName" class="form-control" />
+						</div>
+						<div class="form-group">
+							<label for="lname">Last name:</label>
+							<form:input path="lName" class="form-control" />
+						</div>
 
-						<input type="submit" value="Create new USER" class="btn"><br><br><br><br><br>
-					    <a href="goHome" class="disablehref,a"><button class="btn">CANCEL</button></a>
+						<input type="submit" value="Create new USER" class="btn">
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<a href="goHome" class="disablehref,a"><button class="btn">CANCEL</button></a>
 					</form:form>
 				</div>
 			</div>

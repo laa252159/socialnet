@@ -1,11 +1,17 @@
 package com.epam.socialnet.config;
 
+import javax.servlet.MultipartConfigElement;
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -39,7 +45,7 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 	public DataSource getDataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("org.postgresql.Driver");
-		dataSource.setUrl("jdbc:postgresql://localhost:5432/socialnet");
+		dataSource.setUrl("jdbc:postgresql://localhost:5432/socialnet?charSet=UNICODE");
 		dataSource.setUsername("postgres");
 		dataSource.setPassword("root");
 		
@@ -54,5 +60,13 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 	@Bean
 	public PersonService getPersonService() {
 		return new PersonServiceImpl(getPersonDAO()); 
+	}
+	
+	@Bean
+	public CommonsMultipartResolver createMultipartResolver() {
+	    CommonsMultipartResolver resolver=new CommonsMultipartResolver();
+	    resolver.setMaxUploadSize(5 * 1024 * 1024);
+//	    resolver.setDefaultEncoding("utf-8");
+	    return resolver;
 	}
 }
