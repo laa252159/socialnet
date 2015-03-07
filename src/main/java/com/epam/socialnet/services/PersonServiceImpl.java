@@ -53,6 +53,11 @@ public class PersonServiceImpl implements PersonService {
 		// TODO change logic!!!
 		return personDAO.list();
 	}
-	
-	
+
+    @Override
+    public void setPhoto(String id, byte[] img) {
+        personDAO.setPhoto(id, img);
+    }
+
+
 }

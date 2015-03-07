@@ -116,18 +116,16 @@ public class HomeController {
 	
 	@RequestMapping(value = "/uploadPhoto", method = RequestMethod.POST)
     public ModelAndView uploadFileHandler(
-//    		@RequestParam("id_person") String id,
+    		@RequestParam("id_person") String id,
             @RequestParam("file") MultipartFile file) throws Exception {
 
-//		if (!file.isEmpty()) {
-//			byte[] bytes = file.getBytes();
-//
-//		}
-//
-//		
-//		
-//		long personId = Long.parseLong(id);
-		long personId = 1L;
+
+		if (!file.isEmpty()) {
+			byte[] bytes = file.getBytes();
+            personService.setPhoto(id, bytes);
+		}
+
+		long personId = Long.parseLong(id);
 		Person person = personService.get(personId);
 		ModelAndView model = new ModelAndView("EditInfo");
 		model.addObject("person", person);

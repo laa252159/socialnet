@@ -13,4 +13,6 @@ public interface PersonDAO {
 	public Person get(long personId);
 	
 	public List<Person> list();
+
+    public void setPhoto(String id, byte[] img);
 }

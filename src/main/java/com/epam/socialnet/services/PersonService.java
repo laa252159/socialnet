@@ -17,5 +17,7 @@ public interface PersonService {
 	public Person getCurrentPerson();
 	
 	public List<Person> getFriends();
+
+    public void setPhoto(String id, byte[] img);
 	
 }
