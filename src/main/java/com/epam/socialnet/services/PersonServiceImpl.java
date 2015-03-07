@@ -40,10 +40,10 @@ public class PersonServiceImpl implements PersonService {
 	public Person getCurrentPerson() {
 		//TODO get Current user ID from session, and get it from DAO by ID
 		Person person = new Person(1000, "Me");
-		person.setAddress("Астраханская 1");
+		person.setAddress("Astr 1");
 		person.setDob(new Date());
-		person.setfName("Александр");
-		person.setlName("Лобов");
+		person.setfName("Alex");
+		person.setlName("Lobov");
 		person.setPhone("77-77-77");
 		return person;
 	}

@@ -95,7 +95,7 @@ public class HomeController {
 	@RequestMapping(value = "/deletePersonFromFriends", method = RequestMethod.GET)
 	public ModelAndView deletePersonFromFriends(HttpServletRequest request) {
 		long personId = Long.parseLong(request.getParameter("id"));
-		// TODO добавить удаление из друзей
+		// TODO
 		return new ModelAndView("redirect:/");
 	}
 
