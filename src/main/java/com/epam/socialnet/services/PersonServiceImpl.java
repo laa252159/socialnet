@@ -39,12 +39,7 @@ public class PersonServiceImpl implements PersonService {
 	@Override
 	public Person getCurrentPerson() {
 		//TODO get Current user ID from session, and get it from DAO by ID
-		Person person = new Person(1000, "Me");
-		person.setAddress("Astr 1");
-		person.setDob(new Date());
-		person.setfName("Alex");
-		person.setlName("Lobov");
-		person.setPhone("77-77-77");
+		Person person = personDAO.get(2);
 		return person;
 	}
 
@@ -57,6 +52,11 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public void setPhoto(String id, byte[] img) {
         personDAO.setPhoto(id, img);
+    }
+
+    @Override
+    public byte[] getPhoto(String id) {
+        return personDAO.getPhoto(id);
     }
 
 

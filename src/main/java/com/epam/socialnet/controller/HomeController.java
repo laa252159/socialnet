@@ -2,7 +2,9 @@ package com.epam.socialnet.controller;
 
 import java.io.IOException;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -132,5 +134,14 @@ public class HomeController {
 
 		return model;
 	}
+
+    @RequestMapping(value = "/imageDisplay", method = RequestMethod.GET)
+    public void showImage(@RequestParam("id") String id, HttpServletResponse response,HttpServletRequest request)
+            throws ServletException, IOException {
+
+        response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
+        response.getOutputStream().write(personService.getPhoto(id));
+        response.getOutputStream().close();
+    }
 
 }

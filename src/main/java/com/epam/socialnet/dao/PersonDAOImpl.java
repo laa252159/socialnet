@@ -1,27 +1,19 @@
 package com.epam.socialnet.dao;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Types;
-import java.util.Date;
-import java.util.List;
-
-import javax.sql.DataSource;
-
+import com.epam.socialnet.model.Person;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
-
-import com.epam.socialnet.model.Person;
-import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.core.support.SqlLobValue;
 import org.springframework.jdbc.support.lob.DefaultLobHandler;
 import org.springframework.jdbc.support.lob.LobHandler;
+
+import javax.sql.DataSource;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Types;
+import java.util.List;
 
 public class PersonDAOImpl implements PersonDAO {
 
@@ -141,6 +133,23 @@ public class PersonDAOImpl implements PersonDAO {
                         new SqlLobValue(img, lobHandler), id
                 },
                 new int[]{Types.BLOB, Types.BIGINT});
+    }
+
+    @Override
+    public byte[] getPhoto(String id) {
+        String sql = "SELECT * FROM \"PERSONS\" WHERE id=" + id;
+        return jdbcTemplate.query(sql, new ResultSetExtractor<byte[]>() {
+
+            @Override
+            public byte[] extractData(ResultSet rs) throws SQLException,
+                    DataAccessException {
+                if (rs.next()) {
+                    return rs.getBytes("photo");
+                }
+                return new byte[0];
+            }
+
+        });
     }
 
 
