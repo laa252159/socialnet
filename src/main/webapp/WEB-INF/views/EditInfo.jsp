@@ -12,6 +12,23 @@
 	href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />"
 	rel="stylesheet">
 <link href="<c:url value="/resources/css/my.css" />" rel="stylesheet">
+    <script type="text/javascript">
+        function checkSize(max_img_size)
+        {
+            var input = document.getElementById("upload");
+            // check for browser support (may need to be modified)
+            if(input.files && input.files.length == 1)
+            {
+                if (input.files[0].size > max_img_size)
+                {
+                    alert("The file must be less than " + (Math.round(max_img_size/1024)) + "KB");
+                    return false;
+                }
+            }
+
+            return true;
+        }
+    </script>
 </head>
 <body background="<c:url value='/resources/images/grass.jpg'/>"
 	style="background-size: 90%;">
@@ -70,9 +87,9 @@
 						</form:form>
 					</table>
 					<form method="post" action="uploadPhoto"
-						enctype="multipart/form-data">
+						enctype="multipart/form-data" onsubmit="return checkSize(200152)">
 						 <input type="hidden" name="id_person" value="${person.id}">
-						Photo to upload: <input type="file" name="file"><br />
+						Photo to upload: <input type="file" name="file" id="upload"><br />
 						<input	type="submit" value="Upload"> Press here to upload the
 						file!
 					</form>
