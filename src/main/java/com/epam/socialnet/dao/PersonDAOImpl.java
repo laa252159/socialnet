@@ -1,6 +1,8 @@
 package com.epam.socialnet.dao;
 
+import com.epam.socialnet.dto.PersonDto;
 import com.epam.socialnet.model.Person;
+
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
@@ -10,6 +12,7 @@ import org.springframework.jdbc.support.lob.DefaultLobHandler;
 import org.springframework.jdbc.support.lob.LobHandler;
 
 import javax.sql.DataSource;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
@@ -119,6 +122,24 @@ public class PersonDAOImpl implements PersonDAO {
 
         return listPerson;
     }
+    
+	@Override
+	public List<PersonDto> listDtos() {
+		  String sql = "SELECT * FROM \"PERSONS\"";
+	        List<PersonDto> listPersonDtos = jdbcTemplate.query(sql, new RowMapper<PersonDto>() {
+
+	            @Override
+	            public PersonDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+	                PersonDto personDto = new PersonDto();
+
+	                personDto.setId(rs.getLong("id"));
+	                personDto.setfName(rs.getString("fn"));
+	                personDto.setlName(rs.getString("ln"));
+	                return personDto;
+	            }
+	        });
+	        return listPersonDtos;
+	}
 
     @Override
     public void setPhoto(String id, byte[] img) {
@@ -151,6 +172,4 @@ public class PersonDAOImpl implements PersonDAO {
 
         });
     }
-
-
 }

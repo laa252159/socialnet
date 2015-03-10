@@ -27,7 +27,7 @@ public class HomeController {
 	@RequestMapping(value = "/")
 	public ModelAndView home(ModelAndView model) throws IOException {
 		model.addObject("personInfo", personService.getCurrentPerson());
-		model.addObject("listOfFriends", personService.getFriends());
+		model.addObject("listOfFriends", personService.getFriendsDtos(String.valueOf(personService.getCurrentPerson().getId())));
 		model.setViewName("main");
 
 		return model;
@@ -74,7 +74,7 @@ public class HomeController {
 		long personId = Long.parseLong(request.getParameter("id"));
 		Person person = personService.get(personId);
 		ModelAndView model = new ModelAndView("main");
-		model.addObject("listOfFriends", personService.getFriends());
+		model.addObject("listOfFriends", personService.getFriends(String.valueOf(personService.getCurrentPerson().getId())));
 		model.addObject("personInfo", personService.get(personId));
 		return model;
 	}
@@ -143,5 +143,4 @@ public class HomeController {
         response.getOutputStream().write(personService.getPhoto(id));
         response.getOutputStream().close();
     }
-
 }

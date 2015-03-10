@@ -1,9 +1,9 @@
 package com.epam.socialnet.services;
 
-import java.util.Date;
 import java.util.List;
 
 import com.epam.socialnet.dao.PersonDAO;
+import com.epam.socialnet.dto.PersonDto;
 import com.epam.socialnet.model.Person;
 
 public class PersonServiceImpl implements PersonService {
@@ -44,9 +44,15 @@ public class PersonServiceImpl implements PersonService {
 	}
 
 	@Override
-	public List<Person> getFriends() {
+	public List<Person> getFriends(String personId) {
 		// TODO change logic!!!
 		return personDAO.list();
+	}
+	
+	@Override
+	public List<PersonDto> getFriendsDtos(String personId) {
+		// TODO change logic!!!
+		return personDAO.listDtos();
 	}
 
     @Override
@@ -58,6 +64,4 @@ public class PersonServiceImpl implements PersonService {
     public byte[] getPhoto(String id) {
         return personDAO.getPhoto(id);
     }
-
-
 }

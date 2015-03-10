@@ -2,6 +2,7 @@ package com.epam.socialnet.services;
 
 import java.util.List;
 
+import com.epam.socialnet.dto.PersonDto;
 import com.epam.socialnet.model.Person;
 
 public interface PersonService {
@@ -16,7 +17,9 @@ public interface PersonService {
 	
 	public Person getCurrentPerson();
 	
-	public List<Person> getFriends();
+	public List<Person> getFriends(String personId);
+	
+	public List<PersonDto> getFriendsDtos(String personId);
 
     public void setPhoto(String id, byte[] img);
 
