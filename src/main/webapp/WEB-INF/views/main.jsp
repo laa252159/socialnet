@@ -46,7 +46,7 @@
 							<td>Data of birth:&nbsp;</td>
 							<td>${personInfo.dob}</td>
 						</tr>
-							<tr>
+						<tr>
 							<td>Phone:&nbsp;</td>
 							<td>${personInfo.phone}</td>
 						</tr>
@@ -68,28 +68,49 @@
 		<!-- PHOTO BLOCK  -->
 		<div id="photo">
 			<div class="innertube">
-				<h4>${personInfo.fName} &nbsp; ${personInfo.lName}</h4>
+				<h4>${personInfo.fName}&nbsp;${personInfo.lName}</h4>
 				<div style="border: 1px solid #cecece;">
-                    <img src="<c:url value="/imageDisplay?id=${personInfo.id}"/>"
-                         alt="Mountain View" style="width: 160px; height: 160px">
+					<img src="<c:url value="/imageDisplay?id=${personInfo.id}"/>"
+						alt="Mountain View" style="width: 160px; height: 160px">
 				</div>
 			</div>
 		</div>
 
-		<!-- FRIENDS BLOCK  -->
+		<!-- USER SEARCH AND FRIENDS BLOCK  -->
 		<div id="myfriends">
 			<div class="innertube" style="margin-left: 30px;">
 				<h4>My Friends (${listOfFriends.size()})</h4>
 				<c:forEach var="friend" items="${listOfFriends}" varStatus="status">
-						<a href="viewPerson?id=${friend.id}" style="color: black;" class="list-group-item">&nbsp;${friend.fName}&nbsp;${friend.lName}</a>
+					<a href="viewPerson?id=${friend.id}" style="color: black;"
+						class="list-group-item">&nbsp;${friend.fName}&nbsp;${friend.lName}</a>
 				</c:forEach>
-				<h4>All people (${listOfFriends.size()})</h4>
-				<c:forEach var="friend" items="${listOfFriends}" varStatus="status">
-						<a href="viewPerson?id=${friend.id}" style="color: black;" class="list-group-item">&nbsp;${friend.fName}&nbsp;${friend.lName}</a>
-				</c:forEach>
+				<br>
+				<br>
+				<!-- SEARCH BLOCK BEGIN-->
+				<div style="background-color: #F5F5DC; padding: 10px;">
+					<h4>Search persons form</h4>
+					<form role="form" action="viewPerson" method="get">
+						<div class="form-group">
+							<label for="fn">First name:</label> <input type="text"
+								class="form-control" id="fn" name="fn">
+						</div>
+						<div class="form-group">
+							<label for="ln">Last name:</label> <input type="text"
+								class="form-control" id="ln"  name="ln">
+						</div>
+						<input type="hidden" value="${personInfo.id}"  name="id" id="id">
+						<button type="submit" class="btn btn-default">Start
+							search</button>
+					</form>
+					<h4>Founded ${listOfFriends.size()} persons</h4>
+					<c:forEach var="friend" items="${listOfFriends}" varStatus="status">
+						<a href="viewPerson?id=${friend.id}" style="color: black;"
+							class="list-group-item">&nbsp;${friend.fName}&nbsp;${friend.lName}</a>
+					</c:forEach>
+				</div>
+				<!-- SEARCH BLOCK END-->
 			</div>
 		</div>
-
 		<!-- FOOTER BLOCK  -->
 		<!-- 	<div id="footer">
 			<a href="http://www.dynamicdrive.com/style/">Dynamic Drive CSS

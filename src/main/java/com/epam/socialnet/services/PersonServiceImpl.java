@@ -43,6 +43,16 @@ public class PersonServiceImpl implements PersonService {
 		return person;
 	}
 
+    @Override
+    public void setPhoto(String id, byte[] img) {
+        personDAO.setPhoto(id, img);
+    }
+
+    @Override
+    public byte[] getPhoto(String id) {
+        return personDAO.getPhoto(id);
+    }
+    
 	@Override
 	public List<Person> getFriends(String personId) {
 		// TODO change logic!!!
@@ -55,13 +65,16 @@ public class PersonServiceImpl implements PersonService {
 		return personDAO.listDtos();
 	}
 
-    @Override
-    public void setPhoto(String id, byte[] img) {
-        personDAO.setPhoto(id, img);
-    }
+	@Override
+	public boolean areFriends(String firsPersonId, String secondPersonId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
-    @Override
-    public byte[] getPhoto(String id) {
-        return personDAO.getPhoto(id);
-    }
+	@Override
+	public void addFriendship(String firsPersonId, String secondPersonId) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
