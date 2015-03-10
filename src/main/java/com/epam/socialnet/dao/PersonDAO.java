@@ -20,4 +20,5 @@ public interface PersonDAO {
     public void setPhoto(String id, byte[] img);
 
     public byte[] getPhoto(String id);
+
 }

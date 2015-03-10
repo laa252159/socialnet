@@ -45,6 +45,10 @@
     <bean id="personService" class="com.epam.socialnet.services.PersonServiceImpl" >
         <constructor-arg ref="personDao"/>
     </bean>
+    
+    <bean id="friendshipService" class="com.epam.socialnet.services.FriendshipServiceImpl" >
+        <constructor-arg ref="friendshipDao"/>
+    </bean>
 
     <bean id="multipartResolver"
                 class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

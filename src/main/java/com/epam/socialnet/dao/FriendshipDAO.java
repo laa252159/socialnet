@@ -6,16 +6,12 @@ import com.epam.socialnet.model.Friendship;
 
 public interface FriendshipDAO {
 
-	public boolean areFriends(String firsPersonId, String secondPersonId);
-
-	public void addFriendship(String firsPersonId, String secondPersonId);
-
 	public void add(Friendship friendship);
+	
+	public void update(Friendship friendship);
 
-	void delete(long friendshipId);
+	void delete(Friendship friendship);
 
-	Friendship get(long friendshipId);
-
-	List<Friendship> list();
+	public List<Friendship> get(long firsPersonId, long secondPersonId);
 
 }
