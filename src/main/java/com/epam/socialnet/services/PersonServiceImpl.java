@@ -64,17 +64,4 @@ public class PersonServiceImpl implements PersonService {
 		// TODO change logic!!!
 		return personDAO.listDtos();
 	}
-
-	@Override
-	public boolean areFriends(String firsPersonId, String secondPersonId) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void addFriendship(String firsPersonId, String secondPersonId) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

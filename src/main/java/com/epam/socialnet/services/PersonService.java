@@ -24,9 +24,4 @@ public interface PersonService {
 	public List<Person> getFriends(String personId);
 	
 	public List<PersonDto> getFriendsDtos(String personId);
-    
-    public boolean areFriends(String firsPersonId, String secondPersonId);
-    
-    public void addFriendship(String firsPersonId, String secondPersonId);
-	
 }
