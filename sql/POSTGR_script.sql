@@ -1,32 +1,3 @@
--- Table: "FRIENDSHIP"
-
--- DROP TABLE "FRIENDSHIP";
-
-CREATE TABLE "FRIENDSHIP"
-(
-  first_person_id bigint NOT NULL,
-  second_person_id bigint NOT NULL,
-  date_of_friendship_starting date,
-  CONSTRAINT "FRIENDSHIP_first_person_id_second_person_id_key" UNIQUE (first_person_id, second_person_id)
-)
-WITH (
-  OIDS=FALSE
-);
-ALTER TABLE "FRIENDSHIP"
-  OWNER TO postgres;
-
--- Index: "FRIENDSHIP_first_person_id_second_person_id_idx"
-
--- DROP INDEX "FRIENDSHIP_first_person_id_second_person_id_idx";
-
-CREATE INDEX "FRIENDSHIP_first_person_id_second_person_id_idx"
-  ON "FRIENDSHIP"
-  USING btree
-  (first_person_id, second_person_id);
-
-
-  
-  
  -- Table: "PERSONS"
 
 -- DROP TABLE "PERSONS";
@@ -53,6 +24,36 @@ GRANT ALL ON TABLE "PERSONS" TO public;
 
 
 
+
+-- Table: "FRIENDSHIP"
+
+-- DROP TABLE "FRIENDSHIP";
+
+CREATE TABLE "FRIENDSHIP"
+(
+  first_person_id bigint NOT NULL,
+  second_person_id bigint NOT NULL,
+  date_of_friendship_starting date,
+  approve boolean NOT NULL DEFAULT false,
+  CONSTRAINT "FRIENDSHIP_first_person_id_second_person_id_key" UNIQUE (first_person_id, second_person_id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE "FRIENDSHIP"
+  OWNER TO postgres;
+
+-- Index: "FRIENDSHIP_first_person_id_second_person_id_idx"
+
+-- DROP INDEX "FRIENDSHIP_first_person_id_second_person_id_idx";
+
+CREATE INDEX "FRIENDSHIP_first_person_id_second_person_id_idx"
+  ON "FRIENDSHIP"
+  USING btree
+  (first_person_id, second_person_id);
+
+  
+  
 
 -- Constraint: "FRIENDSHIP_first_person_id_second_person_id_key"
 

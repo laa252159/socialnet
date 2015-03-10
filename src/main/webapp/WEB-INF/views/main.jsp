@@ -83,6 +83,10 @@
 				<c:forEach var="friend" items="${listOfFriends}" varStatus="status">
 						<a href="viewPerson?id=${friend.id}" style="color: black;" class="list-group-item">&nbsp;${friend.fName}&nbsp;${friend.lName}</a>
 				</c:forEach>
+				<h4>All people (${listOfFriends.size()})</h4>
+				<c:forEach var="friend" items="${listOfFriends}" varStatus="status">
+						<a href="viewPerson?id=${friend.id}" style="color: black;" class="list-group-item">&nbsp;${friend.fName}&nbsp;${friend.lName}</a>
+				</c:forEach>
 			</div>
 		</div>
 
