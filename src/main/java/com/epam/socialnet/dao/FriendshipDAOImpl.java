@@ -58,7 +58,6 @@ public class FriendshipDAOImpl implements FriendshipDAO {
 								.getBoolean("approve"));
 						return friendship;
 					}
-
 				});
 
 		return listFriendship;
@@ -66,7 +65,16 @@ public class FriendshipDAOImpl implements FriendshipDAO {
 
 	@Override
 	public void update(Friendship friendship) {
-		// TODO Auto-generated method stub
+		 String sql = "UPDATE \"FRIENDSHIP\" SET "
+                 + "first_person_id = ?, "
+                 + "second_person_id = ?, "
+                 + "date_of_friendship_starting = ?, "
+                 + "approve = ?";
+         jdbcTemplate.update(sql,
+        		 friendship.getFirsPersonId(),
+        		 friendship.getSecondPersonId(),
+        		 friendship.getDateOfFriendshipStarting(),
+                 friendship.isFriendshipApproved());
 		
 	}
 }

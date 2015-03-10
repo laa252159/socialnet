@@ -6,11 +6,11 @@ public interface FriendshipService {
 
 	public void add(Friendship friendship);
 
-	public void delete(long friendshipId);
+	public void delete(Friendship friendship);
 
-	public Friendship get(String firsPersonId, String secondPersonId);
+	public Friendship get(long firsPersonId, long secondPersonId);
 
-	public boolean areFriends(String firsPersonId, String secondPersonId);
+	public boolean areFriends(long firsPersonId, long secondPersonId);
 
 	public void approve(Friendship friendship);
 

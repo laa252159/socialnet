@@ -25,25 +25,30 @@ public class FriendshipServiceImpl implements FriendshipService {
 
 	@Override
 	public void approve(Friendship friendship) {
-		// TODO Auto-generated method stub
+		List<Friendship> f = friendshipDAO.get(friendship.getFirsPersonId(), friendship.getSecondPersonId());
+		if(f!=null && !f.isEmpty()){
+			f.get(0).setFriendshipApproved(true);
+			friendshipDAO.update(f.get(0));
+		}
+	}
+
+	@Override
+	public void delete(Friendship friendship) {
+		friendshipDAO.delete(friendship);
 		
 	}
 
 	@Override
-	public void delete(long friendshipId) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Friendship get(String firsPersonId, String secondPersonId) {
-		// TODO Auto-generated method stub
+	public Friendship get(long firsPersonId, long secondPersonId) {
+		List<Friendship> friendships = friendshipDAO.get(firsPersonId, secondPersonId);
+		if(friendships !=null && !friendships.isEmpty()){
+			return friendships.get(0);
+		}
 		return null;
 	}
 
 	@Override
-	public boolean areFriends(String firsPersonId, String secondPersonId) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean areFriends(long firsPersonId, long secondPersonId) {
+		return get(firsPersonId, secondPersonId) != null;
 	}
 }
