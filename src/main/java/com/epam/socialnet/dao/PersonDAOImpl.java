@@ -1,7 +1,11 @@
 package com.epam.socialnet.dao;
 
-import com.epam.socialnet.dto.PersonDto;
-import com.epam.socialnet.model.Person;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Types;
+import java.util.List;
+
+import javax.sql.DataSource;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -11,12 +15,8 @@ import org.springframework.jdbc.core.support.SqlLobValue;
 import org.springframework.jdbc.support.lob.DefaultLobHandler;
 import org.springframework.jdbc.support.lob.LobHandler;
 
-import javax.sql.DataSource;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Types;
-import java.util.List;
+import com.epam.socialnet.dto.PersonDto;
+import com.epam.socialnet.model.Person;
 
 public class PersonDAOImpl implements PersonDAO {
 
