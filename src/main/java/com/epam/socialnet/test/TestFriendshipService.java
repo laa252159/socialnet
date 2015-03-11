@@ -18,16 +18,6 @@ public class TestFriendshipService {
 
 	@Autowired
 	private FriendshipService friendshipService;
-/*	
-	public void add(Friendship friendship);
-
-	public void delete(Friendship friendship);
-
-	public Friendship get(long firsPersonId, long secondPersonId);
-
-	public boolean areFriends(long firsPersonId, long secondPersonId);
-
-	public void approve(Friendship friendship);*/
 	
 //	@Test
 	public void addFrienship() {
