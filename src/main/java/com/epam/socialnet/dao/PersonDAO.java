@@ -24,5 +24,9 @@ public interface PersonDAO {
 	public List<Person> getFriends(String personId);
 
 	public List<PersonDto> getFriendsDtos(String personId);
+	
+	public List<Person> findPerson(Person person);
+
+	List<PersonDto> findPersonDto(Person person);
 
 }

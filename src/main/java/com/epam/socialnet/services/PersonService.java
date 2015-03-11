@@ -24,4 +24,8 @@ public interface PersonService {
 	public List<Person> getFriends(String personId);
 	
 	public List<PersonDto> getFriendsDtos(String personId);
+	
+	public List<Person> findPerson(Person person);
+	
+	public List<PersonDto> findPersonDto(Person person);
 }

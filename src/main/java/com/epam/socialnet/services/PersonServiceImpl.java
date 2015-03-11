@@ -62,4 +62,14 @@ public class PersonServiceImpl implements PersonService {
 	public List<PersonDto> getFriendsDtos(String personId) {
 		return personDAO.getFriendsDtos(personId);
 	}
+
+	@Override
+	public List<PersonDto> findPersonDto(Person person) {
+		return personDAO.findPersonDto(person);
+	}
+	
+	@Override
+	public List<Person> findPerson(Person person) {
+		return personDAO.findPerson(person);
+	}
 }

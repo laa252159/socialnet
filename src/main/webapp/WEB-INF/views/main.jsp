@@ -1,4 +1,5 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -89,7 +90,7 @@
 				<!-- SEARCH BLOCK BEGIN-->
 				<div style="background-color: #F5F5DC; padding: 10px;">
 					<h4>Search persons form</h4>
-					<form role="form" action="viewPerson" method="get">
+					<form role="form" action="viewPerson" method="post">
 						<div class="form-group">
 							<label for="fn">First name:</label> <input type="text"
 								class="form-control" id="fn" name="fn">
@@ -102,10 +103,10 @@
 						<button type="submit" class="btn btn-default">Start
 							search</button>
 					</form>
-					<h4>Founded ${listOfFriends.size()} persons</h4>
-					<c:forEach var="friend" items="${listOfFriends}" varStatus="status">
-						<a href="viewPerson?id=${friend.id}" style="color: black;"
-							class="list-group-item">&nbsp;${friend.fName}&nbsp;${friend.lName}</a>
+					<h4>Founded ${foundedPersons.size()} persons</h4>
+					<c:forEach var="foundedPerson" items="${foundedPersons}" varStatus="status">
+						<a href="viewPerson?id=${foundedPerson.id}" style="color: black;"
+							class="list-group-item">&nbsp;${foundedPerson.fName}&nbsp;${foundedPerson.lName}</a>
 					</c:forEach>
 				</div>
 				<!-- SEARCH BLOCK END-->

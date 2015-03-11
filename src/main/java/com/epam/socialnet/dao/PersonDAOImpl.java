@@ -224,4 +224,63 @@ public class PersonDAOImpl implements PersonDAO {
 	        });
 	        return listPersonDtos;
 	}
+
+	@Override
+	public List<Person> findPerson(Person person) {
+		if(person.getfName() == null || person.getfName().isEmpty()){
+			person.setfName("null");
+		}
+		if(person.getlName() == null || person.getlName().isEmpty()){
+			person.setlName("null");
+		}
+		String sql = "SELECT * FROM \"PERSONS\" as p where p.fn like '%" + person.getfName() + "%' or p.ln like '%" + person.getlName() + "%'";
+	        List<Person> listPerson = jdbcTemplate.query(sql, new RowMapper<Person>() {
+
+	            @Override
+	            public Person mapRow(ResultSet rs, int rowNum) throws SQLException {
+	                Person person = new Person();
+
+	                person.setId(rs.getLong("id"));
+	                person.setLogin(rs.getString("login"));
+	                person.setPassword(rs.getString("password"));
+	                person.setfName(rs.getString("fn"));
+	                person.setlName(rs.getString("ln"));
+	                person.setPhone(rs.getString("phone"));
+	                person.setAddress(rs.getString("address"));
+	                person.setDob(rs.getDate("dob"));
+
+	                return person;
+	            }
+
+	        });
+
+	        return listPerson;
+	}
+	
+	@Override
+	public List<PersonDto> findPersonDto(Person person) {
+		if(person.getfName() == null || person.getfName().isEmpty()){
+			person.setfName("null");
+		}
+		if(person.getlName() == null || person.getlName().isEmpty()){
+			person.setlName("null");
+		}
+		String sql = "SELECT * FROM \"PERSONS\" as p where p.fn like '%" + person.getfName() + "%' or p.ln like '%" + person.getlName() + "%'";
+	        List<PersonDto> listPersonDto = jdbcTemplate.query(sql, new RowMapper<PersonDto>() {
+
+	            @Override
+	            public PersonDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+	                PersonDto personDto = new PersonDto();
+
+	                personDto.setId(rs.getLong("id"));
+	                personDto.setfName(rs.getString("fn"));
+	                personDto.setlName(rs.getString("ln"));
+
+	                return personDto;
+	            }
+
+	        });
+
+	        return listPersonDto;
+	}
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.epam.socialnet.dto.PersonDto;
 import com.epam.socialnet.model.Person;
 import com.epam.socialnet.services.PersonService;
 
@@ -20,11 +21,33 @@ public class TestPersonService {
 	private PersonService personService;
 
 	
-	@Test
+//	@Test
 	public void getFriends() {
 		List<Person> persons =  personService.getFriends("2");
 		for(Person p : persons){
 			System.out.println("Name: " + p.getfName()+" DOB: " + p.getDob());
+		}
+	}
+	
+	@Test
+	public void findPersonDto() {
+		Person person = new Person();
+		person.setfName("Пет");
+		person.setlName("");
+		List<PersonDto> persons =  personService.findPersonDto(person);
+		for(PersonDto p : persons){
+			System.out.println("Name: " + p.getfName()+" Last name: " + p.getlName());
+		}
+	}
+	
+//	@Test
+	public void findPerson() {
+		Person person = new Person();
+		person.setfName("Пе");
+		person.setlName("");
+		List<Person> persons =  personService.findPerson(person);
+		for(Person p : persons){
+			System.out.println("Name: " + p.getfName()+" Last name: " + p.getlName());
 		}
 	}
 
