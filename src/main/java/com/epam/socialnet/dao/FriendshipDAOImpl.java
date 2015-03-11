@@ -66,15 +66,11 @@ public class FriendshipDAOImpl implements FriendshipDAO {
 	@Override
 	public void update(Friendship friendship) {
 		 String sql = "UPDATE \"FRIENDSHIP\" SET "
-                 + "first_person_id = ?, "
-                 + "second_person_id = ?, "
-                 + "date_of_friendship_starting = ?, "
-                 + "approve = ?";
+                 + "approve = ?, date_of_friendship_starting = ? where first_person_id = ? and second_person_id = ?";
          jdbcTemplate.update(sql,
-        		 friendship.getFirsPersonId(),
-        		 friendship.getSecondPersonId(),
+        		 friendship.isFriendshipApproved(),
         		 friendship.getDateOfFriendshipStarting(),
-                 friendship.isFriendshipApproved());
-		
+        		 friendship.getFirsPersonId(),
+        		 friendship.getSecondPersonId());
 	}
 }

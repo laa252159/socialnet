@@ -52,12 +52,30 @@ public class TestFriendshipService {
 		System.out.println("Friendship deleted!!!");
 	}
 	
-	@Test
+//	@Test
 	public void getFrienship() {
 		Friendship friendship = friendshipService.get(111, 222);
 		if(friendship != null){
 			System.out.println("Getted friendship!!! Approve status: " + friendship.isFriendshipApproved());	
 		}
 	}
+	
+//	@Test
+	public void areFriens() {
+		boolean ans = friendshipService.areFriends(111, 222);
+			System.out.println("Friends status:" + ans);	
+	} 
+	
+	@Test
+	public void approve() {
+		Friendship friendship = friendshipService.get(111, 222);
+		if(friendship != null){
+			System.out.println("Getted friendship!!! Approve status: " + friendship.isFriendshipApproved());	
+			friendshipService.approve(friendship);
+			friendship = friendshipService.get(111, 222);
+			System.out.println("Getted friendship!!! Approve status: " + friendship.isFriendshipApproved());	
+		}
+			
+	} 
 
 }
