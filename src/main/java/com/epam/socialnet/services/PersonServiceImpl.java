@@ -55,13 +55,11 @@ public class PersonServiceImpl implements PersonService {
     
 	@Override
 	public List<Person> getFriends(String personId) {
-		// TODO change logic!!!
-		return personDAO.list();
+		return personDAO.getFriends(personId);
 	}
 	
 	@Override
 	public List<PersonDto> getFriendsDtos(String personId) {
-		// TODO change logic!!!
-		return personDAO.listDtos();
+		return personDAO.getFriendsDtos(personId);
 	}
 }

@@ -13,7 +13,7 @@ import com.epam.socialnet.services.FriendshipService;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration
+@ContextConfiguration("test-context.xml")
 public class TestFriendshipService {
 
 	@Autowired
@@ -67,5 +67,4 @@ public class TestFriendshipService {
 		}
 			
 	} 
-
 }

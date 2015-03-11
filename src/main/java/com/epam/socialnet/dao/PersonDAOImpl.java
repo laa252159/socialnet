@@ -172,4 +172,56 @@ public class PersonDAOImpl implements PersonDAO {
 
         });
     }
+
+	@Override
+	public List<Person> getFriends(String personId) {
+		 String sql = "SELECT * FROM \"PERSONS\" as p "
+		 		+ "WHERE"
+		 		+ " (p.id IN (SELECT ff.second_person_id FROM \"FRIENDSHIP\" as ff where ff.first_person_id = " + personId + "))"
+		 		+ " or"
+		 		+ " (p.id IN (SELECT sf.first_person_id FROM \"FRIENDSHIP\" as sf where sf.second_person_id = " + personId + "));";
+	        List<Person> listPerson = jdbcTemplate.query(sql, new RowMapper<Person>() {
+
+	            @Override
+	            public Person mapRow(ResultSet rs, int rowNum) throws SQLException {
+	                Person person = new Person();
+
+	                person.setId(rs.getLong("id"));
+	                person.setLogin(rs.getString("login"));
+	                person.setPassword(rs.getString("password"));
+	                person.setfName(rs.getString("fn"));
+	                person.setlName(rs.getString("ln"));
+	                person.setPhone(rs.getString("phone"));
+	                person.setAddress(rs.getString("address"));
+	                person.setDob(rs.getDate("dob"));
+
+	                return person;
+	            }
+
+	        });
+
+	        return listPerson;
+	}
+
+	@Override
+	public List<PersonDto> getFriendsDtos(String personId) {
+		 String sql = "SELECT * FROM \"PERSONS\" as p "
+			 		+ "WHERE"
+			 		+ " (p.id IN (SELECT ff.second_person_id FROM \"FRIENDSHIP\" as ff where ff.first_person_id = " + personId + "))"
+			 		+ " or"
+			 		+ " (p.id IN (SELECT sf.first_person_id FROM \"FRIENDSHIP\" as sf where sf.second_person_id = " + personId + "));";
+	        List<PersonDto> listPersonDtos = jdbcTemplate.query(sql, new RowMapper<PersonDto>() {
+
+	            @Override
+	            public PersonDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+	                PersonDto personDto = new PersonDto();
+
+	                personDto.setId(rs.getLong("id"));
+	                personDto.setfName(rs.getString("fn"));
+	                personDto.setlName(rs.getString("ln"));
+	                return personDto;
+	            }
+	        });
+	        return listPersonDtos;
+	}
 }
