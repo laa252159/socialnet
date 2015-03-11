@@ -73,7 +73,6 @@ public class HomeController {
 	public ModelAndView viewPerson(HttpServletRequest request) {
 		long personId = Long.parseLong(request.getParameter("id"));
 
-		Person person = personService.get(personId);
 		ModelAndView model = new ModelAndView("main");
 		model.addObject("listOfFriends", personService.getFriends(String.valueOf(personService.getCurrentPerson().getId())));
 		model.addObject("personInfo", personService.get(personId));
@@ -111,7 +110,7 @@ public class HomeController {
 
 	@RequestMapping(value = "/deletePersonFromFriends", method = RequestMethod.GET)
 	public ModelAndView deletePersonFromFriends(HttpServletRequest request) {
-		long personId = Long.parseLong(request.getParameter("id"));
+//		long personId = Long.parseLong(request.getParameter("id"));
 		// TODO
 		return new ModelAndView("redirect:/");
 	}
