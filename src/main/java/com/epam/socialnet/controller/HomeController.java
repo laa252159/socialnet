@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.epam.socialnet.model.Person;
+import com.epam.socialnet.services.FriendshipService;
 import com.epam.socialnet.services.PersonService;
 
 @Controller
@@ -23,6 +24,9 @@ public class HomeController {
 
 	@Autowired
 	private PersonService personService;
+	
+	@Autowired
+	private FriendshipService friendshipService;
 
 	@RequestMapping(value = "/")
 	public ModelAndView home(ModelAndView model) throws IOException {
@@ -77,19 +81,24 @@ public class HomeController {
 		model.addObject("listOfFriends", personService.getFriends(String.valueOf(personService.getCurrentPerson().getId())));
 		model.addObject("personInfo", personService.get(personId));
 		
-		String fName = request.getParameter("fn");
-		String lName = request.getParameter("ln");
 		Person personToFind = new Person();
-		personToFind.setfName(fName);
-		personToFind.setlName(lName);
-		
+		personToFind.setfName(request.getParameter("fn"));
+		personToFind.setlName(request.getParameter("ln"));
 		model.addObject("foundedPersons", personService.findPersonDto(personToFind));
+		
+		model.addObject("friendStatus", personService.areFriends(personService.getCurrentPerson().getId(), personId));
 		
 		return model;
 	}
 	
 	@RequestMapping(value = "/viewPerson", method = RequestMethod.POST)
 	public ModelAndView viewPersonPost(HttpServletRequest request) {
+		return viewPerson(request);
+	}
+	
+	@RequestMapping(value = "/friendshipRequest", method = RequestMethod.GET)
+	public ModelAndView friendshipRequest(HttpServletRequest request) {
+		friendshipService.add(personService.getCurrentPerson().getId(), Long.parseLong(request.getParameter("id")));
 		return viewPerson(request);
 	}
 

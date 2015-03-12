@@ -22,6 +22,10 @@ public interface PersonDAO {
 	public byte[] getPhoto(String id);
 
 	public List<Person> getFriends(String personId);
+	
+	public List<Person> getFriendsRequestedByPerson(String personId);
+	
+	public List<Person> getFriendsRequestedToPerson(String personId);
 
 	public List<PersonDto> getFriendsDtos(String personId);
 	

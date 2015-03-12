@@ -1,5 +1,6 @@
 package com.epam.socialnet.services;
 
+import java.util.Date;
 import java.util.List;
 
 import com.epam.socialnet.dao.FriendshipDAO;
@@ -19,8 +20,18 @@ public class FriendshipServiceImpl implements FriendshipService {
 	public void add(Friendship friendship) {
 		List<Friendship> f = friendshipDAO.get(friendship.getFirsPersonId(), friendship.getSecondPersonId());
 		if(f == null || f.isEmpty()){
+			friendship.setDateOfFriendshipStarting(new Date());
 			friendshipDAO.add(friendship);
 		}
+	}
+	
+	@Override
+	public void add(long firsPersonId, long secondPersonId) {
+		Friendship friendship = new Friendship();
+		friendship.setFirsPersonId(firsPersonId);
+		friendship.setSecondPersonId(secondPersonId);
+		
+		add(friendship);
 	}
 
 	@Override

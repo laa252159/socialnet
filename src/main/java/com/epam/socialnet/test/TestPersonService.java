@@ -51,10 +51,26 @@ public class TestPersonService {
 		}
 	}
 
-	@Test
+//	@Test
 	public void areFriends() {
 		System.out.println("Friendship status: " + personService.areFriends(2, 34));
 		
+	}
+	
+	@Test
+	public void getFriendsRequestedByPerson() {
+		List<Person> persons =  personService.getFriendsRequestedByPerson("2");
+		for(Person p : persons){
+			System.out.println("Name: " + p.getfName()+ " id:"+ p.getId() +" DOB: " + p.getDob());
+		}
+	}
+	
+//	@Test
+	public void getFriendsRequestedToPerson() {
+		List<Person> persons =  personService.getFriendsRequestedToPerson("2");
+		for(Person p : persons){
+			System.out.println("Name: " + p.getfName()+ " id:"+ p.getId() +" DOB: " + p.getDob());
+		}
 	}
 
 }

@@ -75,7 +75,26 @@
 						alt="Mountain View" style="width: 160px; height: 160px">
 				</div>
 			</div>
+			<!-- FRIENDSHIP STATUS BLOCK  -->
+			<a href="friendshipRequest?id=${personInfo.id}"
+				class="btn btn-success"
+				style="margin-left: 50px; margin-top: 20px; margin-bottom: 20px; color: white;">
+				Be friends</a>
+			<!-- FRIENDSHIP REQUESTS BLOCK  -->
+			<h4>Friendship requested to Me (${listOfFriends.size()})</h4>
+			<c:forEach var="friend" items="${listOfFriends}" varStatus="status">
+				<a href="viewPerson?id=${friend.id}" style="color: black;"
+					class="list-group-item">&nbsp;${friend.fName}&nbsp;${friend.lName}</a>
+			</c:forEach>
+			<h4>Friendship requested by Me (${listOfFriends.size()})</h4>
+			<c:forEach var="friend" items="${listOfFriends}" varStatus="status">
+				<a href="viewPerson?id=${friend.id}" style="color: black;"
+					class="list-group-item">&nbsp;${friend.fName}&nbsp;${friend.lName}</a>
+			</c:forEach>
 		</div>
+
+
+
 
 		<!-- USER SEARCH AND FRIENDS BLOCK  -->
 		<div id="myfriends">
@@ -85,8 +104,7 @@
 					<a href="viewPerson?id=${friend.id}" style="color: black;"
 						class="list-group-item">&nbsp;${friend.fName}&nbsp;${friend.lName}</a>
 				</c:forEach>
-				<br>
-				<br>
+				<br> <br>
 				<!-- SEARCH BLOCK BEGIN-->
 				<div style="background-color: #F5F5DC; padding: 10px;">
 					<h4>Search persons form</h4>
@@ -97,14 +115,15 @@
 						</div>
 						<div class="form-group">
 							<label for="ln">Last name:</label> <input type="text"
-								class="form-control" id="ln"  name="ln">
+								class="form-control" id="ln" name="ln">
 						</div>
-						<input type="hidden" value="${personInfo.id}"  name="id" id="id">
+						<input type="hidden" value="${personInfo.id}" name="id" id="id">
 						<button type="submit" class="btn btn-default">Start
 							search</button>
 					</form>
 					<h4>Founded ${foundedPersons.size()} persons</h4>
-					<c:forEach var="foundedPerson" items="${foundedPersons}" varStatus="status">
+					<c:forEach var="foundedPerson" items="${foundedPersons}"
+						varStatus="status">
 						<a href="viewPerson?id=${foundedPerson.id}" style="color: black;"
 							class="list-group-item">&nbsp;${foundedPerson.fName}&nbsp;${foundedPerson.lName}</a>
 					</c:forEach>

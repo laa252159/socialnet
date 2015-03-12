@@ -175,36 +175,6 @@ public class PersonDAOImpl implements PersonDAO {
     }
 
 	@Override
-	public List<Person> getFriends(String personId) {
-		 String sql = "SELECT * FROM \"PERSONS\" as p "
-		 		+ "WHERE"
-		 		+ " (p.id IN (SELECT ff.second_person_id FROM \"FRIENDSHIP\" as ff where ff.first_person_id = " + personId + "))"
-		 		+ " or"
-		 		+ " (p.id IN (SELECT sf.first_person_id FROM \"FRIENDSHIP\" as sf where sf.second_person_id = " + personId + "));";
-	        List<Person> listPerson = jdbcTemplate.query(sql, new RowMapper<Person>() {
-
-	            @Override
-	            public Person mapRow(ResultSet rs, int rowNum) throws SQLException {
-	                Person person = new Person();
-
-	                person.setId(rs.getLong("id"));
-	                person.setLogin(rs.getString("login"));
-	                person.setPassword(rs.getString("password"));
-	                person.setfName(rs.getString("fn"));
-	                person.setlName(rs.getString("ln"));
-	                person.setPhone(rs.getString("phone"));
-	                person.setAddress(rs.getString("address"));
-	                person.setDob(rs.getDate("dob"));
-
-	                return person;
-	            }
-
-	        });
-
-	        return listPerson;
-	}
-
-	@Override
 	public List<PersonDto> getFriendsDtos(String personId) {
 		 String sql = "SELECT * FROM \"PERSONS\" as p "
 			 		+ "WHERE"
@@ -293,4 +263,55 @@ public class PersonDAOImpl implements PersonDAO {
 		List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
 	    return rows !=null && !rows.isEmpty();
 	}
+
+	@Override
+	public List<Person> getFriends(String personId) {
+		 String sql = "SELECT * FROM \"PERSONS\" as p "
+		 		+ "WHERE"
+		 		+ " (p.id IN (SELECT ff.second_person_id FROM \"FRIENDSHIP\" as ff where ff.first_person_id = " + personId + "))"
+		 		+ " or"
+		 		+ " (p.id IN (SELECT sf.first_person_id FROM \"FRIENDSHIP\" as sf where sf.second_person_id = " + personId + "));";
+	       return getPersons(sql, personId);
+	}
+	
+	@Override
+	public List<Person> getFriendsRequestedByPerson(String personId) { //TODO complit sql!!!
+		String sql = "SELECT * FROM \"PERSONS\" as p "
+		 		+ "WHERE"
+		 		+ " (p.id IN (SELECT ff.second_person_id FROM \"FRIENDSHIP\" as ff where ff.first_person_id = " + personId + " and ff.approve = 'false'))";
+	       return getPersons(sql, personId);
+	}
+
+	@Override
+	public List<Person> getFriendsRequestedToPerson(String personId) {//TODO complit sql!!!
+		String sql = "SELECT * FROM \"PERSONS\" as p "
+		 		+ "WHERE"
+		 		+ " (p.id IN (SELECT ff.first_person_id FROM \"FRIENDSHIP\" as ff where ff.second_person_id = " + personId + " and ff.approve = 'false'))";
+	       return getPersons(sql, personId);
+	}
+	
+	public List<Person> getPersons(String sql, String personId) {
+		        List<Person> listPerson = jdbcTemplate.query(sql, new RowMapper<Person>() {
+
+		            @Override
+		            public Person mapRow(ResultSet rs, int rowNum) throws SQLException {
+		                Person person = new Person();
+
+		                person.setId(rs.getLong("id"));
+		                person.setLogin(rs.getString("login"));
+		                person.setPassword(rs.getString("password"));
+		                person.setfName(rs.getString("fn"));
+		                person.setlName(rs.getString("ln"));
+		                person.setPhone(rs.getString("phone"));
+		                person.setAddress(rs.getString("address"));
+		                person.setDob(rs.getDate("dob"));
+
+		                return person;
+		            }
+
+		        });
+
+		        return listPerson;
+	}
+	
 }
