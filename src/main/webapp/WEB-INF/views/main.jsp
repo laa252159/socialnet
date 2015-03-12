@@ -97,23 +97,22 @@
 					style="margin-left: 20px; margin-top: 20px; margin-bottom: 20px; color: white;">
 					Approve friendship</a>
 			</c:if>
+			 <hr>
 			<c:if test="${isMyPage}">
 				<!-- FRIENDSHIP REQUESTS BLOCK  -->
-				<br>
-				<h4>Waiting of friendship</h4>
-				<h5>Need my approve (${listOfFriends.size()})</h5>
-				<c:forEach var="friend" items="${listOfFriends}" varStatus="status">
+ 				<h5>Need my approve (${listOfWaiters.size()})</h5>
+				<c:forEach var="friend" items="${listOfWaiters}" varStatus="status">
 					<a href="viewPerson?id=${friend.id}" style="color: black;"
 						class="list-group-item">&nbsp;${friend.fName}&nbsp;${friend.lName}</a>
 				</c:forEach>
-				<h5>I waiting for approve (${listOfFriends.size()})</h5>
-				<c:forEach var="friend" items="${listOfFriends}" varStatus="status">
+				<hr>
+				<h5>I waiting for approve (${listOfApprovers.size()})</h5>
+				<c:forEach var="friend" items="${listOfApprovers}" varStatus="status">
 					<a href="viewPerson?id=${friend.id}" style="color: black;"
 						class="list-group-item">&nbsp;${friend.fName}&nbsp;${friend.lName}</a>
 				</c:forEach>
 			</c:if>
 		</div>
-
 
 
 

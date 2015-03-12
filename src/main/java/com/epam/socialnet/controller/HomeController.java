@@ -33,6 +33,8 @@ public class HomeController {
 	public ModelAndView home(ModelAndView model) throws IOException {
 		model.addObject("personInfo", personService.getCurrentPerson());
 		model.addObject("listOfFriends", personService.getFriendsDtos(String.valueOf(personService.getCurrentPerson().getId())));
+		model.addObject("listOfWaiters", personService.getFriendshipWaiters(String.valueOf(personService.getCurrentPerson().getId())));
+		model.addObject("listOfApprovers", personService.getFriendshipApprovers(String.valueOf(personService.getCurrentPerson().getId())));
 		addToModelRequestersAndResponsersOfFriendshipToCurrentPerson(model);
 		setIsMyPageFlag(model, personService.getCurrentPerson().getId());
 		model.setViewName("main");
@@ -174,8 +176,8 @@ public class HomeController {
 	}
 
 	private void addToModelRequestersAndResponsersOfFriendshipToCurrentPerson(ModelAndView model){
-		model.addObject("requesters", personService.getFriendsRequestedToPerson(String.valueOf(personService.getCurrentPerson().getId())));
-		model.addObject("responsers", personService.getFriendsRequestedByPerson(String.valueOf(personService.getCurrentPerson().getId())));
+		model.addObject("requesters", personService.getFriendshipWaiters(String.valueOf(personService.getCurrentPerson().getId())));
+		model.addObject("responsers", personService.getFriendshipApprovers(String.valueOf(personService.getCurrentPerson().getId())));
 	}
 	
 	@RequestMapping(value = "/uploadPhoto", method = RequestMethod.POST)

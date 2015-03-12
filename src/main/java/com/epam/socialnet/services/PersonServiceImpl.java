@@ -74,13 +74,13 @@ public class PersonServiceImpl implements PersonService {
 	}
 
 	@Override
-	public List<Person> getFriendsRequestedByPerson(String personId) {
-		return personDAO.getFriendsRequestedByPerson(personId);
+	public List<Person> getFriendshipApprovers(String personId) {
+		return personDAO.getFriendshipApprovers(personId);
 	}
 
 	@Override
-	public List<Person> getFriendsRequestedToPerson(String personId) {
-		return personDAO.getFriendsRequestedToPerson(personId);
+	public List<Person> getFriendshipWaiters(String personId) {
+		return personDAO.getFriendshipWaiters(personId);
 	}
 
 }

@@ -53,7 +53,7 @@ public class TestPersonService {
 
 	@Test
 	public void getFriendsRequestedByPerson() {
-		List<Person> persons =  personService.getFriendsRequestedByPerson("2");
+		List<Person> persons =  personService.getFriendshipApprovers("2");
 		for(Person p : persons){
 			System.out.println("Name: " + p.getfName()+ " id:"+ p.getId() +" DOB: " + p.getDob());
 		}
@@ -61,7 +61,7 @@ public class TestPersonService {
 	
 //	@Test
 	public void getFriendsRequestedToPerson() {
-		List<Person> persons =  personService.getFriendsRequestedToPerson("2");
+		List<Person> persons =  personService.getFriendshipWaiters("2");
 		for(Person p : persons){
 			System.out.println("Name: " + p.getfName()+ " id:"+ p.getId() +" DOB: " + p.getDob());
 		}

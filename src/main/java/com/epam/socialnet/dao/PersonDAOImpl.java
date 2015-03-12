@@ -266,7 +266,7 @@ public class PersonDAOImpl implements PersonDAO {
 	}
 	
 	@Override
-	public List<Person> getFriendsRequestedByPerson(String personId) { //TODO complit sql!!!
+	public List<Person> getFriendshipApprovers(String personId) { //TODO complit sql!!!
 		String sql = "SELECT * FROM \"PERSONS\" as p "
 		 		+ "WHERE"
 		 		+ " (p.id IN (SELECT ff.second_person_id FROM \"FRIENDSHIP\" as ff where ff.first_person_id = " + personId + " and ff.approve = 'false'))";
@@ -274,7 +274,7 @@ public class PersonDAOImpl implements PersonDAO {
 	}
 
 	@Override
-	public List<Person> getFriendsRequestedToPerson(String personId) {//TODO complit sql!!!
+	public List<Person> getFriendshipWaiters(String personId) {//TODO complit sql!!!
 		String sql = "SELECT * FROM \"PERSONS\" as p "
 		 		+ "WHERE"
 		 		+ " (p.id IN (SELECT ff.first_person_id FROM \"FRIENDSHIP\" as ff where ff.second_person_id = " + personId + " and ff.approve = 'false'))";

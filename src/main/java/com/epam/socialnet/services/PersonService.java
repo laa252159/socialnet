@@ -23,9 +23,9 @@ public interface PersonService {
     
 	public List<Person> getFriends(String personId);
 	
-	public List<Person> getFriendsRequestedByPerson(String personId);
+	public List<Person> getFriendshipApprovers(String personId);
 	
-	public List<Person> getFriendsRequestedToPerson(String personId);
+	public List<Person> getFriendshipWaiters(String personId);
 	
 	public List<PersonDto> getFriendsDtos(String personId);
 	
