@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -282,5 +283,14 @@ public class PersonDAOImpl implements PersonDAO {
 	        });
 
 	        return listPersonDto;
+	}
+
+	@Override
+	public boolean areFriends(long firstPersonId, long secondPersonId) {
+		String sql = "SELECT * FROM \"FRIENDSHIP\" as f where (f.first_person_id='"+firstPersonId+"' and f.second_person_id='"+secondPersonId+"')"
+				+ " or "
+				+ "(f.first_person_id='"+secondPersonId+"' and f.second_person_id='"+firstPersonId+"');";
+		List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
+	    return rows !=null && !rows.isEmpty();
 	}
 }

@@ -28,4 +28,6 @@ public interface PersonService {
 	public List<Person> findPerson(Person person);
 	
 	public List<PersonDto> findPersonDto(Person person);
+	
+	public boolean areFriends(long firstPersonId, long secondPersonId);
 }

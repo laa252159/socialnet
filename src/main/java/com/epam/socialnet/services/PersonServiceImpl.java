@@ -72,4 +72,10 @@ public class PersonServiceImpl implements PersonService {
 	public List<Person> findPerson(Person person) {
 		return personDAO.findPerson(person);
 	}
+
+	@Override
+	public boolean areFriends(long firstPersonId, long secondPersonId) {
+		return personDAO.areFriends(firstPersonId, secondPersonId);
+	}
+
 }

@@ -29,7 +29,7 @@ public class TestPersonService {
 		}
 	}
 	
-	@Test
+//	@Test
 	public void findPersonDto() {
 		Person person = new Person();
 		person.setfName("Пет");
@@ -49,6 +49,12 @@ public class TestPersonService {
 		for(Person p : persons){
 			System.out.println("Name: " + p.getfName()+" Last name: " + p.getlName());
 		}
+	}
+
+	@Test
+	public void areFriends() {
+		System.out.println("Friendship status: " + personService.areFriends(2, 34));
+		
 	}
 
 }

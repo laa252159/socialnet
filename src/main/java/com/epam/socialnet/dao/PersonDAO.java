@@ -28,5 +28,7 @@ public interface PersonDAO {
 	public List<Person> findPerson(Person person);
 
 	List<PersonDto> findPersonDto(Person person);
+	
+	public boolean areFriends(long firstPersonId, long secondPersonId);
 
 }
