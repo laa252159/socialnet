@@ -51,12 +51,6 @@ public class TestPersonService {
 		}
 	}
 
-//	@Test
-	public void areFriends() {
-		System.out.println("Friendship status: " + personService.areFriends(2, 34));
-		
-	}
-	
 	@Test
 	public void getFriendsRequestedByPerson() {
 		List<Person> persons =  personService.getFriendsRequestedByPerson("2");

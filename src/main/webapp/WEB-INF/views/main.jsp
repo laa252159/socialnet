@@ -31,8 +31,10 @@
 			<div id="contentcolumn">
 				<div class="innertube">
 					<h4>
-						Info about ${personInfo.fName}&nbsp;${personInfo.lName}&nbsp; <c:if test="${isMyPage}"><a
-							href="editPerson?id=${personInfo.id}">[edit]</a></c:if>
+						Info about ${personInfo.fName}&nbsp;${personInfo.lName}&nbsp;
+						<c:if test="${isMyPage}">
+							<a href="editPerson?id=${personInfo.id}">[edit]</a>
+						</c:if>
 					</h4>
 					<table style="margin-left: 20px;">
 						<tr>
@@ -77,21 +79,34 @@
 			</div>
 
 			<!-- FRIENDSHIP STATUS BLOCK  -->
-			<c:if test="${!isMyPage}">
+			<c:if test="${!isMyPage && !bindingExists && !isFriend}">
 				<a href="friendshipRequest?id=${personInfo.id}"
 					class="btn btn-success"
 					style="margin-left: 50px; margin-top: 20px; margin-bottom: 20px; color: white;">
 					Be friends</a>
 			</c:if>
+			<c:if test="${!isMyPage && bindingExists && isFriend}">
+				<a href="deleteFriendship?id=${personInfo.id}"
+					class="btn btn-danger"
+					style="margin-left: 20px; margin-top: 20px; margin-bottom: 20px; color: white;">
+					Delete from friends</a>
+			</c:if>
+			<c:if test="${!isMyPage && bindingExists && needApprove}">
+				<a href="deleteFriendship?id=${personInfo.id}"
+					class="btn btn-warning"
+					style="margin-left: 20px; margin-top: 20px; margin-bottom: 20px; color: white;">
+					Approve friendship</a>
+			</c:if>
 			<c:if test="${isMyPage}">
-				<!-- FRIENDSHIP REQUESTS BLOCK  --><br>
+				<!-- FRIENDSHIP REQUESTS BLOCK  -->
+				<br>
 				<h4>Waiting of friendship</h4>
-				<h5>Requestors (${listOfFriends.size()})</h5>
+				<h5>Need my approve (${listOfFriends.size()})</h5>
 				<c:forEach var="friend" items="${listOfFriends}" varStatus="status">
 					<a href="viewPerson?id=${friend.id}" style="color: black;"
 						class="list-group-item">&nbsp;${friend.fName}&nbsp;${friend.lName}</a>
 				</c:forEach>
-				<h5>Responsers (${listOfFriends.size()})</h5>
+				<h5>I waiting for approve (${listOfFriends.size()})</h5>
 				<c:forEach var="friend" items="${listOfFriends}" varStatus="status">
 					<a href="viewPerson?id=${friend.id}" style="color: black;"
 						class="list-group-item">&nbsp;${friend.fName}&nbsp;${friend.lName}</a>

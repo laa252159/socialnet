@@ -33,6 +33,4 @@ public interface PersonDAO {
 
 	List<PersonDto> findPersonDto(Person person);
 	
-	public boolean areFriends(long firstPersonId, long secondPersonId);
-
 }

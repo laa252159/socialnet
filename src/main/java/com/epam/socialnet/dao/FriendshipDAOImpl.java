@@ -30,8 +30,8 @@ public class FriendshipDAOImpl implements FriendshipDAO {
 
 	@Override
 	public void delete(Friendship friendship) {
-		String sql = "DELETE FROM \"FRIENDSHIP\" WHERE first_person_id = ? and second_person_id = ?";
-		jdbcTemplate.update(sql, friendship.getFirsPersonId(), friendship.getSecondPersonId());
+		String sql = "DELETE FROM \"FRIENDSHIP\" WHERE (first_person_id = ? and second_person_id = ?) or (second_person_id = ? and first_person_id = ?)";
+		jdbcTemplate.update(sql, friendship.getFirsPersonId(), friendship.getSecondPersonId(),friendship.getFirsPersonId(), friendship.getSecondPersonId());
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class FriendshipDAOImpl implements FriendshipDAO {
         		+ "where"
         		+ " (first_person_id = "+firsPersonId+" and second_person_id = " + secondPersonId + ") "
         				+ "or"
-        				+ " (first_person_id = " + secondPersonId + " and second_person_id = " +secondPersonId+ ")";
+        				+ " (first_person_id = " + secondPersonId + " and second_person_id = " +firsPersonId+ ")";
         List<Friendship> listFriendship = jdbcTemplate.query(sql,
 				new RowMapper<Friendship>() {
 

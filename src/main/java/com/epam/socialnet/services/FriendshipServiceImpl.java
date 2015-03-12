@@ -48,6 +48,14 @@ public class FriendshipServiceImpl implements FriendshipService {
 		friendshipDAO.delete(friendship);
 		
 	}
+	
+	@Override
+	public void delete(long firsPersonId, long secondPersonId) {
+		Friendship friendship = new Friendship();
+		friendship.setFirsPersonId(firsPersonId);
+		friendship.setSecondPersonId(secondPersonId);
+		delete(friendship);
+	}
 
 	@Override
 	public Friendship get(long firsPersonId, long secondPersonId) {
@@ -60,6 +68,13 @@ public class FriendshipServiceImpl implements FriendshipService {
 
 	@Override
 	public boolean areFriends(long firsPersonId, long secondPersonId) {
-		return get(firsPersonId, secondPersonId) != null;
+		Friendship friendship = get(firsPersonId, secondPersonId);
+		return friendship != null && friendship.isFriendshipApproved();
+	}
+
+	@Override
+	public boolean isApprovied(long firsPersonId, long secondPersonId) {
+		Friendship friendship = get(firsPersonId, secondPersonId);
+		return friendship != null && friendship.isFriendshipApproved();
 	}
 }

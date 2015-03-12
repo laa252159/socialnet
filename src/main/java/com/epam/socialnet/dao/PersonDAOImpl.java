@@ -256,15 +256,6 @@ public class PersonDAOImpl implements PersonDAO {
 	}
 
 	@Override
-	public boolean areFriends(long firstPersonId, long secondPersonId) {
-		String sql = "SELECT * FROM \"FRIENDSHIP\" as f where (f.first_person_id='"+firstPersonId+"' and f.second_person_id='"+secondPersonId+"')"
-				+ " or "
-				+ "(f.first_person_id='"+secondPersonId+"' and f.second_person_id='"+firstPersonId+"');";
-		List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
-	    return rows !=null && !rows.isEmpty();
-	}
-
-	@Override
 	public List<Person> getFriends(String personId) {
 		 String sql = "SELECT * FROM \"PERSONS\" as p "
 		 		+ "WHERE"

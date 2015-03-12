@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.epam.socialnet.model.Friendship;
 import com.epam.socialnet.model.Person;
 import com.epam.socialnet.services.FriendshipService;
 import com.epam.socialnet.services.PersonService;
@@ -37,6 +38,14 @@ public class HomeController {
 		model.setViewName("main");
 
 		return model;
+	}
+	
+	private void setIsMyPageFlag(ModelAndView model, Long personId){
+		if(personId == null || personId == 0L){
+			model.addObject("isMyPage", false);
+		} else {
+			model.addObject("isMyPage", personId.longValue() == (personService.getCurrentPerson().getId()));	
+		}
 	}
 
 	@RequestMapping(value = "/goHome")
@@ -88,11 +97,27 @@ public class HomeController {
 		personToFind.setlName(request.getParameter("ln"));
 		model.addObject("foundedPersons", personService.findPersonDto(personToFind));
 		
-		model.addObject("friendStatus", personService.areFriends(personService.getCurrentPerson().getId(), personId));
+		initFriendshipButtopns(model, friendshipService.get(personId, personService.getCurrentPerson().getId()));
 		
 		setIsMyPageFlag(model, personId);
 		
 		return model;
+	}
+	
+	private void initFriendshipButtopns(ModelAndView model, Friendship friendship){
+		if(friendship == null){
+			model.addObject("bindingExists", false);
+			model.addObject("isFriend", false);
+			model.addObject("needApprove", false);
+		} else {
+			model.addObject("bindingExists", true);
+			if(friendship.isFriendshipApproved()){
+				model.addObject("isFriend", true);
+			} else {
+				model.addObject("needApprove", true);
+			}
+		}
+	
 	}
 	
 	@RequestMapping(value = "/viewPerson", method = RequestMethod.POST)
@@ -103,6 +128,12 @@ public class HomeController {
 	@RequestMapping(value = "/friendshipRequest", method = RequestMethod.GET)
 	public ModelAndView friendshipRequest(HttpServletRequest request) {
 		friendshipService.add(personService.getCurrentPerson().getId(), Long.parseLong(request.getParameter("id")));
+		return viewPerson(request);
+	}
+	
+	@RequestMapping(value = "/deleteFriendship", method = RequestMethod.GET)
+	public ModelAndView deleteFriendship(HttpServletRequest request) {
+		friendshipService.delete(personService.getCurrentPerson().getId(), Long.parseLong(request.getParameter("id")));
 		return viewPerson(request);
 	}
 
@@ -146,16 +177,6 @@ public class HomeController {
 		model.addObject("requesters", personService.getFriendsRequestedToPerson(String.valueOf(personService.getCurrentPerson().getId())));
 		model.addObject("responsers", personService.getFriendsRequestedByPerson(String.valueOf(personService.getCurrentPerson().getId())));
 	}
-	
-	private void setIsMyPageFlag(ModelAndView model, Long personId){
-		if(personId == null || personId == 0L){
-			model.addObject("isMyPage", false);
-		} else {
-			model.addObject("isMyPage", personId.longValue() == (personService.getCurrentPerson().getId()));	
-		}
-	}
-	
-	
 	
 	@RequestMapping(value = "/uploadPhoto", method = RequestMethod.POST)
     public ModelAndView uploadFileHandler(

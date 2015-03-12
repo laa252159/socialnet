@@ -69,11 +69,6 @@ public class PersonServiceImpl implements PersonService {
 	}
 
 	@Override
-	public boolean areFriends(long firstPersonId, long secondPersonId) {
-		return personDAO.areFriends(firstPersonId, secondPersonId);
-	}
-
-	@Override
 	public List<Person> getFriends(String personId) {
 		return personDAO.getFriends(personId);
 	}
