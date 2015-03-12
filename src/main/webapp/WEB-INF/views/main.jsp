@@ -31,8 +31,8 @@
 			<div id="contentcolumn">
 				<div class="innertube">
 					<h4>
-						Info about ${personInfo.fName}&nbsp;${personInfo.lName}&nbsp; <a
-							href="editPerson?id=${personInfo.id}">[edit]</a>
+						Info about ${personInfo.fName}&nbsp;${personInfo.lName}&nbsp; <c:if test="${isMyPage}"><a
+							href="editPerson?id=${personInfo.id}">[edit]</a></c:if>
 					</h4>
 					<table style="margin-left: 20px;">
 						<tr>
@@ -75,22 +75,28 @@
 						alt="Mountain View" style="width: 160px; height: 160px">
 				</div>
 			</div>
+
 			<!-- FRIENDSHIP STATUS BLOCK  -->
-			<a href="friendshipRequest?id=${personInfo.id}"
-				class="btn btn-success"
-				style="margin-left: 50px; margin-top: 20px; margin-bottom: 20px; color: white;">
-				Be friends</a>
-			<!-- FRIENDSHIP REQUESTS BLOCK  -->
-			<h4>Friendship requested to Me (${listOfFriends.size()})</h4>
-			<c:forEach var="friend" items="${listOfFriends}" varStatus="status">
-				<a href="viewPerson?id=${friend.id}" style="color: black;"
-					class="list-group-item">&nbsp;${friend.fName}&nbsp;${friend.lName}</a>
-			</c:forEach>
-			<h4>Friendship requested by Me (${listOfFriends.size()})</h4>
-			<c:forEach var="friend" items="${listOfFriends}" varStatus="status">
-				<a href="viewPerson?id=${friend.id}" style="color: black;"
-					class="list-group-item">&nbsp;${friend.fName}&nbsp;${friend.lName}</a>
-			</c:forEach>
+			<c:if test="${!isMyPage}">
+				<a href="friendshipRequest?id=${personInfo.id}"
+					class="btn btn-success"
+					style="margin-left: 50px; margin-top: 20px; margin-bottom: 20px; color: white;">
+					Be friends</a>
+			</c:if>
+			<c:if test="${isMyPage}">
+				<!-- FRIENDSHIP REQUESTS BLOCK  --><br>
+				<h4>Waiting of friendship</h4>
+				<h5>Requestors (${listOfFriends.size()})</h5>
+				<c:forEach var="friend" items="${listOfFriends}" varStatus="status">
+					<a href="viewPerson?id=${friend.id}" style="color: black;"
+						class="list-group-item">&nbsp;${friend.fName}&nbsp;${friend.lName}</a>
+				</c:forEach>
+				<h5>Responsers (${listOfFriends.size()})</h5>
+				<c:forEach var="friend" items="${listOfFriends}" varStatus="status">
+					<a href="viewPerson?id=${friend.id}" style="color: black;"
+						class="list-group-item">&nbsp;${friend.fName}&nbsp;${friend.lName}</a>
+				</c:forEach>
+			</c:if>
 		</div>
 
 

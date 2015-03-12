@@ -32,6 +32,8 @@ public class HomeController {
 	public ModelAndView home(ModelAndView model) throws IOException {
 		model.addObject("personInfo", personService.getCurrentPerson());
 		model.addObject("listOfFriends", personService.getFriendsDtos(String.valueOf(personService.getCurrentPerson().getId())));
+		addToModelRequestersAndResponsersOfFriendshipToCurrentPerson(model);
+		setIsMyPageFlag(model, personService.getCurrentPerson().getId());
 		model.setViewName("main");
 
 		return model;
@@ -88,6 +90,8 @@ public class HomeController {
 		
 		model.addObject("friendStatus", personService.areFriends(personService.getCurrentPerson().getId(), personId));
 		
+		setIsMyPageFlag(model, personId);
+		
 		return model;
 	}
 	
@@ -127,6 +131,9 @@ public class HomeController {
 	@RequestMapping(value = "/editPerson", method = RequestMethod.GET)
 	public ModelAndView editPerson(HttpServletRequest request) {
 		long personId = Long.parseLong(request.getParameter("id"));
+		if(personId != personService.getCurrentPerson().getId()){
+			return new ModelAndView("redirect:/");
+		}
 		Person person = personService.get(personId);
 		ModelAndView model = new ModelAndView("EditInfo");
 		// model.addObject("id", person.getId());
@@ -135,7 +142,18 @@ public class HomeController {
 		return model;
 	}
 
+	private void addToModelRequestersAndResponsersOfFriendshipToCurrentPerson(ModelAndView model){
+		model.addObject("requesters", personService.getFriendsRequestedToPerson(String.valueOf(personService.getCurrentPerson().getId())));
+		model.addObject("responsers", personService.getFriendsRequestedByPerson(String.valueOf(personService.getCurrentPerson().getId())));
+	}
 	
+	private void setIsMyPageFlag(ModelAndView model, Long personId){
+		if(personId == null || personId == 0L){
+			model.addObject("isMyPage", false);
+		} else {
+			model.addObject("isMyPage", personId.longValue() == (personService.getCurrentPerson().getId()));	
+		}
+	}
 	
 	
 	
