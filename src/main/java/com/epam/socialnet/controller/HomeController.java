@@ -115,7 +115,7 @@ public class HomeController {
 			model.addObject("bindingExists", true);
 			if(friendship.isFriendshipApproved()){
 				model.addObject("isFriend", true);
-			} else {
+			} else if(friendship.getSecondPersonId() == personService.getCurrentPerson().getId()){
 				model.addObject("needApprove", true);
 			}
 		}
@@ -138,6 +138,13 @@ public class HomeController {
 		friendshipService.delete(personService.getCurrentPerson().getId(), Long.parseLong(request.getParameter("id")));
 		return viewPerson(request);
 	}
+	
+	@RequestMapping(value = "/approveFriendship", method = RequestMethod.GET)
+	public ModelAndView approveFriendship(HttpServletRequest request) {
+		friendshipService.approve(personService.getCurrentPerson().getId(), Long.parseLong(request.getParameter("id")));
+		return viewPerson(request);
+	}
+
 
 	@RequestMapping(value = "/newPerson", method = RequestMethod.GET)
 	public ModelAndView newPerson(ModelAndView model) {

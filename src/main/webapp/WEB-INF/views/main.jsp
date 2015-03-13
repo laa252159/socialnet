@@ -46,18 +46,18 @@
 							<td>${personInfo.lName}</td>
 						</tr>
 						<c:if test="${isMyPage || isFriend}">
-						<tr>
-							<td>Data of birth:&nbsp;</td>
-							<td>${personInfo.dob}</td>
-						</tr>
-						<tr>
-							<td>Phone:&nbsp;</td>
-							<td>${personInfo.phone}</td>
-						</tr>
-						<tr>
-							<td>Address:&nbsp;</td>
-							<td>${personInfo.address}</td>
-						</tr>
+							<tr>
+								<td>Data of birth:&nbsp;</td>
+								<td>${personInfo.dob}</td>
+							</tr>
+							<tr>
+								<td>Phone:&nbsp;</td>
+								<td>${personInfo.phone}</td>
+							</tr>
+							<tr>
+								<td>Address:&nbsp;</td>
+								<td>${personInfo.address}</td>
+							</tr>
 						</c:if>
 					</table>
 
@@ -93,23 +93,28 @@
 					style="margin-left: 20px; margin-top: 20px; margin-bottom: 20px; color: white;">
 					Delete from friends</a>
 			</c:if>
-		<%-- 	<c:if test="${!isMyPage && bindingExists && needApprove}">
-				<a href="deleteFriendship?id=${personInfo.id}"
+			<c:if test="${!isMyPage && bindingExists && needApprove}">
+				<a href="approveFriendship?id=${personInfo.id}"
 					class="btn btn-warning"
 					style="margin-left: 20px; margin-top: 20px; margin-bottom: 20px; color: white;">
 					Approve friendship</a>
-			</c:if> --%>
-			 <hr>
+				<a href="deleteFriendship?id=${personInfo.id}"
+					class="btn btn-danger"
+					style="margin-left: 20px; margin-top: 20px; margin-bottom: 20px; color: white;">
+					Cancel</a>
+			</c:if>
+			<hr>
 			<c:if test="${isMyPage}">
 				<!-- FRIENDSHIP REQUESTS BLOCK  -->
- 				<h5>Need my approve (${listOfWaiters.size()})</h5>
+				<h5>Need my approve (${listOfWaiters.size()})</h5>
 				<c:forEach var="friend" items="${listOfWaiters}" varStatus="status">
 					<a href="viewPerson?id=${friend.id}" style="color: black;"
 						class="list-group-item">&nbsp;${friend.fName}&nbsp;${friend.lName}</a>
 				</c:forEach>
 				<hr>
 				<h5>I am waiting for approve (${listOfApprovers.size()})</h5>
-				<c:forEach var="friend" items="${listOfApprovers}" varStatus="status">
+				<c:forEach var="friend" items="${listOfApprovers}"
+					varStatus="status">
 					<a href="viewPerson?id=${friend.id}" style="color: black;"
 						class="list-group-item">&nbsp;${friend.fName}&nbsp;${friend.lName}</a>
 				</c:forEach>

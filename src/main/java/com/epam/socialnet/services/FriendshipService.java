@@ -19,5 +19,7 @@ public interface FriendshipService {
 	public boolean isApprovied(long firsPersonId, long secondPersonId);
 
 	public void approve(Friendship friendship);
+	
+	public void approve(long firsPersonId, long secondPersonId);
 
 }

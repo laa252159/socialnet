@@ -35,15 +35,6 @@ public class FriendshipServiceImpl implements FriendshipService {
 	}
 
 	@Override
-	public void approve(Friendship friendship) {
-		List<Friendship> f = friendshipDAO.get(friendship.getFirsPersonId(), friendship.getSecondPersonId());
-		if(f!=null && !f.isEmpty()){
-			f.get(0).setFriendshipApproved(true);
-			friendshipDAO.update(f.get(0));
-		}
-	}
-
-	@Override
 	public void delete(Friendship friendship) {
 		friendshipDAO.delete(friendship);
 		
@@ -76,5 +67,22 @@ public class FriendshipServiceImpl implements FriendshipService {
 	public boolean isApprovied(long firsPersonId, long secondPersonId) {
 		Friendship friendship = get(firsPersonId, secondPersonId);
 		return friendship != null && friendship.isFriendshipApproved();
+	}
+
+	@Override
+	public void approve(long firsPersonId, long secondPersonId) {
+		Friendship friendship = new Friendship();
+		friendship.setFirsPersonId(firsPersonId);
+		friendship.setSecondPersonId(secondPersonId);
+		approve(friendship);
+	}
+	
+	@Override
+	public void approve(Friendship friendship) {
+		List<Friendship> f = friendshipDAO.get(friendship.getFirsPersonId(), friendship.getSecondPersonId());
+		if(f!=null && !f.isEmpty()){
+			f.get(0).setFriendshipApproved(true);
+			friendshipDAO.update(f.get(0));
+		}
 	}
 }
