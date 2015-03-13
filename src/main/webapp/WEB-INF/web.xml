@@ -8,8 +8,7 @@
 	<!-- ENCODING -->
 	<filter>
 		<filter-name>encoding-filter</filter-name>
-		<filter-class>org.springframework.web.filter.CharacterEncodingFilter
-		</filter-class>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
 		<init-param>
 			<param-name>encoding</param-name>
 			<param-value>UTF-8</param-value>
@@ -21,11 +20,11 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>encoding-filter</filter-name>
-		<url-pattern>/</url-pattern>
+		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
 	<!-- welcome-file-list -->
-	<welcome-file-list>
+ 	<welcome-file-list>
 		<welcome-file>/</welcome-file>
 	</welcome-file-list>
 
@@ -45,16 +44,17 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
-	<context-param>
+ 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 			/WEB-INF/spring-security.xml
 		</param-value>
-	</context-param>
+	</context-param> 
+	
 
 
 	<!-- Spring Security -->
-	<filter>
+ 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
 	</filter>
@@ -63,6 +63,7 @@
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+ 
 
 	<!-- SESSION -->
 	<session-config>
