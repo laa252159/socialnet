@@ -128,15 +128,17 @@
 		<div id="myfriends">
 			<div class="innertube" style="margin-left: 30px;">
 				<h4>My Friends (${listOfFriends.size()})</h4>
+				<div style="height: 150px; overflow-y: scroll;">
 				<c:forEach var="friend" items="${listOfFriends}" varStatus="status">
 					<a href="viewPerson?id=${friend.id}" style="color: black;"
 						class="list-group-item">&nbsp;${friend.fName}&nbsp;${friend.lName}</a>
 				</c:forEach>
+				</div>
 				<br> <br>
 				<!-- SEARCH BLOCK BEGIN-->
 				<div style="background-color: #F5F5DC; padding: 10px;">
 					<h4>Search persons form</h4>
-					<form role="form" action="viewPerson" method="post">
+					<form action="viewPerson" method="post">
 						<div class="form-group">
 							<label for="fn">First name:</label> <input type="text"
 								class="form-control" id="fn" name="fn">
@@ -150,11 +152,13 @@
 							search</button>
 					</form>
 					<h4>Founded ${foundedPersons.size()} persons</h4>
-					<c:forEach var="foundedPerson" items="${foundedPersons}"
-						varStatus="status">
-						<a href="viewPerson?id=${foundedPerson.id}" style="color: black;"
-							class="list-group-item">&nbsp;${foundedPerson.fName}&nbsp;${foundedPerson.lName}</a>
-					</c:forEach>
+					<div style="height: 150px; overflow-y: scroll;">
+						<c:forEach var="foundedPerson" items="${foundedPersons}"
+							varStatus="status">
+							<a href="viewPerson?id=${foundedPerson.id}" style="color: black;"
+								class="list-group-item">&nbsp;${foundedPerson.fName}&nbsp;${foundedPerson.lName}</a>
+						</c:forEach>
+					</div>
 				</div>
 				<!-- SEARCH BLOCK END-->
 			</div>
@@ -165,6 +169,14 @@
 				Library</a>
 		</div> -->
 
+	</div>
+	<div>
+	<c:if test="${pageContext.request.userPrincipal.name != null}">
+		<h5>
+			Welcome : ${pageContext.request.userPrincipal.name} | <a
+				href="<c:url value="/j_spring_security_logout" />">Logout</a>
+		</h5>
+	</c:if>
 	</div>
 </body>
 </html>
