@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page session="true"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
@@ -12,23 +13,21 @@
 	href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />"
 	rel="stylesheet">
 <link href="<c:url value="/resources/css/my.css" />" rel="stylesheet">
-    <script type="text/javascript">
-        function checkSize(max_img_size)
-        {
-            var input = document.getElementById("upload");
-            // check for browser support (may need to be modified)
-            if(input.files && input.files.length == 1)
-            {
-                if (input.files[0].size > max_img_size)
-                {
-                    alert("The file must be less than " + (Math.round(max_img_size/1024)) + "KB");
-                    return false;
-                }
-            }
+<script type="text/javascript">
+	function checkSize(max_img_size) {
+		var input = document.getElementById("upload");
+		// check for browser support (may need to be modified)
+		if (input.files && input.files.length == 1) {
+			if (input.files[0].size > max_img_size) {
+				alert("The file must be less than "
+						+ (Math.round(max_img_size / 1024)) + "KB");
+				return false;
+			}
+		}
 
-            return true;
-        }
-    </script>
+		return true;
+	}
+</script>
 </head>
 <body background="<c:url value='/resources/images/grass.jpg'/>"
 	style="background-size: 90%;">
@@ -88,10 +87,10 @@
 					</table>
 					<form method="post" action="uploadPhoto"
 						enctype="multipart/form-data" onsubmit="return checkSize(200152)">
-						 <input type="hidden" name="id_person" value="${person.id}">
+						<input type="hidden" name="id_person" value="${person.id}">
 						Photo to upload: <input type="file" name="file" id="upload"><br />
-						<input	type="submit" value="Upload"> Press here to upload the
-						file!
+						<input type="submit" value="Upload"> Press here to upload
+						the file!
 					</form>
 				</div>
 			</div>
@@ -102,8 +101,8 @@
 			<div class="innertube">
 				<h4>${personInfo.login}&nbsp;photo</h4>
 				<div style="border: 1px solid #cecece;">
-                    <img src="<c:url value="/imageDisplay?id=${person.id}"/>"
-                         alt="Mountain View" style="width: 160px; height: 160px">
+					<img src="<c:url value="/imageDisplay?id=${person.id}"/>"
+						alt="Mountain View" style="width: 160px; height: 160px">
 				</div>
 			</div>
 		</div>

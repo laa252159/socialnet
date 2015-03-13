@@ -80,11 +80,7 @@ public class HomeController {
 		return new ModelAndView("redirect:/");
 	}
 
-	@RequestMapping(value = "/savePerson", method = RequestMethod.POST)
-	public ModelAndView savePerson(@ModelAttribute Person person) {
-		personService.saveOrUpdate(person);
-		return new ModelAndView("redirect:/");
-	}
+
 
 	@RequestMapping(value = "/viewPerson", method = RequestMethod.GET)
 	public ModelAndView viewPerson(HttpServletRequest request) {
@@ -168,6 +164,7 @@ public class HomeController {
 		return new ModelAndView("redirect:/");
 	}
 
+	//Если не будет работать, обрати внимание на формат даты
 	@RequestMapping(value = "/editPerson", method = RequestMethod.GET)
 	public ModelAndView editPerson(HttpServletRequest request) {
 		long personId = Long.parseLong(request.getParameter("id"));
@@ -176,10 +173,15 @@ public class HomeController {
 		}
 		Person person = personService.get(personId);
 		ModelAndView model = new ModelAndView("EditInfo");
-		// model.addObject("id", person.getId());
 		model.addObject("person", person);
 
 		return model;
+	}
+	
+	@RequestMapping(value = "/savePerson", method = RequestMethod.POST)
+	public ModelAndView savePerson(@ModelAttribute Person person) {
+		personService.saveOrUpdate(person);
+		return new ModelAndView("redirect:/");
 	}
 
 	private void addToModelRequestersAndResponsersOfFriendshipToCurrentPerson(ModelAndView model){
