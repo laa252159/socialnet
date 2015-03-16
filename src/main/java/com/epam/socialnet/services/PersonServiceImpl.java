@@ -83,4 +83,9 @@ public class PersonServiceImpl implements PersonService {
 		return personDAO.getFriendshipWaiters(personId);
 	}
 
+	@Override
+	public Person getByLogin(String login) {
+		return personDAO.getByLogin(login);
+	}
+
 }

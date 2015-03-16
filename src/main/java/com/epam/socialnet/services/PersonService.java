@@ -33,4 +33,6 @@ public interface PersonService {
 	
 	public List<PersonDto> findPersonDto(Person person);
 	
+	public Person getByLogin(String login);
+	
 }

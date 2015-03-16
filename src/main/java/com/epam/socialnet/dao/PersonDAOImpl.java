@@ -303,5 +303,32 @@ public class PersonDAOImpl implements PersonDAO {
 
 		        return listPerson;
 	}
+
+	@Override
+	public Person getByLogin(String login) {
+        String sql = "SELECT * FROM \"PERSONS\" WHERE login = '" + login + "'";
+        return jdbcTemplate.query(sql, new ResultSetExtractor<Person>() {
+
+            @Override
+            public Person extractData(ResultSet rs) throws SQLException,
+                    DataAccessException {
+                if (rs.next()) {
+                    Person person = new Person();
+                    person.setId(rs.getLong("id"));
+                    person.setLogin(rs.getString("login"));
+                    person.setPassword(rs.getString("password"));
+                    person.setfName(rs.getString("fn"));
+                    person.setlName(rs.getString("ln"));
+                    person.setPhone(rs.getString("phone"));
+                    person.setAddress(rs.getString("address"));
+                    person.setDob(rs.getDate("dob"));
+                    return person;
+                }
+
+                return null;
+            }
+
+        });
+	}
 	
 }

@@ -33,4 +33,6 @@ public interface PersonDAO {
 
 	List<PersonDto> findPersonDto(Person person);
 	
+	public Person getByLogin(String login);
+	
 }
