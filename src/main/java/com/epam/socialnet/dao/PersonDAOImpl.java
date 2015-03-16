@@ -177,9 +177,9 @@ public class PersonDAOImpl implements PersonDAO {
 	public List<PersonDto> getFriendsDtos(String personId) {
 		 String sql = "SELECT * FROM \"PERSONS\" as p "
 			 		+ "WHERE"
-			 		+ " (p.id IN (SELECT ff.second_person_id FROM \"FRIENDSHIP\" as ff where ff.first_person_id = " + personId + "))"
+			 		+ " (p.id IN (SELECT ff.second_person_id FROM \"FRIENDSHIP\" as ff where ff.first_person_id = " + personId + " and approve='true'))"
 			 		+ " or"
-			 		+ " (p.id IN (SELECT sf.first_person_id FROM \"FRIENDSHIP\" as sf where sf.second_person_id = " + personId + "));";
+			 		+ " (p.id IN (SELECT sf.first_person_id FROM \"FRIENDSHIP\" as sf where sf.second_person_id = " + personId + " and approve='true'));";
 	        List<PersonDto> listPersonDtos = jdbcTemplate.query(sql, new RowMapper<PersonDto>() {
 
 	            @Override
@@ -258,9 +258,9 @@ public class PersonDAOImpl implements PersonDAO {
 	public List<Person> getFriends(String personId) {
 		 String sql = "SELECT * FROM \"PERSONS\" as p "
 		 		+ "WHERE"
-		 		+ " (p.id IN (SELECT ff.second_person_id FROM \"FRIENDSHIP\" as ff where ff.first_person_id = " + personId + "))"
+		 		+ " (p.id IN (SELECT ff.second_person_id FROM \"FRIENDSHIP\" as ff where ff.first_person_id = " + personId + " and approve='true'))"
 		 		+ " or"
-		 		+ " (p.id IN (SELECT sf.first_person_id FROM \"FRIENDSHIP\" as sf where sf.second_person_id = " + personId + "));";
+		 		+ " (p.id IN (SELECT sf.first_person_id FROM \"FRIENDSHIP\" as sf where sf.second_person_id = " + personId + " and approve='true'));";
 	       return getPersons(sql, personId);
 	}
 	
