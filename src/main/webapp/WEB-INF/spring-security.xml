@@ -4,7 +4,7 @@
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
-
+	<beans:import resource="mvc-dispatcher-servlet.xml" />
 	<http auto-config="true">
 		<intercept-url pattern="/" access="ROLE_USER" />
 		<intercept-url pattern="/goHome**" access="ROLE_USER" />
@@ -19,8 +19,6 @@
 		class="com.epam.socialnet.providers.CustomAuthenticationProvider">
 		<beans:constructor-arg ref="personService" />
 	</beans:bean>
-
-
 
 	<authentication-manager>
 		<authentication-provider ref='customAuthenticationProvider' />

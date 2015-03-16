@@ -19,32 +19,41 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 	private PersonService personService;
 
+	public CustomAuthenticationProvider() {
+		super();
+	}
+
 	public CustomAuthenticationProvider(PersonService personService) {
 		super();
 		this.personService = personService;
 	}
-	
+
 	@Override
 	public Authentication authenticate(Authentication authentication)
 			throws AuthenticationException {
-		 String name = authentication.getName();
-	        String password = authentication.getCredentials().toString();
-//	        Person person = personService.f)
-	        
-	        if (name.equals("test") && password.equals("test")) {
-	            List<GrantedAuthority> grantedAuths = new ArrayList<>();
-	            grantedAuths.add(new SimpleGrantedAuthority("ROLE_USER"));
-	            Authentication auth = new UsernamePasswordAuthenticationToken(name, password, grantedAuths);
-	            return auth;
-	        } else {
-	            return null;
-	        }
-	}
+		String name = authentication.getName();
+		String password = authentication.getCredentials().toString();
+		Person person = personService.getByLogin(name);
 
+		if (person == null) {
+			return null;
+		}
+
+		if (name.equals(person.getLogin())
+				&& password.equals(person.getPassword())) {
+			List<GrantedAuthority> grantedAuths = new ArrayList<>();
+			grantedAuths.add(new SimpleGrantedAuthority("ROLE_USER"));
+			Authentication auth = new UsernamePasswordAuthenticationToken(name,
+					password, grantedAuths);
+			return auth;
+		} else {
+			return null;
+		}
+	}
 
 	@Override
 	public boolean supports(Class<?> authentication) {
-		 return authentication.equals(UsernamePasswordAuthenticationToken.class);
+		return authentication.equals(UsernamePasswordAuthenticationToken.class);
 	}
 
 }
