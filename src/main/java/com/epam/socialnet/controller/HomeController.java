@@ -43,6 +43,7 @@ public class HomeController {
 		addToModelRequestersAndResponsersOfFriendshipToCurrentPerson(model);
 		setIsMyPageFlag(model, personService.getCurrentPerson().getId());
 		model.setViewName("main");
+		model.addObject("currrentPersonId", personService.getCurrentPerson().getId());
 
 		return model;
 	}
@@ -58,6 +59,7 @@ public class HomeController {
 
 	@RequestMapping(value = "/goHome")
 	public ModelAndView goHome(ModelAndView model) throws IOException {
+		model.addObject("currrentPersonId", personService.getCurrentPerson().getId());
 		return home(model);
 	}
 
@@ -116,6 +118,7 @@ public class HomeController {
 				personService.getCurrentPerson().getId()));
 
 		setIsMyPageFlag(model, personId);
+		model.addObject("currrentPersonId", personService.getCurrentPerson().getId());
 
 		return model;
 	}

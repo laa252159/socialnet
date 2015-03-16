@@ -8,6 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<%-- <meta http-equiv="refresh" content="5; URL=viewPerson?id=${currrentPersonId}"> --%>
 <title>Person Manager Home</title>
 <link
 	href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />"
