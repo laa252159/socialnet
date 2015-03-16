@@ -48,7 +48,7 @@
 				<div class="innertube">
 					<h4>Info about ${person.fName} &nbsp; ${person.lName}</h4>
 					<table>
-						<form:form action="savePerson" enctype="application/x-www-form-urlencoded; charset=UTF-8" method="post"
+						<form:form action="updatePerson" enctype="application/x-www-form-urlencoded; charset=UTF-8" method="post"
 							modelAttribute="person">
 							<form:hidden path="id" />
 							<form:hidden path="password" />

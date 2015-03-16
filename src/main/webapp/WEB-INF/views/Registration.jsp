@@ -58,9 +58,11 @@
 						<br>
 						<br>
 						<br>
-						<a href="goHome" class="disablehref,a"><button class="btn">CANCEL</button></a>
+						<a href="goHome" class="btn btn-danger">CANCEL</a>
 					</form:form>
+					<c:if test="${not empty reasonDenine}"><div style="color: red;">Причина отказа в регистрации: "${reasonDenine}". Пробуйте снова с новыми данными.</div></c:if>
 				</div>
+
 			</div>
 		</div>
 	</div>

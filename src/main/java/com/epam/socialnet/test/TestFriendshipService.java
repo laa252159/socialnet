@@ -14,7 +14,9 @@ import com.epam.socialnet.services.PersonService;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("test-context.xml")
+@ContextConfiguration({
+	"file:src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml",
+	"file:src/main/webapp/WEB-INF/spring-security.xml" })
 public class TestFriendshipService {
 
 	@Autowired
@@ -40,12 +42,18 @@ public class TestFriendshipService {
 		System.out.println("Friendship deleted!!!");
 	}
 	
-	@Test
+//	@Test
 	public void getFrienship() {
 		Friendship friendship = friendshipService.get(32, personService.getCurrentPerson().getId());
 		if(friendship != null){
 			System.out.println("Getted friendship!!! Approve status: " + friendship.isFriendshipApproved());	
 		}
+	}
+	
+	@Test
+	public void testExc() {
+		Exception exception = new Exception("Причина!");
+		System.out.println(exception.getMessage());
 	}
 	
 //	@Test

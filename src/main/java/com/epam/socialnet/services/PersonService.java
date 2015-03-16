@@ -7,7 +7,9 @@ import com.epam.socialnet.model.Person;
 
 public interface PersonService {
 	
-	public void saveOrUpdate(Person person);
+	public void save(Person person) throws Exception;
+	
+	public void update(Person person);
 	
 	public void delete(long personId);
 	

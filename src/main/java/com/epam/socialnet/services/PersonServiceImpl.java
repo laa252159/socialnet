@@ -19,7 +19,15 @@ public class PersonServiceImpl implements PersonService {
 	}
 
 	@Override
-	public void saveOrUpdate(Person person) {
+	public void save(Person person) throws Exception {
+		if(personDAO.getByLogin(person.getLogin())!=null){
+			throw new Exception("Логин '" + personDAO.getByLogin(person.getLogin()).getLogin() + "' уже существует в системе.");
+		};
+		personDAO.saveOrUpdate(person);
+	}
+	
+	@Override
+	public void update(Person person) {
 		personDAO.saveOrUpdate(person);
 	}
 
@@ -92,5 +100,4 @@ public class PersonServiceImpl implements PersonService {
 	public Person getByLogin(String login) {
 		return personDAO.getByLogin(login);
 	}
-
 }

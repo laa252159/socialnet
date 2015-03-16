@@ -202,7 +202,21 @@ public class HomeController {
 
 	@RequestMapping(value = "/savePerson", method = RequestMethod.POST)
 	public ModelAndView savePerson(@ModelAttribute Person person) {
-		personService.saveOrUpdate(person);
+		try {
+			personService.save(person);
+		} catch (Exception e) {
+			e.printStackTrace();
+			ModelAndView model = new ModelAndView("Registration");
+			model.addObject("reasonDenine", e.getMessage().toString());
+			model.addObject("person", person);
+			return model;
+		}
+		return new ModelAndView("redirect:/");
+	}
+
+	@RequestMapping(value = "/updatePerson", method = RequestMethod.POST)
+	public ModelAndView updatePerson(@ModelAttribute Person person) {
+		personService.update(person);
 		return new ModelAndView("redirect:/");
 	}
 
