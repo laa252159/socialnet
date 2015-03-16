@@ -2,6 +2,9 @@ package com.epam.socialnet.services;
 
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
 import com.epam.socialnet.dao.PersonDAO;
 import com.epam.socialnet.dto.PersonDto;
 import com.epam.socialnet.model.Person;
@@ -38,8 +41,10 @@ public class PersonServiceImpl implements PersonService {
 
 	@Override
 	public Person getCurrentPerson() {
-		// TODO get Current user ID from session, and get it from DAO by ID
-		Person person = personDAO.get(2);
+		Authentication auth = SecurityContextHolder.getContext()
+				.getAuthentication();
+		String name = auth.getName();
+		Person person = personDAO.getByLogin(name);
 		return person;
 	}
 
