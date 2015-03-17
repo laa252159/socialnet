@@ -7,6 +7,11 @@ public class MessageServiceImpl implements MessageService {
 
 	private MessageDAO messageDao;
 
+	public MessageServiceImpl(MessageDAO messageDao) {
+		super();
+		this.messageDao = messageDao;
+	}
+
 	@Override
 	public void add(Message message) {
 		messageDao.add(message);

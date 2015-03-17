@@ -1,5 +1,7 @@
 package com.epam.socialnet.dao;
 
+import java.sql.Timestamp;
+
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -24,12 +26,12 @@ public class MessageDAOImpl implements MessageDAO {
 
 	@Override
 	public void add(Message message) {
-		// TODO COMPLITE!!!
-/*		String sql = "INSERT INTO \"FRIENDSHIP\" (first_person_id, second_person_id, date_of_message_starting)"
-				+ " VALUES (?, ?, ?)";
-		jdbcTemplate.update(sql, message.getFirsPersonId(),
-				message.getSecondPersonId(),
-				message.getDateOfMessageStarting());*/
+		String sql = "INSERT INTO \"MESSAGES\" (\"senderId\", \"receiverId\", \"messageDate\", \"value\")"
+				+ " VALUES (?, ?, ?, ?)";
+		jdbcTemplate.update(sql, message.getSenderId(),
+				message.getReceiverId(),
+				new Timestamp(message.getMessageDate().getTime()),
+				message.getValue());
 	}
 		
 
