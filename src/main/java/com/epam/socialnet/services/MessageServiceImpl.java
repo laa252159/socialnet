@@ -1,5 +1,7 @@
 package com.epam.socialnet.services;
 
+import java.util.List;
+
 import com.epam.socialnet.dao.MessageDAO;
 import com.epam.socialnet.model.Message;
 
@@ -35,7 +37,13 @@ public class MessageServiceImpl implements MessageService {
 	@Override
 	public void update(long messageId, String newValue) {
 		messageDao.update(messageId, newValue);
-		
+
+	}
+
+	@Override
+	public List<Message> getAllMessagesBetweenPersons(long senderId,
+			long receiverId) {
+		return messageDao.getAllMessagesBetweenPersons(senderId, receiverId);
 	}
 
 }

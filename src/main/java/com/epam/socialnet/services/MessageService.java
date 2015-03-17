@@ -1,5 +1,7 @@
 package com.epam.socialnet.services;
 
+import java.util.List;
+
 import com.epam.socialnet.model.Message;
 
 public interface MessageService {
@@ -13,5 +15,7 @@ public interface MessageService {
 	public Message get(long messageId);
 	
 	public Message getBySenderAndReceiver(String login);
+	
+	public List<Message> getAllMessagesBetweenPersons(long senderId, long receiverId);
 	
 }

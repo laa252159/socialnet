@@ -1,6 +1,7 @@
 package com.epam.socialnet.test;
 
 import java.util.Date;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,10 +28,32 @@ public class TestMessageService {
 		System.out.println("done");
 	}
 	
-	@Test
+//	@Test
 	public void update() {
 		messageService.update(8, "He he he !!!");
 		System.out.println("done");
+	}
+	
+//	@Test
+	public void get() {
+		Message message = messageService.get(8);
+		System.out.println("Id: " + message.getId() +"  Value:" + message.getValue());
+	}
+	
+//	@Test
+	public void delete() {
+		messageService.delete(8);
+		System.out.println("done!");
+	}
+	
+	
+	@Test
+	public void getAllMessagesBetweenPersons() {
+		List<Message> messages =  messageService.getAllMessagesBetweenPersons(1,2);
+		for(Message m: messages){
+			System.out.println("id: " + m.getId() + " val: " +  m.getValue());
+		}
+		
 	}
 
 }

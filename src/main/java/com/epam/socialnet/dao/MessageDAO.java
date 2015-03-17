@@ -1,5 +1,7 @@
 package com.epam.socialnet.dao;
 
+import java.util.List;
+
 import com.epam.socialnet.model.Message;
 
 public interface MessageDAO {
@@ -8,10 +10,12 @@ public interface MessageDAO {
 	
 	public void update(long messageId, String newValue);
 
-	public void delete(long mesageId);
+	public void delete(long messageId);
 
-	public Message get(long mesageId);
+	public Message get(long messageId);
 
 	public Message getBySenderAndReceiver(String login);
+	
+	public List<Message> getAllMessagesBetweenPersons(long senderId, long receiverId);
 	
 }
