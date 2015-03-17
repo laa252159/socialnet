@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page session="true"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -50,7 +51,7 @@
 						<c:if test="${isMyPage || isFriend}">
 							<tr>
 								<td>Data of birth:&nbsp;</td>
-								<td>${personInfo.dob}</td>
+								<td><fmt:formatDate pattern="dd/MM/yyyy" value="${personInfo.dob}" /></td>
 							</tr>
 							<tr>
 								<td>Phone:&nbsp;</td>
