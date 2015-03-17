@@ -1,7 +1,5 @@
 package com.epam.socialnet.services;
 
-import java.util.List;
-
 import com.epam.socialnet.model.Message;
 
 
@@ -27,12 +25,6 @@ public class MessageServiceImpl implements MessageService {
 
 	@Override
 	public Message get(long messageId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Message> list() {
 		// TODO Auto-generated method stub
 		return null;
 	}
