@@ -78,7 +78,7 @@ public class MessageDAOImpl implements MessageDAO {
 	public List<Message> getAllMessagesBetweenPersons(long senderId,
 			long receiverId) {
 		String sql = "SELECT * FROM \"MESSAGES\" " + "where \"senderId\" = "
-				+ senderId + " and \"receiverId\" = " + receiverId;
+				+ senderId + " and \"receiverId\" = " + receiverId + "order by id ASC";
 		List<Message> listMessage = jdbcTemplate.query(sql,
 				new RowMapper<Message>() {
 
