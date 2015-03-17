@@ -20,10 +20,18 @@ public class TestMessageService {
 	@Autowired
 	private MessageService messageService;
 
-	@Test
-	public void getFriends() {
+//	@Test
+	public void add() {
 		Message message = new Message("Hello World!", 1, 2, new Date());
 		messageService.add(message);
+		System.out.println("done");
+	}
+	
+	@Test
+	public void update() {
+		Message message = new Message("Message updated!!!!", 1, 2, new Date());
+		message.setId(8);
+		messageService.update(message);
 		System.out.println("done");
 	}
 

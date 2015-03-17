@@ -17,6 +17,7 @@ public class Message {
 		super();
 	}
 
+	private long id;
 	private String value;
 	private long senderId;
 	private long receiverId;
@@ -45,5 +46,13 @@ public class Message {
 	}
 	public void setMessageDate(Date messageDate) {
 		this.messageDate = messageDate;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 }

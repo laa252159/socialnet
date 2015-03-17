@@ -38,7 +38,11 @@ public class MessageDAOImpl implements MessageDAO {
 
 	@Override
 	public void update(Message message) {
-		// TODO Auto-generated method stub
+		String sql = "UPDATE \"MESSAGES\" SET "
+                + "value = ? where id = ?";
+        jdbcTemplate.update(sql,
+       		 message.getValue(),
+       		 message.getId());
 		
 	}
 
