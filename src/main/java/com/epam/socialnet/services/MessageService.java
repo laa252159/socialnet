@@ -4,7 +4,7 @@ import com.epam.socialnet.model.Message;
 
 public interface MessageService {
 	
-	public void save(Message message) throws Exception;
+	public void add(Message message);
 	
 	public void update(Message message);
 	

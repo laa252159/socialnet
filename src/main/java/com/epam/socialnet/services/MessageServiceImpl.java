@@ -1,40 +1,35 @@
 package com.epam.socialnet.services;
 
+import com.epam.socialnet.dao.MessageDAO;
 import com.epam.socialnet.model.Message;
-
 
 public class MessageServiceImpl implements MessageService {
 
+	private MessageDAO messageDao;
+
 	@Override
-	public void save(Message message) throws Exception {
-		// TODO Auto-generated method stub
-		
+	public void add(Message message) {
+		messageDao.add(message);
 	}
 
 	@Override
 	public void update(Message message) {
-		// TODO Auto-generated method stub
-		
+		messageDao.update(message);
 	}
 
 	@Override
 	public void delete(long messageId) {
-		// TODO Auto-generated method stub
-		
+		messageDao.delete(messageId);
 	}
 
 	@Override
 	public Message get(long messageId) {
-		// TODO Auto-generated method stub
-		return null;
+		return messageDao.get(messageId);
 	}
 
 	@Override
 	public Message getBySenderAndReceiver(String login) {
-		// TODO Auto-generated method stub
-		return null;
+		return messageDao.getBySenderAndReceiver(login);
 	}
-	
 
-	
 }

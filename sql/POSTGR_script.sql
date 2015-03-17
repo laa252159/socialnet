@@ -77,4 +77,23 @@ CREATE INDEX "FRIENDSHIP_first_person_id_second_person_id_idx"
 
 
   
+-- Table: "MESSAGES"
+
+-- DROP TABLE "MESSAGES";
+
+CREATE TABLE "MESSAGES"
+(
+  id bigint DEFAULT nextval('message_id_seq'::regclass),
+  "senderId" bigint NOT NULL,
+  "receiverId" bigint NOT NULL,
+  "messageDate" time without time zone NOT NULL,
+  value character varying(200)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE "MESSAGES"
+  OWNER TO postgres;
+
+  
   

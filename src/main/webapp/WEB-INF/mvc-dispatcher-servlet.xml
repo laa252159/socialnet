@@ -47,12 +47,20 @@
 		<constructor-arg ref="dataSource" />
 	</bean>
 
+	<bean id="messageDao" class="com.epam.socialnet.dao.MessageDAOImpl">
+		<constructor-arg ref="dataSource" />
+	</bean>
+
 	<bean id="personService" class="com.epam.socialnet.services.PersonServiceImpl">
 		<constructor-arg ref="personDao" />
 	</bean>
 
 	<bean id="friendshipService" class="com.epam.socialnet.services.FriendshipServiceImpl">
 		<constructor-arg ref="friendshipDao" />
+	</bean>
+
+	<bean id="messageService" class="com.epam.socialnet.services.MessageServiceImpl">
+		<constructor-arg ref="messageDao" />
 	</bean>
 
 	<bean id="multipartResolver"
