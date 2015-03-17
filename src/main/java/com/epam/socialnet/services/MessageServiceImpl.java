@@ -18,11 +18,6 @@ public class MessageServiceImpl implements MessageService {
 	}
 
 	@Override
-	public void update(Message message) {
-		messageDao.update(message);
-	}
-
-	@Override
 	public void delete(long messageId) {
 		messageDao.delete(messageId);
 	}
@@ -35,6 +30,12 @@ public class MessageServiceImpl implements MessageService {
 	@Override
 	public Message getBySenderAndReceiver(String login) {
 		return messageDao.getBySenderAndReceiver(login);
+	}
+
+	@Override
+	public void update(long messageId, String newValue) {
+		messageDao.update(messageId, newValue);
+		
 	}
 
 }

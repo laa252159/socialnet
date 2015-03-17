@@ -37,12 +37,12 @@ public class MessageDAOImpl implements MessageDAO {
 
 
 	@Override
-	public void update(Message message) {
+	public void update(long messageId, String newValue) {
 		String sql = "UPDATE \"MESSAGES\" SET "
                 + "value = ? where id = ?";
         jdbcTemplate.update(sql,
-       		 message.getValue(),
-       		 message.getId());
+       		 newValue,
+       		 messageId);
 		
 	}
 

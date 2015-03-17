@@ -6,7 +6,7 @@ public interface MessageService {
 	
 	public void add(Message message);
 	
-	public void update(Message message);
+	public void update(long messageId, String newValue);
 	
 	public void delete(long messageId);
 	

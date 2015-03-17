@@ -29,9 +29,7 @@ public class TestMessageService {
 	
 	@Test
 	public void update() {
-		Message message = new Message("Message updated!!!!", 1, 2, new Date());
-		message.setId(8);
-		messageService.update(message);
+		messageService.update(8, "He he he !!!");
 		System.out.println("done");
 	}
 
