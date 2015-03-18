@@ -23,7 +23,7 @@ public class ChatController extends MainUtilController {
 		return messages;
 	}*/
 	
-	@RequestMapping(value = "addMessage", method = RequestMethod.GET)
+	@RequestMapping(value = "getAllMessages", method = RequestMethod.GET)
 	public @ResponseBody String getMessagesHTML(HttpServletRequest request) {
 		
 		StringBuilder html = new StringBuilder();

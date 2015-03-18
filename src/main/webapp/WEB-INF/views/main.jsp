@@ -15,7 +15,8 @@
 	href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />"
 	rel="stylesheet">
 <link href="<c:url value="/resources/css/my.css" />" rel="stylesheet">
-<script type="text/javascript" src="<c:url value="/resources/js/jquery-2.1.3.js"/>"></script>
+<script type="text/javascript"
+	src="<c:url value="/resources/js/jquery-2.1.3.js"/>"></script>
 </head>
 <body background="<c:url value='/resources/images/grass.jpg'/>"
 	style="background-size: 90%;">
@@ -76,11 +77,12 @@
 						<div id="receiverId" style="display: none;">${personInfo.id}</div>
 						<div id="messageval" style="display: none;">BLA BLA BLA</div>
 						<script type="text/javascript">
-					 		setInterval(function () {
-								$("#chat").load("addMessage?senderId=" + $('#senderId').text() + "&receiverId=" + $('#receiverId').text());
+						$("#chat").load("getAllMessages?senderId=" + $('#senderId').text() + "&receiverId=" + $('#receiverId').text());
+						setInterval(function () {
+								$("#chat").load("getAllMessages?senderId=" + $('#senderId').text() + "&receiverId=" + $('#receiverId').text());
 								}, 3000); 
 						</script>
-						
+
 						<!-- <textarea rows="10" cols="45"></textarea> -->
 					</div>
 				</div>
