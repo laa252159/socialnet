@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page session="true"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -51,7 +51,8 @@
 						<c:if test="${isMyPage || isFriend}">
 							<tr>
 								<td>Data of birth:&nbsp;</td>
-								<td><fmt:formatDate pattern="dd/MM/yyyy" value="${personInfo.dob}" /></td>
+								<td><fmt:formatDate pattern="dd/MM/yyyy"
+										value="${personInfo.dob}" /></td>
 							</tr>
 							<tr>
 								<td>Phone:&nbsp;</td>
@@ -67,7 +68,15 @@
 					<!-- CHAT BLOCK  -->
 					<div>
 						<h4>CHAT whith ${personInfo.fName}</h4>
-						<textarea rows="10" cols="45"></textarea>
+						<div id="chat" style="height: 200px; width: 400px; border: 1px solid  #008000; background: white; border-radius: 5px 5px 5px 5px; overflow-y: scroll;">
+							<ul>
+								<li>A: Hi</li>
+								<li>B: Hi</li>
+								<li>A: :)</li>
+							</ul>
+						</div>
+
+						<!-- <textarea rows="10" cols="45"></textarea> -->
 					</div>
 				</div>
 			</div>
@@ -131,10 +140,10 @@
 			<div class="innertube" style="margin-left: 30px;">
 				<h4>My Friends (${listOfFriends.size()})</h4>
 				<div style="height: 150px; overflow-y: scroll;">
-				<c:forEach var="friend" items="${listOfFriends}" varStatus="status">
-					<a href="viewPerson?id=${friend.id}" style="color: black;"
-						class="list-group-item">&nbsp;${friend.fName}&nbsp;${friend.lName}</a>
-				</c:forEach>
+					<c:forEach var="friend" items="${listOfFriends}" varStatus="status">
+						<a href="viewPerson?id=${friend.id}" style="color: black;"
+							class="list-group-item">&nbsp;${friend.fName}&nbsp;${friend.lName}</a>
+					</c:forEach>
 				</div>
 				<br> <br>
 				<!-- SEARCH BLOCK BEGIN-->
@@ -173,12 +182,12 @@
 
 	</div>
 	<div>
-	<c:if test="${pageContext.request.userPrincipal.name != null}">
-		<h5>
-			Welcome : ${pageContext.request.userPrincipal.name} | <a
-				href="<c:url value="/j_spring_security_logout" />">Logout</a>
-		</h5>
-	</c:if>
+		<c:if test="${pageContext.request.userPrincipal.name != null}">
+			<h5>
+				Welcome : ${pageContext.request.userPrincipal.name} | <a
+					href="<c:url value="/j_spring_security_logout" />">Logout</a>
+			</h5>
+		</c:if>
 	</div>
 </body>
 </html>
