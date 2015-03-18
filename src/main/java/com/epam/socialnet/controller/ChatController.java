@@ -1,16 +1,11 @@
 package com.epam.socialnet.controller;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.epam.socialnet.model.Message;
 
 @Controller
 public class ChatController extends MainUtilController {
@@ -28,17 +23,13 @@ public class ChatController extends MainUtilController {
 		return messages;
 	}*/
 	
-	@RequestMapping(value = "addMessage", method = RequestMethod.POST)
-	public @ResponseBody String getMessagesHTML(
-			@RequestBody Message message) {
+	@RequestMapping(value = "addMessage", method = RequestMethod.GET)
+	public @ResponseBody String getMessagesHTML(HttpServletRequest request) {
 		
 		StringBuilder html = new StringBuilder();
-		html.append("<ul>");
-		html.append("<li>");
-		html.append("Hello Worlsd");
-		html.append("</li>");
-		html.append("</ul>");
 	
+		html.append("Sender ID: " + request.getParameter("senderId") + " ReceiverID: " + request.getParameter("receiverId"));
+	 
 		return html.toString();
 	}
 

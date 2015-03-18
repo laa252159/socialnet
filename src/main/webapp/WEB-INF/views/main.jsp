@@ -15,6 +15,7 @@
 	href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />"
 	rel="stylesheet">
 <link href="<c:url value="/resources/css/my.css" />" rel="stylesheet">
+<script type="text/javascript" src="<c:url value="/resources/js/jquery-2.1.3.js"/>"></script>
 </head>
 <body background="<c:url value='/resources/images/grass.jpg'/>"
 	style="background-size: 90%;">
@@ -68,14 +69,18 @@
 					<!-- CHAT BLOCK  -->
 					<div>
 						<h4>CHAT whith ${personInfo.fName}</h4>
-						<div id="chat" style="height: 200px; width: 400px; border: 1px solid  #008000; background: white; border-radius: 5px 5px 5px 5px; overflow-y: scroll;">
-							<ul>
-								<li>A: Hi</li>
-								<li>B: Hi</li>
-								<li>A: :)</li>
-							</ul>
+						<div id="chat"
+							style="height: 200px; width: 400px; border: 1px solid #008000; background: white; border-radius: 5px 5px 5px 5px; overflow-y: scroll; padding: 10px;">
 						</div>
-
+						<div id="senderId" style="display: none;">${currrentPersonId}</div>
+						<div id="receiverId" style="display: none;">${personInfo.id}</div>
+						<div id="messageval" style="display: none;">BLA BLA BLA</div>
+						<script type="text/javascript">
+					 		setInterval(function () {
+								$("#chat").load("addMessage?senderId=" + $('#senderId').text() + "&receiverId=" + $('#receiverId').text());
+								}, 3000); 
+						</script>
+						
 						<!-- <textarea rows="10" cols="45"></textarea> -->
 					</div>
 				</div>
