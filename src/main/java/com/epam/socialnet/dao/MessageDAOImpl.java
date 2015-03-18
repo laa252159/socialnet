@@ -77,8 +77,11 @@ public class MessageDAOImpl implements MessageDAO {
 	@Override
 	public List<Message> getAllMessagesBetweenPersons(long senderId,
 			long receiverId) {
-		String sql = "SELECT * FROM \"MESSAGES\" " + "where \"senderId\" = "
-				+ senderId + " and \"receiverId\" = " + receiverId + "order by id ASC";
+		String sql = "SELECT * FROM \"MESSAGES\" " + "where"
+				+ " (\"senderId\" =  " + senderId + " and \"receiverId\" = " + receiverId + ")"
+						+ " or "
+						+ "(\"senderId\" = " + receiverId + " and \"receiverId\" = " + senderId + ") "
+						+ "order by id ASC";
 		List<Message> listMessage = jdbcTemplate.query(sql,
 				new RowMapper<Message>() {
 
