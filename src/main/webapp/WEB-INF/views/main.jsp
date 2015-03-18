@@ -77,13 +77,32 @@
 						<div id="receiverId" style="display: none;">${personInfo.id}</div>
 						<div id="messageval" style="display: none;">BLA BLA BLA</div>
 						<script type="text/javascript">
-						$("#chat").load("getAllMessages?senderId=" + $('#senderId').text() + "&receiverId=" + $('#receiverId').text());
-						setInterval(function () {
-								$("#chat").load("getAllMessages?senderId=" + $('#senderId').text() + "&receiverId=" + $('#receiverId').text());
-								}, 3000); 
+							$("#chat").load(
+									"getAllMessages?senderId="
+											+ $('#senderId').text()
+											+ "&receiverId="
+											+ $('#receiverId').text());
+							setInterval(function() {
+								$("#chat").load(
+										"getAllMessages?senderId="
+												+ $('#senderId').text()
+												+ "&receiverId="
+												+ $('#receiverId').text());
+							}, 3000);
 						</script>
-
-						<!-- <textarea rows="10" cols="45"></textarea> -->
+						<textarea id="iputText" style="height: 50px; width: 400px; margin-top: 10px; "></textarea>
+						<div class="btn btn-default" style="margin-top: 20px; margin-left: 320px;" onclick="send()">SEND</div>
+						<script type="text/javascript">
+						function send(){
+							$.post('addMessage', {
+								val : $("#iputText").text(),
+								senderId: $('#senderId').text(),
+								receiverId: $('#receiverId').text() 
+							});
+							 $("#iputText").val(''); 
+						};
+							
+						</script>
 					</div>
 				</div>
 			</div>
