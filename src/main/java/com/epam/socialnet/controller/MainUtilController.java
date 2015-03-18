@@ -5,6 +5,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.epam.socialnet.model.Friendship;
 import com.epam.socialnet.services.FriendshipService;
+import com.epam.socialnet.services.MessageService;
 import com.epam.socialnet.services.PersonService;
 
 public class MainUtilController {
@@ -14,6 +15,9 @@ public class MainUtilController {
 
 	@Autowired
 	protected FriendshipService friendshipService;
+	
+	@Autowired
+	protected MessageService messageService;
 
 		protected void addToModelRequestersAndResponsersOfFriendshipToCurrentPerson(
 				ModelAndView model) {
