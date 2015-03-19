@@ -69,7 +69,7 @@
 					</table>
 
 					<!-- CHAT BLOCK  -->
-					<c:if test="${!isMyPage}">
+					<c:if test="${!isMyPage && isFriend}">
 					<div>
 						<h4>CHAT whith ${personInfo.fName}</h4>
 						<div id="chat"
