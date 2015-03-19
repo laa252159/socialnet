@@ -30,10 +30,12 @@ public class ChatController extends MainUtilController {
 
 	@RequestMapping(value = "addMessage", method = RequestMethod.POST)
 	public void addMessage(HttpServletRequest request) {
-		messageService.add(new Message(request.getParameter("value"), Long
-				.parseLong(request.getParameter("senderId")), Long
-				.parseLong(request.getParameter("receiverId")), new Date()));
-
+		if(request.getParameter("value") != null && !request.getParameter("value").isEmpty()){
+			messageService.add(new Message(request.getParameter("value"), Long
+					.parseLong(request.getParameter("senderId")), Long
+					.parseLong(request.getParameter("receiverId")), new Date()));
+		}
+	
 		System.out.println("Value: " + request.getParameter("value")
 				+ "  senderId: " + request.getParameter("senderId")
 				+ "receiverId: " + request.getParameter("receiverId"));

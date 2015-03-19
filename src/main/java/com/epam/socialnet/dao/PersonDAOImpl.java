@@ -30,7 +30,7 @@ public class PersonDAOImpl implements PersonDAO {
     public void saveOrUpdate(Person person) {
         if (person.getId() > 0) {
             // update
-            String sql = "UPDATE \"PERSONS\" SET "
+            String sql = "UPDATE persons SET "
                     + "login = ?, "
                     + "password = ?, "
                     + "fn = ?, "
@@ -50,7 +50,7 @@ public class PersonDAOImpl implements PersonDAO {
                     person.getId());
         } else {
             // insert
-            String sql = "INSERT INTO \"PERSONS\" (login, password, fn, ln, dob, phone, address)"
+            String sql = "INSERT INTO persons (login, password, fn, ln, dob, phone, address)"
                     + " VALUES (?, ?, ?, ?, ?, ?, ?)";
             jdbcTemplate.update(sql,
                     person.getLogin(),
@@ -65,14 +65,14 @@ public class PersonDAOImpl implements PersonDAO {
 
     @Override
     public void delete(long personId) {
-        String sql = "DELETE FROM \"PERSONS\" WHERE id = ?";
+        String sql = "DELETE FROM persons WHERE id = ?";
         jdbcTemplate.update(sql, personId);
 
     }
 
     @Override
     public Person get(long personId) {
-        String sql = "SELECT * FROM \"PERSONS\" WHERE id=" + personId;
+        String sql = "SELECT * FROM persons WHERE id=" + personId;
         return jdbcTemplate.query(sql, new ResultSetExtractor<Person>() {
 
             @Override
@@ -99,7 +99,7 @@ public class PersonDAOImpl implements PersonDAO {
 
     @Override
     public List<Person> list() {
-        String sql = "SELECT * FROM \"PERSONS\"";
+        String sql = "SELECT * FROM persons";
         List<Person> listPerson = jdbcTemplate.query(sql, new RowMapper<Person>() {
 
             @Override
@@ -125,7 +125,7 @@ public class PersonDAOImpl implements PersonDAO {
     
 	@Override
 	public List<PersonDto> listDtos() {
-		  String sql = "SELECT * FROM \"PERSONS\"";
+		  String sql = "SELECT * FROM persons";
 	        List<PersonDto> listPersonDtos = jdbcTemplate.query(sql, new RowMapper<PersonDto>() {
 
 	            @Override
@@ -145,7 +145,7 @@ public class PersonDAOImpl implements PersonDAO {
     public void setPhoto(String id, byte[] img) {
 
         // update
-        String sql = "UPDATE \"PERSONS\" SET "
+        String sql = "UPDATE persons SET "
                 + "photo = ? "
                 + " WHERE id = ?";
         LobHandler lobHandler = new DefaultLobHandler();
@@ -158,7 +158,7 @@ public class PersonDAOImpl implements PersonDAO {
 
     @Override
     public byte[] getPhoto(String id) {
-        String sql = "SELECT * FROM \"PERSONS\" WHERE id=" + id;
+        String sql = "SELECT * FROM persons WHERE id=" + id;
         return jdbcTemplate.query(sql, new ResultSetExtractor<byte[]>() {
 
             @Override
@@ -175,11 +175,11 @@ public class PersonDAOImpl implements PersonDAO {
 
 	@Override
 	public List<PersonDto> getFriendsDtos(String personId) {
-		 String sql = "SELECT * FROM \"PERSONS\" as p "
+		 String sql = "SELECT * FROM persons as p "
 			 		+ "WHERE"
-			 		+ " (p.id IN (SELECT ff.second_person_id FROM \"FRIENDSHIP\" as ff where ff.first_person_id = " + personId + " and approve='true'))"
+			 		+ " (p.id IN (SELECT ff.second_person_id FROM friendship as ff where ff.first_person_id = " + personId + " and approve='true'))"
 			 		+ " or"
-			 		+ " (p.id IN (SELECT sf.first_person_id FROM \"FRIENDSHIP\" as sf where sf.second_person_id = " + personId + " and approve='true'));";
+			 		+ " (p.id IN (SELECT sf.first_person_id FROM friendship as sf where sf.second_person_id = " + personId + " and approve='true'));";
 	        List<PersonDto> listPersonDtos = jdbcTemplate.query(sql, new RowMapper<PersonDto>() {
 
 	            @Override
@@ -203,7 +203,7 @@ public class PersonDAOImpl implements PersonDAO {
 		if(person.getlName() == null || person.getlName().isEmpty()){
 			person.setlName("null");
 		}
-		String sql = "SELECT * FROM \"PERSONS\" as p where p.fn like '%" + person.getfName() + "%' or p.ln like '%" + person.getlName() + "%'";
+		String sql = "SELECT * FROM persons as p where p.fn like '%" + person.getfName() + "%' or p.ln like '%" + person.getlName() + "%'";
 	        List<Person> listPerson = jdbcTemplate.query(sql, new RowMapper<Person>() {
 
 	            @Override
@@ -235,7 +235,7 @@ public class PersonDAOImpl implements PersonDAO {
 		if(person.getlName() == null || person.getlName().isEmpty()){
 			person.setlName("null");
 		}
-		String sql = "SELECT * FROM \"PERSONS\" as p where p.fn like '%" + person.getfName() + "%' or p.ln like '%" + person.getlName() + "%'";
+		String sql = "SELECT * FROM persons as p where p.fn like '%" + person.getfName() + "%' or p.ln like '%" + person.getlName() + "%'";
 	        List<PersonDto> listPersonDto = jdbcTemplate.query(sql, new RowMapper<PersonDto>() {
 
 	            @Override
@@ -256,27 +256,27 @@ public class PersonDAOImpl implements PersonDAO {
 
 	@Override
 	public List<Person> getFriends(String personId) {
-		 String sql = "SELECT * FROM \"PERSONS\" as p "
+		 String sql = "SELECT * FROM persons as p "
 		 		+ "WHERE"
-		 		+ " (p.id IN (SELECT ff.second_person_id FROM \"FRIENDSHIP\" as ff where ff.first_person_id = " + personId + " and approve='true'))"
+		 		+ " (p.id IN (SELECT ff.second_person_id FROM friendship as ff where ff.first_person_id = " + personId + " and approve='true'))"
 		 		+ " or"
-		 		+ " (p.id IN (SELECT sf.first_person_id FROM \"FRIENDSHIP\" as sf where sf.second_person_id = " + personId + " and approve='true'));";
+		 		+ " (p.id IN (SELECT sf.first_person_id FROM friendship as sf where sf.second_person_id = " + personId + " and approve='true'));";
 	       return getPersons(sql, personId);
 	}
 	
 	@Override
 	public List<Person> getFriendshipApprovers(String personId) { //TODO complit sql!!!
-		String sql = "SELECT * FROM \"PERSONS\" as p "
+		String sql = "SELECT * FROM persons as p "
 		 		+ "WHERE"
-		 		+ " (p.id IN (SELECT ff.second_person_id FROM \"FRIENDSHIP\" as ff where ff.first_person_id = " + personId + " and ff.approve = 'false'))";
+		 		+ " (p.id IN (SELECT ff.second_person_id FROM friendship as ff where ff.first_person_id = " + personId + " and ff.approve = 'false'))";
 	       return getPersons(sql, personId);
 	}
 
 	@Override
 	public List<Person> getFriendshipWaiters(String personId) {//TODO complit sql!!!
-		String sql = "SELECT * FROM \"PERSONS\" as p "
+		String sql = "SELECT * FROM persons as p "
 		 		+ "WHERE"
-		 		+ " (p.id IN (SELECT ff.first_person_id FROM \"FRIENDSHIP\" as ff where ff.second_person_id = " + personId + " and ff.approve = 'false'))";
+		 		+ " (p.id IN (SELECT ff.first_person_id FROM friendship as ff where ff.second_person_id = " + personId + " and ff.approve = 'false'))";
 	       return getPersons(sql, personId);
 	}
 	
@@ -306,7 +306,7 @@ public class PersonDAOImpl implements PersonDAO {
 
 	@Override
 	public Person getByLogin(String login) {
-        String sql = "SELECT * FROM \"PERSONS\" WHERE login = '" + login + "'";
+        String sql = "SELECT * FROM persons WHERE login = '" + login + "'";
         return jdbcTemplate.query(sql, new ResultSetExtractor<Person>() {
 
             @Override

@@ -21,7 +21,7 @@ public class FriendshipDAOImpl implements FriendshipDAO {
 
 	@Override
 	public void add(Friendship friendship) {
-		String sql = "INSERT INTO \"FRIENDSHIP\" (first_person_id, second_person_id, date_of_friendship_starting)"
+		String sql = "INSERT INTO friendship (first_person_id, second_person_id, date_of_friendship_starting)"
 				+ " VALUES (?, ?, ?)";
 		jdbcTemplate.update(sql, friendship.getFirsPersonId(),
 				friendship.getSecondPersonId(),
@@ -30,13 +30,13 @@ public class FriendshipDAOImpl implements FriendshipDAO {
 
 	@Override
 	public void delete(Friendship friendship) {
-		String sql = "DELETE FROM \"FRIENDSHIP\" WHERE (first_person_id = ? and second_person_id = ?) or (second_person_id = ? and first_person_id = ?)";
+		String sql = "DELETE FROM friendship WHERE (first_person_id = ? and second_person_id = ?) or (second_person_id = ? and first_person_id = ?)";
 		jdbcTemplate.update(sql, friendship.getFirsPersonId(), friendship.getSecondPersonId(),friendship.getFirsPersonId(), friendship.getSecondPersonId());
 	}
 
 	@Override
     public List<Friendship> get(long firsPersonId, long secondPersonId) {
-        String sql = "SELECT * FROM \"FRIENDSHIP\" "
+        String sql = "SELECT * FROM friendship "
         		+ "where"
         		+ " (first_person_id = "+firsPersonId+" and second_person_id = " + secondPersonId + ") "
         				+ "or"
@@ -65,7 +65,7 @@ public class FriendshipDAOImpl implements FriendshipDAO {
 
 	@Override
 	public void update(Friendship friendship) {
-		 String sql = "UPDATE \"FRIENDSHIP\" SET "
+		 String sql = "UPDATE friendship SET "
                  + "approve = ?, date_of_friendship_starting = ? where first_person_id = ? and second_person_id = ?";
          jdbcTemplate.update(sql,
         		 friendship.isFriendshipApproved(),

@@ -50,7 +50,7 @@ public class TestFriendshipService {
 		}
 	}
 	
-	@Test
+//	@Test
 	public void testExc() {
 		Exception exception = new Exception("Причина!");
 		System.out.println(exception.getMessage());
@@ -58,7 +58,7 @@ public class TestFriendshipService {
 	
 //	@Test
 	public void areFriens() {
-		boolean ans = friendshipService.areFriends(2, 32);
+		boolean ans = friendshipService.areFriends(2, 33);
 			System.out.println("Friends status:" + ans);	
 	} 
 	

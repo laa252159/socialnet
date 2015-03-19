@@ -30,7 +30,7 @@ public class MessageDAOImpl implements MessageDAO {
 
 	@Override
 	public void add(Message message) {
-		String sql = "INSERT INTO \"MESSAGES\" (\"senderId\", \"receiverId\", \"messageDate\", \"value\")"
+		String sql = "INSERT INTO messages (senderid, receiverid, messagedate, value)"
 				+ " VALUES (?, ?, ?, ?)";
 		jdbcTemplate.update(sql, message.getSenderId(),
 				message.getReceiverId(), new Timestamp(message.getMessageDate()
@@ -39,20 +39,20 @@ public class MessageDAOImpl implements MessageDAO {
 
 	@Override
 	public void update(long messageId, String newValue) {
-		String sql = "UPDATE \"MESSAGES\" SET " + "value = ? where id = ?";
+		String sql = "UPDATE messages SET " + "value = ? where id = ?";
 		jdbcTemplate.update(sql, newValue, messageId);
 
 	}
 
 	@Override
 	public void delete(long mesageId) {
-		String sql = "DELETE FROM \"MESSAGES\" WHERE id = ?";
+		String sql = "DELETE FROM messages WHERE id = ?";
 		jdbcTemplate.update(sql, mesageId);
 	}
 
 	@Override
 	public Message get(long messageId) {
-		String sql = "SELECT * FROM \"MESSAGES\" WHERE id=" + messageId;
+		String sql = "SELECT * FROM messages WHERE id=" + messageId;
 		return jdbcTemplate.query(sql, new ResultSetExtractor<Message>() {
 
 			@Override
@@ -77,10 +77,10 @@ public class MessageDAOImpl implements MessageDAO {
 	@Override
 	public List<Message> getAllMessagesBetweenPersons(long senderId,
 			long receiverId) {
-		String sql = "SELECT * FROM \"MESSAGES\" " + "where"
-				+ " (\"senderId\" =  " + senderId + " and \"receiverId\" = " + receiverId + ")"
+		String sql = "SELECT * FROM messages " + "where"
+				+ " (senderid =  " + senderId + " and receiverid = " + receiverId + ")"
 						+ " or "
-						+ "(\"senderId\" = " + receiverId + " and \"receiverId\" = " + senderId + ") "
+						+ "(senderid = " + receiverId + " and receiverid = " + senderId + ") "
 						+ "order by id DESC";
 		List<Message> listMessage = jdbcTemplate.query(sql,
 				new RowMapper<Message>() {

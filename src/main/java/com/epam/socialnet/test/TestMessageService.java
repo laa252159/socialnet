@@ -49,7 +49,7 @@ public class TestMessageService {
 	
 	@Test
 	public void getAllMessagesBetweenPersons() {
-		List<Message> messages =  messageService.getAllMessagesBetweenPersons(1,2);
+		List<Message> messages =  messageService.getAllMessagesBetweenPersons(2,33);
 		for(Message m: messages){
 			System.out.println("id: " + m.getId() + " val: " +  m.getValue());
 		}
