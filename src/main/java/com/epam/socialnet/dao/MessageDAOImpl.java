@@ -81,7 +81,7 @@ public class MessageDAOImpl implements MessageDAO {
 				+ " (\"senderId\" =  " + senderId + " and \"receiverId\" = " + receiverId + ")"
 						+ " or "
 						+ "(\"senderId\" = " + receiverId + " and \"receiverId\" = " + senderId + ") "
-						+ "order by id ASC";
+						+ "order by id DESC";
 		List<Message> listMessage = jdbcTemplate.query(sql,
 				new RowMapper<Message>() {
 

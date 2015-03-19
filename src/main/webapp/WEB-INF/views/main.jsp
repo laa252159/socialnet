@@ -5,6 +5,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 
 <html>
 <head>
@@ -88,6 +89,8 @@
 												+ $('#senderId').text()
 												+ "&receiverId="
 												+ $('#receiverId').text());
+								  $("textarea").scrollTop(99999);
+							      $("textarea").scrollTop($("textarea").scrollTop()*12);
 							}, 3000);
 						</script>
 						<textarea id="iputText" style="height: 50px; width: 400px; margin-top: 10px; "></textarea>
@@ -95,11 +98,11 @@
 						<script type="text/javascript">
 						function send(){
 							$.post('addMessage', {
-								val : $("#iputText").text(),
+								value : $("#iputText").val(),
 								senderId: $('#senderId').text(),
 								receiverId: $('#receiverId').text() 
 							});
-							 $("#iputText").val(''); 
+						  	 $("#iputText").val('');   
 						};
 							
 						</script>

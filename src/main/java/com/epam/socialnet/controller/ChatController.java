@@ -1,6 +1,7 @@
 package com.epam.socialnet.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,16 +14,18 @@ import com.epam.socialnet.model.Message;
 
 @Controller
 public class ChatController extends MainUtilController {
+	
+	private final static String SPACE = " ";
+	private final static String COLON = ":";
+	private final static String PARAGRAPH_START = "<p>";
+	private final static String PARAGRAPH_END = "</p>";
 
-	@RequestMapping(value = "getAllMessages", method = RequestMethod.GET)
+	@RequestMapping(value = "getAllMessages", method = RequestMethod.GET, produces = "text/plain; charset=utf-8")
 	public @ResponseBody String getMessagesHTML(HttpServletRequest request) {
 
-		StringBuilder html = new StringBuilder();
-
-		html.append("Sender ID: " + request.getParameter("senderId")
-				+ " ReceiverID: " + request.getParameter("receiverId"));
-
-		return html.toString();
+		return getHtmlFromMessagesList(messageService.getAllMessagesBetweenPersons(
+				Long.parseLong(request.getParameter("senderId")),
+				Long.parseLong(request.getParameter("receiverId"))));
 	}
 
 	@RequestMapping(value = "addMessage", method = RequestMethod.POST)
@@ -30,11 +33,24 @@ public class ChatController extends MainUtilController {
 		messageService.add(new Message(request.getParameter("value"), Long
 				.parseLong(request.getParameter("senderId")), Long
 				.parseLong(request.getParameter("receiverId")), new Date()));
-		
-		System.out.println("value: " + request.getParameter("value")
-				+ "senderId: " + request.getParameter("senderId")
+
+		System.out.println("Value: " + request.getParameter("value")
+				+ "  senderId: " + request.getParameter("senderId")
 				+ "receiverId: " + request.getParameter("receiverId"));
 
+	}
+
+	private String getHtmlFromMessagesList(List<Message> msgs) {
+		StringBuilder sb = new StringBuilder();
+		for(Message message: msgs){
+			sb.append(PARAGRAPH_START);
+			sb.append(message.getSenderName());
+			sb.append(COLON);
+			sb.append(SPACE);
+			sb.append(message.getValue());
+			sb.append(PARAGRAPH_END);
+		}
+		return sb.toString();
 	}
 
 }

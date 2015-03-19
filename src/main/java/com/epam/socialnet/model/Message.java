@@ -23,6 +23,10 @@ public class Message {
 	private long receiverId;
 	private Date messageDate;
 	
+	//Transient fields (only for UI usage)	
+	private String senderName;
+	private String receiverName;
+	
 	public String getValue() {
 		return value;
 	}
@@ -54,5 +58,21 @@ public class Message {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public String getSenderName() {
+		return senderName;
+	}
+
+	public void setSenderName(String senderName) {
+		this.senderName = senderName;
+	}
+
+	public String getReceiverName() {
+		return receiverName;
+	}
+
+	public void setReceiverName(String receiverName) {
+		this.receiverName = receiverName;
 	}
 }
