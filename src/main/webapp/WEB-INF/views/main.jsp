@@ -69,6 +69,7 @@
 					</table>
 
 					<!-- CHAT BLOCK  -->
+					<c:if test="${!isMyPage}">
 					<div>
 						<h4>CHAT whith ${personInfo.fName}</h4>
 						<div id="chat"
@@ -107,6 +108,7 @@
 							
 						</script>
 					</div>
+					</c:if>
 				</div>
 			</div>
 		</div>

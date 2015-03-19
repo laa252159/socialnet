@@ -24,7 +24,6 @@ public class MainPageController extends MainUtilController {
 		setIsMyPageFlag(model, personService.getCurrentPerson().getId());
 		model.setViewName("main");
 		model.addObject("currrentPersonId", personService.getCurrentPerson().getId());
-
 		return model;
 	}
 
