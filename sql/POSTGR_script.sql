@@ -87,13 +87,15 @@ CREATE TABLE "MESSAGES"
   "senderId" bigint NOT NULL,
   "receiverId" bigint NOT NULL,
   "messageDate" time without time zone NOT NULL,
-  value character varying(200)
+  value character varying(200),
+  "hasBeanRead" boolean
 )
 WITH (
   OIDS=FALSE
 );
 ALTER TABLE "MESSAGES"
   OWNER TO postgres;
+
 
   
   
