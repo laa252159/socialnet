@@ -1,10 +1,10 @@
- -- Table: "PERSONS"
+-- Table: persons
 
--- DROP TABLE "PERSONS";
+-- DROP TABLE persons;
 
-CREATE TABLE "PERSONS"
+CREATE TABLE persons
 (
-  id bigserial NOT NULL,
+  id bigint NOT NULL DEFAULT nextval('"PERSONS_id_seq"'::regclass),
   login character varying(20) NOT NULL,
   password character varying(20),
   fn character varying(50),
@@ -17,19 +17,18 @@ CREATE TABLE "PERSONS"
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE "PERSONS"
+ALTER TABLE persons
   OWNER TO postgres;
-GRANT ALL ON TABLE "PERSONS" TO postgres;
-GRANT ALL ON TABLE "PERSONS" TO public;
+GRANT ALL ON TABLE persons TO postgres;
+GRANT ALL ON TABLE persons TO public;
 
 
 
+-- Table: friendship
 
--- Table: "FRIENDSHIP"
+-- DROP TABLE friendship;
 
--- DROP TABLE "FRIENDSHIP";
-
-CREATE TABLE "FRIENDSHIP"
+CREATE TABLE friendship
 (
   first_person_id bigint NOT NULL,
   second_person_id bigint NOT NULL,
@@ -40,7 +39,7 @@ CREATE TABLE "FRIENDSHIP"
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE "FRIENDSHIP"
+ALTER TABLE friendship
   OWNER TO postgres;
 
 -- Index: "FRIENDSHIP_first_person_id_second_person_id_idx"
@@ -48,55 +47,27 @@ ALTER TABLE "FRIENDSHIP"
 -- DROP INDEX "FRIENDSHIP_first_person_id_second_person_id_idx";
 
 CREATE INDEX "FRIENDSHIP_first_person_id_second_person_id_idx"
-  ON "FRIENDSHIP"
-  USING btree
-  (first_person_id, second_person_id);
-
-  
-  
-
--- Constraint: "FRIENDSHIP_first_person_id_second_person_id_key"
-
--- ALTER TABLE "FRIENDSHIP" DROP CONSTRAINT "FRIENDSHIP_first_person_id_second_person_id_key";
-
-ALTER TABLE "FRIENDSHIP"
-  ADD CONSTRAINT "FRIENDSHIP_first_person_id_second_person_id_key" UNIQUE(first_person_id, second_person_id);
-
-
-  
-  
-  
--- Index: "FRIENDSHIP_first_person_id_second_person_id_idx"
-
--- DROP INDEX "FRIENDSHIP_first_person_id_second_person_id_idx";
-
-CREATE INDEX "FRIENDSHIP_first_person_id_second_person_id_idx"
-  ON "FRIENDSHIP"
+  ON friendship
   USING btree
   (first_person_id, second_person_id);
 
 
   
--- Table: "MESSAGES"
+  -- Table: messages
 
--- DROP TABLE "MESSAGES";
+-- DROP TABLE messages;
 
-CREATE TABLE "MESSAGES"
+CREATE TABLE messages
 (
   id bigint DEFAULT nextval('message_id_seq'::regclass),
-  "senderId" bigint NOT NULL,
-  "receiverId" bigint NOT NULL,
-  "messageDate" time without time zone NOT NULL,
+  senderid bigint NOT NULL,
+  receiverid bigint NOT NULL,
+  messagedate time without time zone NOT NULL,
   value character varying(200),
-  "hasBeanRead" boolean DEFAULT false
+  has_bean_read boolean DEFAULT false
 )
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE "MESSAGES"
+ALTER TABLE messages
   OWNER TO postgres;
-
-
-
-  
-  
