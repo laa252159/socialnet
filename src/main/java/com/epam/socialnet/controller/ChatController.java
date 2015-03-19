@@ -36,9 +36,9 @@ public class ChatController extends MainUtilController {
 					.parseLong(request.getParameter("receiverId")), new Date()));
 		}
 	
-		System.out.println("Value: " + request.getParameter("value")
+/*		System.out.println("Value: " + request.getParameter("value")
 				+ "  senderId: " + request.getParameter("senderId")
-				+ "receiverId: " + request.getParameter("receiverId"));
+				+ "receiverId: " + request.getParameter("receiverId"));*/
 
 	}
 
