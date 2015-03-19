@@ -18,4 +18,6 @@ public interface MessageService {
 	
 	public List<Message> getAllMessagesBetweenPersons(long senderId, long receiverId);
 	
+	public void setAllMessagesForReceiverFromSenderToReaded(long senderId, long receiverId);
+	
 }

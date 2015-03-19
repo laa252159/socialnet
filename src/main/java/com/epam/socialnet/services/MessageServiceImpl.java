@@ -46,4 +46,11 @@ public class MessageServiceImpl implements MessageService {
 		return messageDao.getAllMessagesBetweenPersons(senderId, receiverId);
 	}
 
+	@Override
+	public void setAllMessagesForReceiverFromSenderToReaded(long senderId,
+			long receiverId) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

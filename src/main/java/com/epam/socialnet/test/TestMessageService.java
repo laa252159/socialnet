@@ -34,9 +34,9 @@ public class TestMessageService {
 		System.out.println("done");
 	}
 	
-//	@Test
+	@Test
 	public void get() {
-		Message message = messageService.get(8);
+		Message message = messageService.get(146);
 		System.out.println("Id: " + message.getId() +"  Value:" + message.getValue());
 	}
 	
@@ -47,7 +47,7 @@ public class TestMessageService {
 	}
 	
 	
-	@Test
+//	@Test
 	public void getAllMessagesBetweenPersons() {
 		List<Message> messages =  messageService.getAllMessagesBetweenPersons(2,33);
 		for(Message m: messages){

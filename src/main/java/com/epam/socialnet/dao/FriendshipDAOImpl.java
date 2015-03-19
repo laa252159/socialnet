@@ -38,9 +38,9 @@ public class FriendshipDAOImpl implements FriendshipDAO {
     public List<Friendship> get(long firsPersonId, long secondPersonId) {
         String sql = "SELECT * FROM friendship "
         		+ "where"
-        		+ " (first_person_id = "+firsPersonId+" and second_person_id = " + secondPersonId + ") "
+        		+ " (first_person_id = ? and second_person_id = ?) "
         				+ "or"
-        				+ " (first_person_id = " + secondPersonId + " and second_person_id = " +firsPersonId+ ")";
+        				+ " (first_person_id = ? and second_person_id = ?)";
         List<Friendship> listFriendship = jdbcTemplate.query(sql,
 				new RowMapper<Friendship>() {
 
@@ -58,7 +58,7 @@ public class FriendshipDAOImpl implements FriendshipDAO {
 								.getBoolean("approve"));
 						return friendship;
 					}
-				});
+				}, firsPersonId, secondPersonId, secondPersonId, firsPersonId);
 
 		return listFriendship;
     }

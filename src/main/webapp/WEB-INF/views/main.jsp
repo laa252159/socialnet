@@ -53,7 +53,7 @@
 						</tr>
 						<c:if test="${isMyPage || isFriend}">
 							<tr>
-								<td>Data of birth:&nbsp;</td>
+								<td>Date of birth:&nbsp;</td>
 								<td><fmt:formatDate pattern="dd/MM/yyyy"
 										value="${personInfo.dob}" /></td>
 							</tr>

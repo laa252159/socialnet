@@ -52,7 +52,7 @@ public class MessageDAOImpl implements MessageDAO {
 
 	@Override
 	public Message get(long messageId) {
-		String sql = "SELECT * FROM messages WHERE id=" + messageId;
+		String sql = "SELECT * FROM messages WHERE id = ?";
 		return jdbcTemplate.query(sql, new ResultSetExtractor<Message>() {
 
 			@Override
@@ -71,7 +71,7 @@ public class MessageDAOImpl implements MessageDAO {
 				return null;
 			}
 
-		});
+		}, messageId);
 	}
 
 	@Override
@@ -81,8 +81,8 @@ public class MessageDAOImpl implements MessageDAO {
 				+ "join persons as p "
 				+ " on (m.senderid = p.id)"
 				+ " where"
-				+ " ((m.senderid = " + senderId + " and m.receiverid = "+receiverId+")"
-						+ " or (m.senderid = "+ receiverId +" and m.receiverid = "+ senderId +")) order by m DESC;";
+				+ " ((m.senderid = ? and m.receiverid = ?)"
+						+ " or (m.senderid = ? and m.receiverid = ?)) order by m DESC;";
 		List<Message> listMessage = jdbcTemplate.query(sql,
 				new RowMapper<Message>() {
 
@@ -98,8 +98,17 @@ public class MessageDAOImpl implements MessageDAO {
 						message.setSenderName(rs.getString("fn"));
 						return message;
 					}
-				});
+				}, senderId, receiverId, receiverId, senderId);
 
 		return listMessage;
 	}
+
+	@Override
+	public void setAllMessagesForReceiverFromSenderToReaded(long senderId,
+			long receiverId) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
 }
