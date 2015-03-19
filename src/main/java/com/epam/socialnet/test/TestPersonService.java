@@ -29,7 +29,7 @@ public class TestPersonService {
 		}
 	}
 
-	@Test
+//	@Test
 	public void getPersonByLogin() {
 		Person person = personService.getByLogin("mock");
 		System.out.println("Login: " + person.getLogin() + " Password: "

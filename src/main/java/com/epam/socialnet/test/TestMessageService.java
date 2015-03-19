@@ -51,7 +51,7 @@ public class TestMessageService {
 	public void getAllMessagesBetweenPersons() {
 		List<Message> messages =  messageService.getAllMessagesBetweenPersons(2,33);
 		for(Message m: messages){
-			System.out.println("id: " + m.getId() + " val: " +  m.getValue());
+			System.out.println("SenderName: "+ m.getSenderName() +"id: " + m.getId() + " val: " +  m.getValue());
 		}
 		
 	}

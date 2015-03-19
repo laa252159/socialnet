@@ -61,7 +61,7 @@ public class MessageDAOImpl implements MessageDAO {
 				if (rs.next()) {
 					Message message = new Message();
 					message.setId(rs.getLong("id"));
-					message.setMessageDate(rs.getDate("messageDate"));
+					message.setMessageDate(rs.getDate("messagedate"));
 					message.setReceiverId(rs.getLong("receiverId"));
 					message.setSenderId(rs.getLong("senderId"));
 					message.setValue(rs.getString("value"));
@@ -77,11 +77,12 @@ public class MessageDAOImpl implements MessageDAO {
 	@Override
 	public List<Message> getAllMessagesBetweenPersons(long senderId,
 			long receiverId) {
-		String sql = "SELECT * FROM messages " + "where"
-				+ " (senderid =  " + senderId + " and receiverid = " + receiverId + ")"
-						+ " or "
-						+ "(senderid = " + receiverId + " and receiverid = " + senderId + ") "
-						+ "order by id DESC";
+		String sql = "SELECT DISTINCT ON (m) m.id, m.messagedate, p.fn, m.senderid, m.receiverid, m.value FROM messages as m inner "
+				+ "join persons as p "
+				+ " on (m.senderid = p.id)"
+				+ " where"
+				+ " ((m.senderid = " + senderId + " and m.receiverid = "+receiverId+")"
+						+ " or (m.senderid = "+ receiverId +" and m.receiverid = "+ senderId +")) order by m DESC;";
 		List<Message> listMessage = jdbcTemplate.query(sql,
 				new RowMapper<Message>() {
 
@@ -90,10 +91,11 @@ public class MessageDAOImpl implements MessageDAO {
 							throws SQLException {
 						Message message = new Message();
 						message.setId(rs.getLong("id"));
-						message.setMessageDate(rs.getDate("messageDate"));
-						message.setReceiverId(rs.getLong("receiverId"));
-						message.setSenderId(rs.getLong("senderId"));
+						message.setMessageDate(rs.getDate("messagedate"));
+						message.setReceiverId(rs.getLong("receiverid"));
+						message.setSenderId(rs.getLong("senderid"));
 						message.setValue(rs.getString("value"));
+						message.setSenderName(rs.getString("fn"));
 						return message;
 					}
 				});
