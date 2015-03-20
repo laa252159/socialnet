@@ -9,6 +9,8 @@
 		<intercept-url pattern="/" access="ROLE_USER" />
 		<intercept-url pattern="/goHome**" access="ROLE_USER" />
 		<intercept-url pattern="/viewPerson**" access="ROLE_USER" />
+		<intercept-url pattern="/friendshipRequest**" access="ROLE_USER" />
+		
 		<form-login login-page="/login" default-target-url="/"
 			authentication-failure-url="/login?error" username-parameter="username"
 			password-parameter="password" />
