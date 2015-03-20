@@ -32,13 +32,13 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	public Authentication authenticate(Authentication authentication)
 			throws AuthenticationException {
 		String name = authentication.getName();
-		String password = authentication.getCredentials().toString();
+		String password = String.valueOf(personService.getSHA256(authentication.getCredentials().toString()));
 		Person person = personService.getByLogin(name);
-
+		
 		if (person == null) {
 			return null;
 		}
-
+		
 		if (name.equals(person.getLogin())
 				&& password.equals(person.getPassword())) {
 			List<GrantedAuthority> grantedAuths = new ArrayList<>();

@@ -77,5 +77,11 @@ public class TestPersonService {
 					+ " DOB: " + p.getDob());
 		}
 	}
+	
+	 @Test
+		public void getSHA256() {
+		 System.out.println(personService.getSHA256("111"));
+		}
+	
 
 }

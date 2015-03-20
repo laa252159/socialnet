@@ -77,6 +77,7 @@ public class FriendshipAndPersonController extends MainUtilController {
 	@RequestMapping(value = "/savePerson", method = RequestMethod.POST)
 	public ModelAndView savePerson(@ModelAttribute Person person) {
 		try {
+			person.setPassword(personService.getSHA256(person.getPassword()));
 			personService.save(person);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -87,7 +88,7 @@ public class FriendshipAndPersonController extends MainUtilController {
 		}
 		return new ModelAndView("redirect:/");
 	}
-
+	
 	@RequestMapping(value = "/updatePerson", method = RequestMethod.POST)
 	public ModelAndView updatePerson(@ModelAttribute Person person) {
 		personService.update(person);

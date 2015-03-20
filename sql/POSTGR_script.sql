@@ -6,7 +6,7 @@ CREATE TABLE persons
 (
   id bigint NOT NULL DEFAULT nextval('"PERSONS_id_seq"'::regclass),
   login character varying(20) NOT NULL,
-  password character varying(20),
+  password character varying(64),
   fn character varying(50),
   ln character varying(50),
   dob date,

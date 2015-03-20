@@ -1,5 +1,10 @@
 package com.epam.socialnet.services;
 
+import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Array;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.security.core.Authentication;
@@ -20,12 +25,15 @@ public class PersonServiceImpl implements PersonService {
 
 	@Override
 	public void save(Person person) throws Exception {
-		if(personDAO.getByLogin(person.getLogin())!=null){
-			throw new Exception("Логин '" + personDAO.getByLogin(person.getLogin()).getLogin() + "' уже существует в системе.");
-		};
+		if (personDAO.getByLogin(person.getLogin()) != null) {
+			throw new Exception("Логин '"
+					+ personDAO.getByLogin(person.getLogin()).getLogin()
+					+ "' уже существует в системе.");
+		}
+		;
 		personDAO.saveOrUpdate(person);
 	}
-	
+
 	@Override
 	public void update(Person person) {
 		personDAO.saveOrUpdate(person);
@@ -100,4 +108,27 @@ public class PersonServiceImpl implements PersonService {
 	public Person getByLogin(String login) {
 		return personDAO.getByLogin(login);
 	}
+
+	@Override
+	public String getSHA256(String str) {
+		MessageDigest md;
+		byte[] digest = null;
+		try {
+			md = MessageDigest.getInstance("SHA-256");
+			md.update(str.getBytes("UTF-8"));
+			digest = md.digest();
+		} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		if(digest !=null && digest.length != 0){
+			//convert the byte to hex format method 2
+	        StringBuffer hexString = new StringBuffer();
+	    	for (int i=0;i<digest.length;i++) {
+	    	  hexString.append(Integer.toHexString(0xFF & digest[i]));
+	    	}
+			return hexString.toString();
+		}		
+		return null;
+	}
+
 }

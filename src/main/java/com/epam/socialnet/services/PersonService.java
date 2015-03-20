@@ -1,5 +1,7 @@
 package com.epam.socialnet.services;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import com.epam.socialnet.dto.PersonDto;
@@ -36,5 +38,7 @@ public interface PersonService {
 	public List<PersonDto> findPersonDto(Person person);
 	
 	public Person getByLogin(String login);
+	
+	public String getSHA256(String str);
 	
 }
