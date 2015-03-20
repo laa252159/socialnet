@@ -1,10 +1,8 @@
 package com.epam.socialnet.services;
 
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Array;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.security.core.Authentication;
@@ -130,5 +128,4 @@ public class PersonServiceImpl implements PersonService {
 		}		
 		return null;
 	}
-
 }

@@ -82,7 +82,7 @@ public class MessageDAOImpl implements MessageDAO {
 				+ " on (m.senderid = p.id)"
 				+ " where"
 				+ " ((m.senderid = ? and m.receiverid = ?)"
-						+ " or (m.senderid = ? and m.receiverid = ?)) order by m DESC;";
+				+ " or (m.senderid = ? and m.receiverid = ?)) order by m DESC;";
 		List<Message> listMessage = jdbcTemplate.query(sql,
 				new RowMapper<Message>() {
 
@@ -106,9 +106,31 @@ public class MessageDAOImpl implements MessageDAO {
 	@Override
 	public void setAllMessagesForReceiverFromSenderToReaded(long senderId,
 			long receiverId) {
-		// TODO Auto-generated method stub
-		
+		String sql = "UPDATE messages as m SET has_been_read = true where m.receiverid = ? and m.senderid = ? and m.has_been_read = false";
+		jdbcTemplate.update(sql, receiverId, senderId);
 	}
-	
-	
+
+	@Override
+	public List<Message> getUnreadedLinksForreceiver(String receiverId) {
+		String sql = "select DISTINCT ON (m.senderid) m.senderid, m.id, m.messagedate, m.receiverid, m.value,  m.has_been_read, p.fn, p.ln  from messages as m "
+				+ "join persons as p on (p.id = m.senderid) "
+				+ "where m.has_been_read = false and receiverid = ?";
+		List<Message> listMessage = jdbcTemplate.query(sql,
+				new RowMapper<Message>() {
+
+					@Override
+					public Message mapRow(ResultSet rs, int rowNum)
+							throws SQLException {
+						Message message = new Message();
+						message.setReceiverId(rs.getLong("receiverid"));
+						message.setSenderId(rs.getLong("senderid"));
+						message.setSenderName(rs.getString("fn") + " "
+								+ rs.getString("ln"));
+						return message;
+					}
+				}, Long.parseLong(receiverId));
+
+		return listMessage;
+	}
+
 }

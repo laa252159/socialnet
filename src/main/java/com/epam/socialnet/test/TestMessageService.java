@@ -3,6 +3,7 @@ package com.epam.socialnet.test;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,8 @@ import com.epam.socialnet.services.MessageService;
 		"file:src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml",
 		"file:src/main/webapp/WEB-INF/spring-security.xml" })
 public class TestMessageService {
+	
+	 static Logger log = Logger.getLogger(TestMessageService.class.getName());
 
 	@Autowired
 	private MessageService messageService;
@@ -34,7 +37,7 @@ public class TestMessageService {
 		System.out.println("done");
 	}
 	
-	@Test
+//	@Test
 	public void get() {
 		Message message = messageService.get(146);
 		System.out.println("Id: " + message.getId() +"  Value:" + message.getValue());
@@ -54,6 +57,14 @@ public class TestMessageService {
 			System.out.println("SenderName: "+ m.getSenderName() +"id: " + m.getId() + " val: " +  m.getValue());
 		}
 		
+	}
+	
+	@Test
+	public void getUnreadedLinksForreceiver(){
+		List<Message> messages = messageService.getUnreadedLinksForreceiver(String.valueOf(2));
+		for(Message m: messages){
+			System.out.println("Name: " + m.getSenderName() + " sender id: " + m.getSenderId());
+		}
 	}
 
 }

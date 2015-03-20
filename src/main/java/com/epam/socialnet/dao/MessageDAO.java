@@ -18,6 +18,8 @@ public interface MessageDAO {
 	
 	public List<Message> getAllMessagesBetweenPersons(long senderId, long receiverId);
 	
-	public void setAllMessagesForReceiverFromSenderToReaded(long senderId, long receiverId);
+	public void setAllMessagesForReceiverFromSenderToReaded(long senderId,
+			long receiverId);
 	
+	public List<Message> getUnreadedLinksForreceiver(String receiverId);
 }

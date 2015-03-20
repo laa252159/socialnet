@@ -1,7 +1,5 @@
 package com.epam.socialnet.services;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import com.epam.socialnet.dto.PersonDto;

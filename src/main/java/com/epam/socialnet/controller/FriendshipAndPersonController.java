@@ -88,7 +88,7 @@ public class FriendshipAndPersonController extends MainUtilController {
 		}
 		return new ModelAndView("redirect:/");
 	}
-	
+
 	@RequestMapping(value = "/updatePerson", method = RequestMethod.POST)
 	public ModelAndView updatePerson(@ModelAttribute Person person) {
 		personService.update(person);
@@ -112,14 +112,15 @@ public class FriendshipAndPersonController extends MainUtilController {
 
 		initFriendshipButtopns(model, friendshipService.get(personId,
 				personService.getCurrentPerson().getId()));
-
+		messageService.setAllMessagesForReceiverFromSenderToReaded(personId,
+				personService.getCurrentPerson().getId());
+		addUreadedLinksToModel(model);
 		setIsMyPageFlag(model, personId);
 		model.addObject("currrentPersonId", personService.getCurrentPerson()
 				.getId());
 		return model;
 	}
 
-	
 	@RequestMapping(value = "/viewPerson", method = RequestMethod.POST)
 	public ModelAndView viewPersonPost(HttpServletRequest request) {
 		return viewPerson(request);

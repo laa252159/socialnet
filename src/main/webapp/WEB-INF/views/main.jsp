@@ -5,7 +5,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8"%>
 
 <html>
 <head>
@@ -68,46 +68,61 @@
 						</c:if>
 					</table>
 
+					<!-- LIST OF UNREADED MESSAGES  -->
+					<div class="innertube" style="padding-top: 30px; width: 150px;">
+						<c:if test="${not empty unreadLinks && isMyPage}">
+					<h5>YOU HAVE NEW MESSAGES FROM:</h5>
+						<c:forEach var="link" items="${unreadLinks}"
+								varStatus="status">
+								<a href="viewPerson?id=${link.senderId}" style="color: black; width: 150px;"
+									class="btn btn-success"><span class="badge">${link.senderName}</span></a><br>&nbsp;
+							</c:forEach>
+							<hr>
+						</c:if>
+					</div>
+
 					<!-- CHAT BLOCK  -->
 					<c:if test="${!isMyPage && isFriend}">
-					<div>
-						<h4>CHAT whith ${personInfo.fName}</h4>
-						<div id="chat"
-							style="height: 200px; width: 400px; border: 1px solid #008000; background: white; border-radius: 5px 5px 5px 5px; overflow-y: scroll; padding: 10px;">
-						</div>
-						<div id="senderId" style="display: none;">${currrentPersonId}</div>
-						<div id="receiverId" style="display: none;">${personInfo.id}</div>
-						<div id="messageval" style="display: none;">BLA BLA BLA</div>
-						<script type="text/javascript">
-							$("#chat").load(
-									"getAllMessages?senderId="
-											+ $('#senderId').text()
-											+ "&receiverId="
-											+ $('#receiverId').text());
-							setInterval(function() {
+						<div>
+							<h4>CHAT whith ${personInfo.fName}</h4>
+							<div id="chat"
+								style="height: 200px; width: 400px; border: 1px solid #008000; background: white; border-radius: 5px 5px 5px 5px; overflow-y: scroll; padding: 10px;">
+							</div>
+							<div id="senderId" style="display: none;">${currrentPersonId}</div>
+							<div id="receiverId" style="display: none;">${personInfo.id}</div>
+							<div id="messageval" style="display: none;">BLA BLA BLA</div>
+							<script type="text/javascript">
 								$("#chat").load(
 										"getAllMessages?senderId="
 												+ $('#senderId').text()
 												+ "&receiverId="
 												+ $('#receiverId').text());
-								  $("textarea").scrollTop(99999);
-							      $("textarea").scrollTop($("textarea").scrollTop()*12);
-							}, 3000);
-						</script>
-						<textarea id="iputText" style="height: 50px; width: 400px; margin-top: 10px; "></textarea>
-						<div class="btn btn-default" style="margin-top: 20px; margin-left: 320px;" onclick="send()">SEND</div>
-						<script type="text/javascript">
-						function send(){
-							$.post('addMessage', {
-								value : $("#iputText").val(),
-								senderId: $('#senderId').text(),
-								receiverId: $('#receiverId').text() 
-							});
-						  	 $("#iputText").val('');   
-						};
-							
-						</script>
-					</div>
+								setInterval(function() {
+									$("#chat").load(
+											"getAllMessages?senderId="
+													+ $('#senderId').text()
+													+ "&receiverId="
+													+ $('#receiverId').text());
+									$("textarea").scrollTop(99999);
+									$("textarea").scrollTop(
+											$("textarea").scrollTop() * 12);
+								}, 3000);
+							</script>
+							<textarea id="iputText"
+								style="height: 50px; width: 400px; margin-top: 10px;"></textarea>
+							<div class="btn btn-default"
+								style="margin-top: 20px; margin-left: 320px;" onclick="send()">SEND</div>
+							<script type="text/javascript">
+								function send() {
+									$.post('addMessage', {
+										value : $("#iputText").val(),
+										senderId : $('#senderId').text(),
+										receiverId : $('#receiverId').text()
+									});
+									$("#iputText").val('');
+								};
+							</script>
+						</div>
 					</c:if>
 				</div>
 			</div>
@@ -119,7 +134,7 @@
 				<h4>${personInfo.fName}&nbsp;${personInfo.lName}</h4>
 				<div style="border: 1px solid #cecece;">
 					<img src="<c:url value="/imageDisplay?id=${personInfo.id}"/>"
-						alt="Mountain View" style="width: 160px; height: 160px">
+						alt="Persons photo" style="width: 160px; height: 160px" class="img-thumbnail">
 				</div>
 			</div>
 

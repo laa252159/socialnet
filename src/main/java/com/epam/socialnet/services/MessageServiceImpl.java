@@ -47,10 +47,15 @@ public class MessageServiceImpl implements MessageService {
 	}
 
 	@Override
+	public List<Message> getUnreadedLinksForreceiver(String receiverId) {
+		return messageDao.getUnreadedLinksForreceiver(receiverId);
+	}
+
+	@Override
 	public void setAllMessagesForReceiverFromSenderToReaded(long senderId,
 			long receiverId) {
-		// TODO Auto-generated method stub
-		
+		messageDao.setAllMessagesForReceiverFromSenderToReaded(senderId,
+				receiverId);
 	}
 
 }

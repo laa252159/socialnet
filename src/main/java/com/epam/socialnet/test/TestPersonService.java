@@ -2,6 +2,7 @@ package com.epam.socialnet.test;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ import com.epam.socialnet.services.PersonService;
 		"file:src/main/webapp/WEB-INF/spring-security.xml" })
 public class TestPersonService {
 
+	 static Logger log = Logger.getLogger(TestPersonService.class.getName());
+	
 	@Autowired
 	private PersonService personService;
 

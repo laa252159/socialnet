@@ -64,7 +64,7 @@ CREATE TABLE messages
   receiverid bigint NOT NULL,
   messagedate time without time zone NOT NULL,
   value character varying(200),
-  has_bean_read boolean DEFAULT false
+  has_been_read boolean DEFAULT false
 )
 WITH (
   OIDS=FALSE

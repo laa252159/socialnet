@@ -35,4 +35,6 @@ public interface PersonDAO {
 	
 	public Person getByLogin(String login);
 	
+	public List<Person> getUnreadedLinksForreceiver(String personId);
+	
 }

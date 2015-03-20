@@ -350,5 +350,11 @@ public class PersonDAOImpl implements PersonDAO {
 
         }, login);
 	}
+
+	@Override
+	public List<Person> getUnreadedLinksForreceiver(String personId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }
