@@ -41,7 +41,7 @@
 						</div>
 						<div class="form-group">
 							<label for="password">Password:</label>
-							<form:input path="password" class="form-control" />
+							<form:password path="password" class="form-control" />
 						</div>
 						<div class="form-group">
 							<label for="fname">Name:</label>
