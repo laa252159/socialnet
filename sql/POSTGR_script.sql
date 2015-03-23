@@ -155,14 +155,14 @@ ALTER TABLE albums
   
   
   
-  -- Table: photos
+-- Table: photos
 
 -- DROP TABLE photos;
 
 CREATE TABLE photos
 (
-  id bigint DEFAULT nextval('photo_id_seq'::regclass),
-  album_id bigint,
+  id bigint NOT NULL DEFAULT nextval('photo_id_seq'::regclass),
+  album_id bigint NOT NULL,
   file_name character varying(50),
   name character varying(50),
   description character varying(200),
