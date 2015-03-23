@@ -1,3 +1,62 @@
+-- Sequence: "PERSONS_id_seq"
+
+-- DROP SEQUENCE "PERSONS_id_seq";
+
+CREATE SEQUENCE "PERSONS_id_seq"
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 60
+  CACHE 1;
+ALTER TABLE "PERSONS_id_seq"
+  OWNER TO postgres;
+
+  
+  -- Sequence: album_id_seq
+
+-- DROP SEQUENCE album_id_seq;
+
+CREATE SEQUENCE album_id_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE album_id_seq
+  OWNER TO postgres;
+
+  
+  
+  -- Sequence: photo_id_seq
+
+-- DROP SEQUENCE photo_id_seq;
+
+CREATE SEQUENCE photo_id_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE photo_id_seq
+  OWNER TO postgres;
+
+  
+  -- Sequence: message_id_seq
+
+-- DROP SEQUENCE message_id_seq;
+
+CREATE SEQUENCE message_id_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 175
+  CACHE 1;
+ALTER TABLE message_id_seq
+  OWNER TO postgres;
+
+
+
+
 -- Table: persons
 
 -- DROP TABLE persons;
@@ -71,3 +130,49 @@ WITH (
 );
 ALTER TABLE messages
   OWNER TO postgres;
+  
+  
+  
+  -- Table: albums
+
+-- DROP TABLE albums;
+
+CREATE TABLE albums
+(
+  id bigint NOT NULL DEFAULT nextval('album_id_seq'::regclass),
+  person_id bigint NOT NULL,
+  name character varying(128),
+  description character varying(256),
+  CONSTRAINT albums_pkey PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE albums
+  OWNER TO postgres;
+  
+  
+  
+  
+  
+  -- Table: photos
+
+-- DROP TABLE photos;
+
+CREATE TABLE photos
+(
+  id bigint DEFAULT nextval('photo_id_seq'::regclass),
+  album_id bigint,
+  file_name character varying(50),
+  name character varying(50),
+  description character varying(200),
+  upload_date date,
+  img bytea
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE photos
+  OWNER TO postgres;
+
+
