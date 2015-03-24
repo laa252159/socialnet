@@ -58,7 +58,7 @@ public class PhotoDAOImpl implements PhotoDAO {
 						photo.setFileName(rs.getString("file_name"));
 						photo.setName(rs.getString("name"));
 						photo.setDescription(rs.getString("description"));
-						photo.setUploadDate(rs.getDate("uploadDate"));
+						photo.setUploadDate(rs.getDate("upload_date"));
 						return photo;
 					}
 				}, albumId);
@@ -77,7 +77,7 @@ public class PhotoDAOImpl implements PhotoDAO {
                 if (rs.next()) {
                     return rs.getBytes("img");
                 }
-                return new byte[0];
+                return null;
             }
 
         }, photoId);
@@ -98,7 +98,7 @@ public class PhotoDAOImpl implements PhotoDAO {
 					photo.setFileName(rs.getString("file_name"));
 					photo.setName(rs.getString("name"));
 					photo.setDescription(rs.getString("description"));
-					photo.setUploadDate(rs.getDate("uploadDate"));
+					photo.setUploadDate(rs.getDate("upload_date"));
 					photo.setImg(rs.getBytes("img"));
 					return photo;
 				}

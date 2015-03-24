@@ -65,7 +65,7 @@ public class TestGalleryService {
 
 	}
 
-	@Test
+//	@Test
 	public void createPhoto() {
 		Photo photo = new Photo();
 		photo.setAlbumId(2L);
@@ -78,24 +78,25 @@ public class TestGalleryService {
 	}
 
 //	@Test
-	public void updatePhoto(Photo photo) {
+	public void getAndUpdatePhoto() {
+		Photo photo = galleryService.getPhotoById(3L);
+		photo.setDescription("Tra lala");
 		galleryService.updatePhoto(photo);
 
 	}
 
 //	@Test
-	public void deletePhoto(Long photoId) {
-		galleryService.deletePhoto(photoId);
+	public void deletePhoto() {
+		galleryService.deletePhoto(3L);
 
 	}
 
-//	@Test
-	public Photo getPhoto(Long photoId) {
-		return galleryService.getPhotoById(photoId);
-	}
-
-//	@Test
-	public byte[] getImg(Long photoId) {
-		return galleryService.getImg(photoId);
+	@Test
+	public void getImgAndPreView() {
+		if(galleryService.getImg(5L)!=null){
+			System.out.println("IMG exists " + galleryService.getImg(5L).length);
+		} else {
+			System.out.println("Empty");
+		}
 	}
 }
