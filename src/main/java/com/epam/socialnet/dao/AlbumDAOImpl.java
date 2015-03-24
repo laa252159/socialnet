@@ -6,7 +6,9 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.epam.socialnet.model.Album;
@@ -59,6 +61,28 @@ public class AlbumDAOImpl implements AlbumDAO {
 		}, personId);
 
 		return listAlbum;
+	}
+
+	@Override
+	public Album getAlbumById(Long albumId) {
+		String sql = "SELECT * FROM albums WHERE id = ?";
+		return jdbcTemplate.query(sql, new ResultSetExtractor<Album>() {
+
+			@Override
+			public Album extractData(ResultSet rs) throws SQLException,
+					DataAccessException {
+				if (rs.next()) {
+					Album album = new Album();
+					album.setId(rs.getLong("id"));
+					album.setPersonId(rs.getLong("person_id"));
+					album.setName(rs.getString("name"));
+					album.setDescription(rs.getString("description"));
+					return album;
+				}
+				return null;
+			}
+		}, albumId);
+
 	}
 
 }

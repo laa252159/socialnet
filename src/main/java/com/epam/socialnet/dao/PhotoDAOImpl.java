@@ -66,8 +66,25 @@ public class PhotoDAOImpl implements PhotoDAO {
 		return listPhoto;
 	}
 
+    @Override
+    public byte[] getImg(Long photoId) {
+        String sql = "SELECT * FROM photos WHERE id = ?";
+        return jdbcTemplate.query(sql, new ResultSetExtractor<byte[]>() {
+
+            @Override
+            public byte[] extractData(ResultSet rs) throws SQLException,
+                    DataAccessException {
+                if (rs.next()) {
+                    return rs.getBytes("img");
+                }
+                return new byte[0];
+            }
+
+        }, photoId);
+    }
+
 	@Override
-	public Photo readPhoto(Long photoId) {
+	public Photo getPhotoById(Long photoId) {
 		String sql = "SELECT * FROM photos WHERE id = ?";
 		return jdbcTemplate.query(sql, new ResultSetExtractor<Photo>() {
 
@@ -90,24 +107,7 @@ public class PhotoDAOImpl implements PhotoDAO {
 			}
 
 		}, photoId);
+		
 	}
-	
-	
-    @Override
-    public byte[] getImg(Long photoId) {
-        String sql = "SELECT * FROM photos WHERE id = ?";
-        return jdbcTemplate.query(sql, new ResultSetExtractor<byte[]>() {
-
-            @Override
-            public byte[] extractData(ResultSet rs) throws SQLException,
-                    DataAccessException {
-                if (rs.next()) {
-                    return rs.getBytes("img");
-                }
-                return new byte[0];
-            }
-
-        }, photoId);
-    }
 
 }

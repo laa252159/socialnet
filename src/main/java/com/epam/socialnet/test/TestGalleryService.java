@@ -29,12 +29,15 @@ public class TestGalleryService {
 		return galleryService.getAlbumsForPerson(2L);
 	}
 
-//	@Test
-	public List<Photo> getPhotosForAlbum(Long albumId) {
-		return galleryService.getPhotosForAlbum(albumId);
+	@Test
+	public void getPhotosForAlbum() {
+		List<Photo> photos = galleryService.getPhotosForAlbum(2L);
+		for(Photo p : photos){
+			System.out.println("Photo name: " + p.getName());
+		}
 	}
 
-	@Test
+//	@Test
 	public void createAlbum() {
 		Album album = new Album();
 		album.setDescription("Было очень круто.");
@@ -46,6 +49,7 @@ public class TestGalleryService {
 
 //	@Test
 	public void updateAlbum(Album album) {
+		
 		galleryService.updateAlbum(album);
 
 	}
@@ -75,8 +79,8 @@ public class TestGalleryService {
 	}
 
 //	@Test
-	public Photo readPhoto(Long photoId) {
-		return galleryService.readPhoto(photoId);
+	public Photo getPhoto(Long photoId) {
+		return galleryService.getPhotoById(photoId);
 	}
 
 //	@Test

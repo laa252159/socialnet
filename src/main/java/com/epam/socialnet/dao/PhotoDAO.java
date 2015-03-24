@@ -14,8 +14,8 @@ public interface PhotoDAO {
 
 	public List<Photo> getPhotosForAlbum(Long albumId);
 	
-	public Photo readPhoto(Long photoId);
-
 	byte[] getImg(Long id);
+	
+	public Photo getPhotoById(Long photoId);
 
 }

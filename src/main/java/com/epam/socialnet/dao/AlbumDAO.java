@@ -13,5 +13,7 @@ public interface AlbumDAO {
 	public void deleteAlbum(Long albumId);
 	
 	public List<Album> getAlbumsForPerson(Long personId);
+	
+	public Album getAlbumById(Long albumId);
 
 }

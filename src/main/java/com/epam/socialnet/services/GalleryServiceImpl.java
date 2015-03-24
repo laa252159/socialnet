@@ -66,13 +66,20 @@ public class GalleryServiceImpl implements GalleryService {
 	}
 
 	@Override
-	public Photo readPhoto(Long photoId) {
-		return photoDao.readPhoto(photoId);
+	public byte[] getImg(Long photoId) {
+		return photoDao.getImg(photoId);
 	}
 
 	@Override
-	public byte[] getImg(Long photoId) {
-		return photoDao.getImg(photoId);
+	public Album getAlbumById(Long albumId) {
+		return albumDao.getAlbumById(albumId);
+		
+	}
+
+	@Override
+	public Photo getPhotoById(Long photoId) {
+		return photoDao.getPhotoById(photoId);
+		
 	}
 
 }
