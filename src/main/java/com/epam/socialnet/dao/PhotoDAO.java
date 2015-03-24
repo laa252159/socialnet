@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.epam.socialnet.model.Photo;
 
-public interface PhotoDao {
+public interface PhotoDAO {
 
 	public void createPhoto(Photo photo);
 

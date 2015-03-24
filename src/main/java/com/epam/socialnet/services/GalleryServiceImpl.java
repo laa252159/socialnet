@@ -2,18 +2,18 @@ package com.epam.socialnet.services;
 
 import java.util.List;
 
-import com.epam.socialnet.dao.AlbumDao;
-import com.epam.socialnet.dao.PhotoDao;
+import com.epam.socialnet.dao.AlbumDAO;
+import com.epam.socialnet.dao.PhotoDAO;
 import com.epam.socialnet.model.Album;
 import com.epam.socialnet.model.Photo;
 
-public class GalleryServiceImple implements GalleryService {
+public class GalleryServiceImpl implements GalleryService {
 
-	private AlbumDao albumDao;
+	private AlbumDAO albumDao;
 
-	private PhotoDao photoDao;
+	private PhotoDAO photoDao;
 
-	public GalleryServiceImple(AlbumDao albumDao, PhotoDao photoDao) {
+	public GalleryServiceImpl(AlbumDAO albumDao, PhotoDAO photoDao) {
 		super();
 		this.albumDao = albumDao;
 		this.photoDao = photoDao;
@@ -67,8 +67,7 @@ public class GalleryServiceImple implements GalleryService {
 
 	@Override
 	public Photo readPhoto(Long photoId) {
-		photoDao.readPhoto(photoId);
-		return null;
+		return photoDao.readPhoto(photoId);
 	}
 
 	@Override

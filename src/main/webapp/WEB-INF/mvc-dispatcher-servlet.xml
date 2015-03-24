@@ -50,6 +50,13 @@
 	<bean id="messageDao" class="com.epam.socialnet.dao.MessageDAOImpl">
 		<constructor-arg ref="dataSource" />
 	</bean>
+	<bean id="albumDao" class="com.epam.socialnet.dao.AlbumDAOImpl">
+		<constructor-arg ref="dataSource" />
+	</bean>
+
+	<bean id="photoDao" class="com.epam.socialnet.dao.PhotoDAOImpl">
+		<constructor-arg ref="dataSource" />
+	</bean>
 
 	<bean id="personService" class="com.epam.socialnet.services.PersonServiceImpl">
 		<constructor-arg ref="personDao" />
@@ -61,6 +68,11 @@
 
 	<bean id="messageService" class="com.epam.socialnet.services.MessageServiceImpl">
 		<constructor-arg ref="messageDao" />
+	</bean>
+
+	<bean id="galleryService" class="com.epam.socialnet.services.GalleryServiceImpl">
+		<constructor-arg ref="albumDao" />
+		<constructor-arg ref="photoDao" />
 	</bean>
 
 	<bean id="multipartResolver"

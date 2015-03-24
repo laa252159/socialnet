@@ -13,11 +13,11 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.epam.socialnet.model.Photo;
 
-public class PhotoDaoImple implements PhotoDao {
+public class PhotoDAOImpl implements PhotoDAO {
 
 	private JdbcTemplate jdbcTemplate;
 
-	public PhotoDaoImple(DataSource dataSource) {
+	public PhotoDAOImpl(DataSource dataSource) {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 

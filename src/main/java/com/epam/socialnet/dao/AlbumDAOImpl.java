@@ -11,11 +11,11 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.epam.socialnet.model.Album;
 
-public class AlbumDaoImple implements AlbumDao {
+public class AlbumDAOImpl implements AlbumDAO {
 
 	private JdbcTemplate jdbcTemplate;
 
-	public AlbumDaoImple(DataSource dataSource) {
+	public AlbumDAOImpl(DataSource dataSource) {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
