@@ -110,4 +110,21 @@ public class PhotoDAOImpl implements PhotoDAO {
 		
 	}
 
+	@Override
+	public byte[] getImgPreView(Long photoId) {
+		   String sql = "SELECT * FROM photos WHERE id = ?";
+	        return jdbcTemplate.query(sql, new ResultSetExtractor<byte[]>() {
+
+	            @Override
+	            public byte[] extractData(ResultSet rs) throws SQLException,
+	                    DataAccessException {
+	                if (rs.next()) {
+	                    return rs.getBytes("img_preview");
+	                }
+	                return new byte[0];
+	            }
+
+	        }, photoId);
+	}
+
 }

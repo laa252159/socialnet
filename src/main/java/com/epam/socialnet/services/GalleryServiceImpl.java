@@ -82,4 +82,9 @@ public class GalleryServiceImpl implements GalleryService {
 		
 	}
 
+	@Override
+	public byte[] getImgPreView(Long photoId) {
+		return photoDao.getImgPreView(photoId);
+	}
+
 }

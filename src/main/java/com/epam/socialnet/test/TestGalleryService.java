@@ -1,5 +1,6 @@
 package com.epam.socialnet.test;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -29,7 +30,7 @@ public class TestGalleryService {
 		return galleryService.getAlbumsForPerson(2L);
 	}
 
-	@Test
+//	@Test
 	public void getPhotosForAlbum() {
 		List<Photo> photos = galleryService.getPhotosForAlbum(2L);
 		for(Photo p : photos){
@@ -46,22 +47,32 @@ public class TestGalleryService {
 		galleryService.createAlbum(album);
 
 	}
-
+	
 //	@Test
-	public void updateAlbum(Album album) {
-		
+	public void getAlbumByIdandUpdate() {
+		Album album = galleryService.getAlbumById(2L);
+		System.out.println("Old album name was " + album.getName());
+		album.setName("Cool album " + Math.random());
 		galleryService.updateAlbum(album);
+		
+		System.out.println("New album name is " + galleryService.getAlbumById(2l).getName());
+
+	}
+	
+//	@Test
+	public void deleteAlbum() {
+		galleryService.deleteAlbum(2L);
 
 	}
 
-//	@Test
-	public void deleteAlbum(Long albumId) {
-		galleryService.deleteAlbum(albumId);
-
-	}
-
-//	@Test
-	public void createPhoto(Photo photo) {
+	@Test
+	public void createPhoto() {
+		Photo photo = new Photo();
+		photo.setAlbumId(2L);
+		photo.setDescription("Bla bla bla");
+		photo.setFileName("pic.jpg");
+		photo.setName("My best photo");
+		photo.setUploadDate(new Date());
 		galleryService.createPhoto(photo);
 
 	}

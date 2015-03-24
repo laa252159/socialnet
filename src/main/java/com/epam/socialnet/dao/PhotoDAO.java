@@ -16,6 +16,8 @@ public interface PhotoDAO {
 	
 	byte[] getImg(Long id);
 	
+	byte[] getImgPreView(Long photoId);
+	
 	public Photo getPhotoById(Long photoId);
 
 }

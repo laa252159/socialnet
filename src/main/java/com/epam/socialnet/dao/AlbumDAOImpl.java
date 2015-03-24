@@ -34,7 +34,7 @@ public class AlbumDAOImpl implements AlbumDAO {
 	public void updateAlbum(Album album) {
 		String sql = "UPDATE albums SET "
 				+ "name = ?, description = ? where id = ?";
-		jdbcTemplate.update(sql, album.getName(), album.getDescription());
+		jdbcTemplate.update(sql, album.getName(), album.getDescription(), album.getId());
 	}
 
 	@Override

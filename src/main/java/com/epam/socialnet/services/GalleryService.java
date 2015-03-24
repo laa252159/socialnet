@@ -19,12 +19,13 @@ public interface GalleryService {
 	
 	public void createPhoto(Photo photo);
 	
-	
 	public void updatePhoto(Photo photo);
 	
 	public void deletePhoto(Long photoId);
 	
 	byte[] getImg(Long photoId);
+	
+	byte[] getImgPreView(Long photoId);
 	
 	public Album getAlbumById(Long albumId);
 	

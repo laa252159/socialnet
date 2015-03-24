@@ -167,12 +167,12 @@ CREATE TABLE photos
   name character varying(50),
   description character varying(200),
   upload_date date,
-  img bytea
+  img bytea,
+  img_preview bytea
 )
 WITH (
   OIDS=FALSE
 );
 ALTER TABLE photos
   OWNER TO postgres;
-
 
