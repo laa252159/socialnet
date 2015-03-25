@@ -114,7 +114,7 @@ public class FriendshipAndPersonController extends MainUtilController {
 				personService.getCurrentPerson().getId()));
 		messageService.setAllMessagesForReceiverFromSenderToReaded(personId,
 				personService.getCurrentPerson().getId());
-		addUreadedLinksToModel(model);
+		addUnreadedLinksToModel(model);
 		setIsMyPageFlag(model, personId);
 		model.addObject("currrentPersonId", personService.getCurrentPerson()
 				.getId());

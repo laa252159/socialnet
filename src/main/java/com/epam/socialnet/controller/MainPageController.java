@@ -22,7 +22,7 @@ public class MainPageController extends MainUtilController {
 						.getCurrentPerson().getId())));
 		addToModelRequestersAndResponsersOfFriendshipToCurrentPerson(model);
 		setIsMyPageFlag(model, personService.getCurrentPerson().getId());
-		addUreadedLinksToModel(model);
+		addUnreadedLinksToModel(model);
 		model.setViewName("main");
 		model.addObject("currrentPersonId", personService.getCurrentPerson().getId());
 		addPersonsAlbumsToModel(model, personService.getCurrentPerson().getId());

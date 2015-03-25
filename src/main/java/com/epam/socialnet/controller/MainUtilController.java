@@ -61,7 +61,7 @@ public class MainUtilController {
 		}
 	}
 
-	protected void addUreadedLinksToModel(ModelAndView model) {
+	protected void addUnreadedLinksToModel(ModelAndView model) {
 		List<Message> links = messageService.getUnreadedLinksForreceiver(String
 				.valueOf(personService.getCurrentPerson().getId()));
 		model.addObject("unreadLinks", links);
