@@ -1,6 +1,7 @@
 package com.epam.socialnet.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.epam.socialnet.model.Album;
+import com.epam.socialnet.model.Photo;
 
 @Controller
 public class GallaryController extends MainUtilController {
@@ -17,13 +19,10 @@ public class GallaryController extends MainUtilController {
 	public ModelAndView home(HttpServletRequest request) throws IOException {
 
 		ModelAndView model = new ModelAndView("ViewAlbum");
-		Album album = null;
-		if (request.getParameter("id") != null) {
-			album = galleryService.getAlbumById(Long.parseLong(request
-					.getParameter("id")));
-			model.addObject("album", album);
-			model.addObject("person", personService.get(album.getPersonId()));
-		}
+		Album album = galleryService.getAlbumById(Long.parseLong(request.getParameter("id")));
+		model.addObject("album", album);
+		model.addObject("person", personService.get(album.getPersonId()));
+		model.addObject("photos", galleryService.getPhotosForAlbum(album.getId()));
 
 		model.addObject("personInfo", personService.getCurrentPerson());
 		setIsMyPageFlag(model, personService.getCurrentPerson().getId());
