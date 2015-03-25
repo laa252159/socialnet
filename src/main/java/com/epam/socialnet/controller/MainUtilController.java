@@ -8,6 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.epam.socialnet.model.Friendship;
 import com.epam.socialnet.model.Message;
 import com.epam.socialnet.services.FriendshipService;
+import com.epam.socialnet.services.GalleryService;
 import com.epam.socialnet.services.MessageService;
 import com.epam.socialnet.services.PersonService;
 
@@ -21,6 +22,8 @@ public class MainUtilController {
 
 	@Autowired
 	protected MessageService messageService;
+	
+	@Autowired GalleryService galleryService;
 
 	protected void addToModelRequestersAndResponsersOfFriendshipToCurrentPerson(
 			ModelAndView model) {
@@ -63,5 +66,10 @@ public class MainUtilController {
 				.valueOf(personService.getCurrentPerson().getId()));
 		model.addObject("unreadLinks", links);
 	}
+	
+	protected void addPersonsAlbumsToModel(ModelAndView model, Long personId){
+		model.addObject("personsAlbums", galleryService.getAlbumsForPerson(personId));
+	}
+	
 
 }

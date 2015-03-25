@@ -118,6 +118,7 @@ public class FriendshipAndPersonController extends MainUtilController {
 		setIsMyPageFlag(model, personId);
 		model.addObject("currrentPersonId", personService.getCurrentPerson()
 				.getId());
+		addPersonsAlbumsToModel(model, personId);
 		return model;
 	}
 

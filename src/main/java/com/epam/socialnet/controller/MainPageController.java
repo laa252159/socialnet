@@ -25,12 +25,12 @@ public class MainPageController extends MainUtilController {
 		addUreadedLinksToModel(model);
 		model.setViewName("main");
 		model.addObject("currrentPersonId", personService.getCurrentPerson().getId());
+		addPersonsAlbumsToModel(model, personService.getCurrentPerson().getId());
 		return model;
 	}
 
 	@RequestMapping(value = "/goHome")
 	public ModelAndView goHome(ModelAndView model) throws IOException {
-		model.addObject("currrentPersonId", personService.getCurrentPerson().getId());
 		return home(model);
 	}
 }

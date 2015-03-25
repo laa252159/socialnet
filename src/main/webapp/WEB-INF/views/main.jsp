@@ -18,6 +18,8 @@
 <link href="<c:url value="/resources/css/my.css" />" rel="stylesheet">
 <script type="text/javascript"
 	src="<c:url value="/resources/js/jquery-2.1.3.js"/>"></script>
+<script type="text/javascript"
+	src="<c:url value="/resources/bootstrap/js/bootstrap.min.js"/>"></script>
 </head>
 <body background="<c:url value='/resources/images/grass.jpg'/>"
 	style="background-size: 90%;">
@@ -71,27 +73,37 @@
 					<!-- LIST OF UNREADED MESSAGES  -->
 					<div class="innertube" style="padding-top: 30px; width: 150px;">
 						<c:if test="${not empty unreadLinks && isMyPage}">
-					<h5>YOU HAVE NEW MESSAGES FROM:</h5>
-						<c:forEach var="link" items="${unreadLinks}"
-								varStatus="status">
-								<a href="viewPerson?id=${link.senderId}" style="color: black; width: 150px;"
-									class="btn btn-success"><span class="badge">${link.senderName}</span></a><br>&nbsp;
+							<h5>YOU HAVE NEW MESSAGES FROM:</h5>
+							<c:forEach var="link" items="${unreadLinks}" varStatus="status">
+								<a href="viewPerson?id=${link.senderId}"
+									style="color: black; width: 150px;" class="btn btn-success"><span
+									class="badge">${link.senderName}</span></a>
+								<br>&nbsp;
 							</c:forEach>
 							<hr>
 						</c:if>
 					</div>
-
-					<!-- CHAT BLOCK  -->
-					<c:if test="${!isMyPage && isFriend}">
-						<div>
-							<h4>CHAT whith ${personInfo.fName}</h4>
-							<div id="chat"
-								style="height: 200px; width: 400px; border: 1px solid #008000; background: white; border-radius: 5px 5px 5px 5px; overflow-y: scroll; padding: 10px;">
-							</div>
-							<div id="senderId" style="display: none;">${currrentPersonId}</div>
-							<div id="receiverId" style="display: none;">${personInfo.id}</div>
-							<div id="messageval" style="display: none;">BLA BLA BLA</div>
-							<script type="text/javascript">
+					<!-- Collapse SECTIONS  -->
+					<div class="panel-group" id="accordion"
+						style="height: 220px; width: 500px;">
+						<!-- CHAT SECTION  -->
+						<c:if test="${!isMyPage && isFriend}">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapse1">CHAT whith ${personInfo.fName}</a>
+									</h4>
+								</div>
+								<div id="collapse1" class="panel-collapse collapse in">
+									<div class="panel-body">
+										<div>
+											<div id="chat"
+												style="height: 200px; width: 400px; border: 1px solid #008000; background: white; border-radius: 5px 5px 5px 5px; overflow-y: scroll; padding: 10px;">
+											</div>
+											<div id="senderId" style="display: none;">${currrentPersonId}</div>
+											<div id="receiverId" style="display: none;">${personInfo.id}</div>
+											<div id="messageval" style="display: none;">BLA BLA BLA</div>
+											<script type="text/javascript">
 								$("#chat").load(
 										"getAllMessages?senderId="
 												+ $('#senderId').text()
@@ -108,11 +120,12 @@
 											$("textarea").scrollTop() * 12);
 								}, 3000);
 							</script>
-							<textarea id="iputText"
-								style="height: 50px; width: 400px; margin-top: 10px;"></textarea>
-							<div class="btn btn-default"
-								style="margin-top: 20px; margin-left: 320px;" onclick="send()">SEND</div>
-							<script type="text/javascript">
+											<textarea id="iputText"
+												style="height: 50px; width: 400px; margin-top: 10px;"></textarea>
+											<div class="btn btn-default"
+												style="margin-top: 20px; margin-left: 320px;"
+												onclick="send()">SEND</div>
+											<script type="text/javascript">
 								function send() {
 									$.post('addMessage', {
 										value : $("#iputText").val(),
@@ -122,8 +135,34 @@
 									$("#iputText").val('');
 								};
 							</script>
+										</div>
+									</div>
+								</div>
+							</div>
+						</c:if>
+						<!-- GALLERY SECTION  -->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Photo gallery of ${personInfo.fName}</a>
+								</h4>
+							</div>
+							<div id="collapse2" class="panel-collapse collapse">
+								<div class="panel-body">
+
+									<div style="width: 400px;">
+										<c:forEach var="album" items="${personsAlbums}"
+											varStatus="status">
+											<a href="viewAlbum?id=${album.id}" style="width: 100px;"
+												class="list-group-item"> <span class="badge">${album.name}</span>
+											</a>
+											<br>&nbsp;
+										</c:forEach>
+									</div>
+								</div>
+							</div>
 						</div>
-					</c:if>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -134,7 +173,8 @@
 				<h4>${personInfo.fName}&nbsp;${personInfo.lName}</h4>
 				<div style="border: 1px solid #cecece;">
 					<img src="<c:url value="/imageDisplay?id=${personInfo.id}"/>"
-						alt="Persons photo" style="width: 160px; height: 160px" class="img-thumbnail">
+						alt="Persons photo" style="width: 160px; height: 160px"
+						class="img-thumbnail">
 				</div>
 			</div>
 
