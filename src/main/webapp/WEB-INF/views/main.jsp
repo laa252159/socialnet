@@ -158,6 +158,7 @@
 											</a>
 											<br>&nbsp;
 										</c:forEach>
+										<c:if test="${personsAlbums.isEmpty()}">${personInfo.fName} didn't add any album</c:if>
 									</div>
 								</div>
 							</div>
