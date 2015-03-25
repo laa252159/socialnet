@@ -147,9 +147,8 @@
 								<a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Photo gallery of ${personInfo.fName}</a>
 								</h4>
 							</div>
-							<div id="collapse2" class="panel-collapse collapse">
+							<div id="collapse2" <c:if test="${!isMyPage}">class="panel-collapse collapse"</c:if> <c:if test="${isMyPage}">class="panel-collapse collapse in"</c:if>>
 								<div class="panel-body">
-
 									<div style="width: 400px;">
 										<c:forEach var="album" items="${personsAlbums}"
 											varStatus="status">
