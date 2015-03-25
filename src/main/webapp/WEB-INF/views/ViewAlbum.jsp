@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Edit Album ${album.login}</title>
+<title>View Album ${album.name}</title>
 <link
 	href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />"
 	rel="stylesheet">
@@ -32,7 +32,7 @@
 		<div id="contentwrapper">
 			<div id="contentcolumn">
 				<div class="innertube">
-					<h4>Info about ${album.fName} &nbsp; ${album.lName}</h4>
+					<h4>ALBUM ${album.name} of person ${person.fName} ${person.lName}</h4>
 					<!-- INSERT TAGS !!!  -->
 				</div>
 			</div>
