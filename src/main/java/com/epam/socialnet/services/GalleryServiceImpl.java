@@ -47,17 +47,6 @@ public class GalleryServiceImpl implements GalleryService {
 
 	}
 
-	@Override
-	public void createPhoto(Photo photo) {
-		photoDao.createPhoto(photo);
-
-	}
-
-	@Override
-	public void updatePhoto(Photo photo) {
-		photoDao.updatePhoto(photo);
-
-	}
 
 	@Override
 	public void deletePhoto(Long photoId) {
@@ -85,6 +74,12 @@ public class GalleryServiceImpl implements GalleryService {
 	@Override
 	public byte[] getImgPreView(Long photoId) {
 		return photoDao.getImgPreView(photoId);
+	}
+
+	@Override
+	public void createOrUpdatePhoto(Photo photo) {
+		photoDao.createOrUpdatePhoto(photo);
+		
 	}
 
 }

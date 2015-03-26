@@ -73,7 +73,7 @@ public class TestGalleryService {
 		photo.setFileName("pic.jpg");
 		photo.setName("My best photo");
 		photo.setUploadDate(new Date());
-		galleryService.createPhoto(photo);
+		galleryService.createOrUpdatePhoto(photo);
 
 	}
 
@@ -81,7 +81,7 @@ public class TestGalleryService {
 	public void getAndUpdatePhoto() {
 		Photo photo = galleryService.getPhotoById(3L);
 		photo.setDescription("Tra lala");
-		galleryService.updatePhoto(photo);
+		galleryService.createOrUpdatePhoto(photo);
 
 	}
 

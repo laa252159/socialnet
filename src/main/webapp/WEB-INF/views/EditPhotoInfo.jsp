@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Edit photo ${photo.login}</title>
+<title>Edit photo ${photo.name}</title>
 <link
 	href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />"
 	rel="stylesheet">
@@ -47,24 +47,12 @@
 		<div id="contentwrapper">
 			<div id="contentcolumn">
 				<div class="innertube">
-					<h4>Info about ${photo.fName} &nbsp; ${photo.lName}</h4>
+					<h4>${photo.name}</h4>
 					<table>
-						<form:form action="updatephoto" enctype="application/x-www-form-urlencoded; charset=UTF-8" method="post"
+						<form:form action="updatephotoToGallery" enctype="application/x-www-form-urlencoded; charset=UTF-8" method="post"
 							modelAttribute="photo">
-<!-- 								private Long id;
-	
-	private Long albumId;
-
-	private String fileName;
-
-	private String name;
-
-	private String description;
-
-	private Date uploadDate;
-	
-	private byte[] img; -->
-							<form:hidden path="albumId" />
+							<form:hidden path="id"/>
+							<form:hidden path="albumId"/>
 							<tr>
 								<td>Name:</td>
 								<td><form:input path="name" /></td>
@@ -97,7 +85,7 @@
 			<div class="innertube">
 				<h4>${photoInfo.login}&nbsp;photo</h4>
 				<div style="border: 1px solid #cecece;">
-					<img src="<c:url value="/imageDisplay?id=${photo.id}"/>"
+					<img src="<c:url value="/photoDisplay?id=${photo.id}"/>"
 						alt="Mountain View" style="width: 160px; height: 160px">
 				</div>
 			</div>

@@ -2,6 +2,7 @@ package com.epam.socialnet.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -22,18 +23,15 @@ public class PhotoDAOImpl implements PhotoDAO {
 	}
 
 	@Override
-	public void createPhoto(Photo photo) {
-		String sql = "INSERT INTO photos (album_id, file_name, name, description, upload_date)"
-				+ " VALUES (?, ?, ?, ?, ?)";
-		jdbcTemplate.update(sql, photo.getAlbumId(), photo.getFileName(), photo.getName(), photo.getDescription(), photo.getUploadDate());
-
-	}
-
-	@Override
-	public void updatePhoto(Photo photo) {
-		String sql = "UPDATE photos SET " + "album_id = ?, description = ? where id = ?";
-		jdbcTemplate.update(sql, photo.getAlbumId(), photo.getDescription(), photo.getId());
-
+	public void createOrUpdatePhoto(Photo photo) {
+		if(photo.getId() !=null && photo.getId() > 0){
+			String sql = "UPDATE photos SET " + "album_id = ?, description = ?, name = ? where id = ?";
+			jdbcTemplate.update(sql, photo.getAlbumId(), photo.getDescription(), photo.getName(), photo.getId());
+		} else {
+			String sql = "INSERT INTO photos (album_id, file_name, name, description, upload_date)"
+					+ " VALUES (?, ?, ?, ?, ?)";
+			jdbcTemplate.update(sql, photo.getAlbumId(), photo.getFileName(), photo.getName(), photo.getDescription(), new Date());
+		}
 	}
 
 	@Override

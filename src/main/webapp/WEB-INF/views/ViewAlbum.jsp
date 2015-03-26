@@ -38,9 +38,9 @@
 					<br>
 					<c:forEach var="photo" items="${photos}" varStatus="status">
 						<span style="display: inline-block; border: solid 0px green; border-radius: 5px; padding: 10px; margin: 10px;">
-							${photo.name} AA <br> ${photo.description} &nbsp; 
+							${photo.name} <br> ${photo.description} &nbsp; 
 							<br>
-							<img src="<c:url value="/imageDisplay?id=2"/>" alt="Persons photo" style="width: 100px; height: 100px" class="img-thumbnail">
+							<img src="<c:url value="/photoDisplay?id=${photo.id}"/>" alt="Persons photo" style="width: 100px; height: 100px" class="img-thumbnail">
 							<a href="removePhoto?id=${photo.id}" class="disablehref a"> 
 								<span class="glyphicon glyphicon-remove"></span>
 							</a>&nbsp;

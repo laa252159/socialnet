@@ -6,9 +6,7 @@ import com.epam.socialnet.model.Photo;
 
 public interface PhotoDAO {
 
-	public void createPhoto(Photo photo);
-
-	public void updatePhoto(Photo photo);
+	public void createOrUpdatePhoto(Photo photo);
 
 	public void deletePhoto(Long photoId);
 

@@ -17,9 +17,7 @@ public interface GalleryService {
 	
 	public void deleteAlbum(Long albumId);
 	
-	public void createPhoto(Photo photo);
-	
-	public void updatePhoto(Photo photo);
+	public void createOrUpdatePhoto(Photo photo);
 	
 	public void deletePhoto(Long photoId);
 	
