@@ -58,7 +58,7 @@
 						<h3>Album '${album.name}' doesn't have any photo</h3>
 					</c:if>
 				</div>
-				<a href="addPhoto" class="disablehref a btn btn-success">Add New Photo</a>
+				<a href="addPhoto?id=${album.id}" class="disablehref a btn btn-success">Add New Photo</a>
 			</div>
 		</div>
 	</div>

@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Edit Person ${person.login}</title>
+<title>Edit photo ${photo.login}</title>
 <link
 	href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />"
 	rel="stylesheet">
@@ -43,40 +43,35 @@
 			</div>
 		</div>
 
-		<!-- PERSON INFO BLOCK  -->
+		<!-- photo INFO BLOCK  -->
 		<div id="contentwrapper">
 			<div id="contentcolumn">
 				<div class="innertube">
-					<h4>Info about ${person.fName} &nbsp; ${person.lName}</h4>
+					<h4>Info about ${photo.fName} &nbsp; ${photo.lName}</h4>
 					<table>
-						<form:form action="updatePerson" enctype="application/x-www-form-urlencoded; charset=UTF-8" method="post"
-							modelAttribute="person">
-							<form:hidden path="id" />
-							<form:hidden path="password" />
-							<form:hidden path="login" />
+						<form:form action="updatephoto" enctype="application/x-www-form-urlencoded; charset=UTF-8" method="post"
+							modelAttribute="photo">
+<!-- 								private Long id;
+	
+	private Long albumId;
+
+	private String fileName;
+
+	private String name;
+
+	private String description;
+
+	private Date uploadDate;
+	
+	private byte[] img; -->
+							<form:hidden path="albumId" />
 							<tr>
-								<td>Login:</td>
-								<td>${person.login}</td>
+								<td>Name:</td>
+								<td><form:input path="name" /></td>
 							</tr>
 							<tr>
-								<td>First Name:</td>
-								<td><form:input path="fName" /></td>
-							</tr>
-							<tr>
-								<td>Last Name:</td>
-								<td><form:input path="lName" /></td>
-							</tr>
-							<tr>
-								<td>Birthday (mm/dd/yyyy):</td>
-								<td><input name="dob" value="<fmt:formatDate pattern="dd/MM/yyyy" value="${person.dob}" />"></td>
-							</tr>
-							<tr>
-								<td>Phone:</td>
-								<td><form:input path="phone" /></td>
-							</tr>
-							<tr>
-								<td>Address:</td>
-								<td><form:input path="address" /></td>
+								<td>Description:</td>
+								<td><form:input path="description" /></td>
 							</tr>
 
 							<tr>
@@ -86,9 +81,9 @@
 
 						</form:form>
 					</table>
-					<form method="post" action="uploadPhoto"
+					<form method="post" action="uploadPhotoToGallery"
 						enctype="multipart/form-data" onsubmit="return checkSize(200152)">
-						<input type="hidden" name="id_person" value="${person.id}">
+						<input type="hidden" name="id_photo" value="${photo.id}">
 						Photo to upload: <input type="file" name="file" id="upload"><br />
 						<input type="submit" value="Upload"> Press here to upload
 						the file!
@@ -100,9 +95,9 @@
 		<!-- PHOTO BLOCK  -->
 		<div id="photo">
 			<div class="innertube">
-				<h4>${personInfo.login}&nbsp;photo</h4>
+				<h4>${photoInfo.login}&nbsp;photo</h4>
 				<div style="border: 1px solid #cecece;">
-					<img src="<c:url value="/imageDisplay?id=${person.id}"/>"
+					<img src="<c:url value="/imageDisplay?id=${photo.id}"/>"
 						alt="Mountain View" style="width: 160px; height: 160px">
 				</div>
 			</div>
