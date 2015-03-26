@@ -29,7 +29,7 @@
 		<div id="topsection">
 			<div class="innertube">
 				<h1>
-					<a href="goHome" class="disablehref,a">Social NET</a>
+					<a href="goHome" class="disablehref a">Social NET</a>
 				</h1>
 			</div>
 		</div>
@@ -225,7 +225,7 @@
 		<div id="myfriends">
 			<div class="innertube" style="margin-left: 30px;">
 				<h4>My Friends (${listOfFriends.size()})</h4>
-				<div style="height: 150px; overflow-y: scroll;">
+				<div style="height: 168px; overflow:auto;">
 					<c:forEach var="friend" items="${listOfFriends}" varStatus="status">
 						<a href="viewPerson?id=${friend.id}" style="color: black;"
 							class="list-group-item">&nbsp;${friend.fName}&nbsp;${friend.lName}</a>
@@ -233,7 +233,7 @@
 				</div>
 				<br> <br>
 				<!-- SEARCH BLOCK BEGIN-->
-				<div style="background-color: #F5F5DC; padding: 10px;">
+				<div style="background-color: #F5F5DC; padding: 10px; border: solid 1px green; border-radius: 5px; padding:10px;">
 					<h4>Search persons form</h4>
 					<form action="viewPerson" method="post">
 						<div class="form-group">
@@ -249,7 +249,7 @@
 							search</button>
 					</form>
 					<h4>Founded ${foundedPersons.size()} persons</h4>
-					<div style="height: 150px; overflow-y: scroll;">
+					<div style="height: 168px; overflow:auto;">
 						<c:forEach var="foundedPerson" items="${foundedPersons}"
 							varStatus="status">
 							<a href="viewPerson?id=${foundedPerson.id}" style="color: black;"

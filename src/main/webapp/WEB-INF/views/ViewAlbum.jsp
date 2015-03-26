@@ -31,14 +31,22 @@
 		<div id="contentwrapper">
 			<div id="contentcolumn">
 				<div class="innertube">
-					<h4>ALBUM ${album.name} of person ${person.fName}
-						${person.lName}</h4>
+					<h4 style="border: solid 0px green; border-radius: 5px; padding:10px;">
+						ALBUM ${album.name} of person ${person.fName} ${person.lName}
+					</h4>
 					<!-- INSERT TAGS !!!  -->
 					<br>
 					<c:forEach var="photo" items="${photos}" varStatus="status">
-						<span
-							style="width: 50px; height: 50px; border: solid 2px green; border-radius: 5px; padding: 10px; margin: 10px;">
-							${photo.name} AA ${photo.description} 
+						<span style="display: inline-block; border: solid 0px green; border-radius: 5px; padding: 10px; margin: 10px;">
+							${photo.name} AA <br> ${photo.description} &nbsp; 
+							<br>
+							<img src="<c:url value="/imageDisplay?id=2"/>" alt="Persons photo" style="width: 100px; height: 100px" class="img-thumbnail">
+							<a href="removePhoto?id=${photo.id}" class="disablehref a"> 
+								<span class="glyphicon glyphicon-remove"></span>
+							</a>&nbsp;
+							<a href="editPhoto?id=${photo.id}" class="disablehref a">
+								<span class="glyphicon glyphicon-pencil"></span>
+							</a>
 						</span>
 					</c:forEach>
 					<c:if test="${photos.isEmpty()}">
@@ -50,6 +58,7 @@
 						<h3>Album '${album.name}' doesn't have any photo</h3>
 					</c:if>
 				</div>
+				<a href="addPhoto" class="disablehref a btn btn-success">Add New Photo</a>
 			</div>
 		</div>
 	</div>
