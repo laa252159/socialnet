@@ -32,7 +32,7 @@
 			<div id="contentcolumn">
 				<div class="innertube">
 					<h4 style="border: solid 0px green; border-radius: 5px; padding:10px;">
-						ALBUM ${album.name} of person ${person.fName} ${person.lName}
+						ALBUM ${album.name} of person<a href="viewPerson?id=${person.id}" class="disablehref a">  ${person.fName} ${person.lName}</a>
 					</h4>
 					<!-- INSERT TAGS !!!  -->
 					<br>
