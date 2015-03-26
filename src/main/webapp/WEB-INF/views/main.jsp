@@ -85,7 +85,7 @@
 					</div>
 					<!-- Collapse SECTIONS  -->
 					<div class="panel-group" id="accordion"
-						style="height: 220px; width: 500px;">
+						style="height: 220px; width: 433px;">
 						<!-- CHAT SECTION  -->
 						<c:if test="${!isMyPage && isFriend}">
 							<div class="panel panel-default">
@@ -98,7 +98,7 @@
 									<div class="panel-body">
 										<div>
 											<div id="chat"
-												style="height: 200px; width: 400px; border: 1px solid #008000; background: white; border-radius: 5px 5px 5px 5px; overflow-y: scroll; padding: 10px;">
+												style="height: 200px; width: 400px; border: 1px solid rgb(169, 169, 169); background: white; border-radius: 5px 5px 5px 5px; overflow:auto; padding: 10px;">
 											</div>
 											<div id="senderId" style="display: none;">${currrentPersonId}</div>
 											<div id="receiverId" style="display: none;">${personInfo.id}</div>
