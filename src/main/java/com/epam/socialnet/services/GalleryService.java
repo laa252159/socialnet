@@ -11,6 +11,8 @@ public interface GalleryService {
 	
 	public List<Photo> getPhotosForAlbum(Long albumId);
 	
+	public byte[] getImgForAlbum(Long albumId);
+	
 	public void createAlbum(Album album);
 	
 	public void updateAlbum(Album album);
@@ -28,5 +30,7 @@ public interface GalleryService {
 	public Album getAlbumById(Long albumId);
 	
 	public Photo getPhotoById(Long photoId);
-
+	
+	public void setPhoto(String id, byte[] img);
+	
 }

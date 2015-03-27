@@ -152,10 +152,14 @@
 									<div style="width: 400px;">
 										<c:forEach var="album" items="${personsAlbums}"
 											varStatus="status">
-											<a href="viewAlbum?id=${album.id}" style="width: 100px;"
-												class="list-group-item"> <span class="badge">${album.name}</span>
+											<a href="viewAlbum?id=${album.id}" 
+												class="list-group-item">	
+													<img src="<c:url value="/albumImageDisplay?id=${album.id}"/>" 
+													     alt="Albums picture" style="width: 100px; height: 100px"
+													     class="img-thumbnail">
+													     ${album.name}
+												
 											</a>
-											<br>&nbsp;
 										</c:forEach>
 										<c:if test="${personsAlbums.isEmpty()}">${personInfo.fName} didn't add any album</c:if>
 									</div>

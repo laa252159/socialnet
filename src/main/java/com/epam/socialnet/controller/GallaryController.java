@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.epam.socialnet.model.Album;
@@ -86,5 +87,35 @@ public class GallaryController extends MainUtilController {
 		}
 		response.getOutputStream().close();
 	}
+	
+	@RequestMapping(value = "/albumImageDisplay", method = RequestMethod.GET)
+	public void albumImageDisplay(@RequestParam("id") String albumId,
+			HttpServletResponse response, HttpServletRequest request)
+			throws ServletException, IOException {
+
+		response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
+		byte[] photo = galleryService.getImgForAlbum(Long.parseLong(albumId));
+		if (photo != null) {
+			response.getOutputStream().write(photo);
+		}
+		response.getOutputStream().close();
+	}
+	
+	@RequestMapping(value = "/uploadPhotoToGallery", method = RequestMethod.POST)
+	public ModelAndView uploadFileHandler(@RequestParam("id_photo") String id,
+			@RequestParam("file") MultipartFile file) throws Exception {
+
+		if (!file.isEmpty()) {
+			byte[] bytes = file.getBytes();
+			galleryService.setPhoto(id, bytes);
+		}
+
+		long photoId = Long.parseLong(id);
+		Photo photo = galleryService.getPhotoById(photoId);
+		ModelAndView model = new ModelAndView("EditPhotoInfo");
+		model.addObject("photo", photo);
+		return model;
+	}
+	
 	
 }

@@ -2,6 +2,7 @@ package com.epam.socialnet.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.Date;
 import java.util.List;
 
@@ -11,6 +12,9 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.support.SqlLobValue;
+import org.springframework.jdbc.support.lob.DefaultLobHandler;
+import org.springframework.jdbc.support.lob.LobHandler;
 
 import com.epam.socialnet.model.Photo;
 
@@ -43,7 +47,7 @@ public class PhotoDAOImpl implements PhotoDAO {
 
 	@Override
 	public List<Photo> getPhotosForAlbum(Long albumId) {
-		String sql = "SELECT * FROM photos WHERE album_id = ?";
+		String sql = "SELECT * FROM photos as p WHERE p.album_id = ? order by p.id asc";
 		List<Photo> listPhoto = jdbcTemplate.query(sql,
 				new RowMapper<Photo>() {
 
@@ -123,6 +127,49 @@ public class PhotoDAOImpl implements PhotoDAO {
 	            }
 
 	        }, photoId);
+	}
+
+	@Override
+	public byte[] getImgForAlbum(Long albumId) {
+		 String sql = "SELECT * FROM photos as p WHERE p.album_id = ? order by p.id asc";
+	        return jdbcTemplate.query(sql, new ResultSetExtractor<byte[]>() {
+
+	            @Override
+	            public byte[] extractData(ResultSet rs) throws SQLException,
+	                    DataAccessException {
+	                if (rs.next()) {
+	                    return rs.getBytes("img_preview");
+	                }
+	                return new byte[0];
+	            }
+
+	        }, albumId);
+	}
+
+	@Override
+	public void setPhoto(String id, byte[] img) {
+        String sql = "UPDATE photos SET "
+                + "img = ? "
+                + " WHERE id = ?";
+        LobHandler lobHandler = new DefaultLobHandler();
+        jdbcTemplate.update(sql,
+                new Object[]{
+                        new SqlLobValue(img, lobHandler), id
+                },
+                new int[]{Types.BLOB, Types.BIGINT});
+	}
+
+	@Override
+	public void setPhotoPreview(String id, byte[] img) {
+		 String sql = "UPDATE photos SET "
+	                + "img_preview = ? "
+	                + " WHERE id = ?";
+	        LobHandler lobHandler = new DefaultLobHandler();
+	        jdbcTemplate.update(sql,
+	                new Object[]{
+	                        new SqlLobValue(img, lobHandler), id
+	                },
+	                new int[]{Types.BLOB, Types.BIGINT});
 	}
 
 }

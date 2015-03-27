@@ -17,5 +17,11 @@ public interface PhotoDAO {
 	byte[] getImgPreView(Long photoId);
 	
 	public Photo getPhotoById(Long photoId);
+	
+	public byte[] getImgForAlbum(Long albumId);
+	
+	public void setPhoto(String id, byte[] img);
+	
+	public void setPhotoPreview(String id, byte[] img);
 
 }

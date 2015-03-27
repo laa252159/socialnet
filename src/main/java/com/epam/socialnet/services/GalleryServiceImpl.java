@@ -1,6 +1,17 @@
 package com.epam.socialnet.services;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.List;
+
+import javax.imageio.ImageIO;
+import javax.imageio.stream.FileImageInputStream;
+import javax.imageio.stream.ImageInputStream;
+
+import org.imgscalr.Scalr;
+import org.imgscalr.Scalr.Method;
 
 import com.epam.socialnet.dao.AlbumDAO;
 import com.epam.socialnet.dao.PhotoDAO;
@@ -47,7 +58,6 @@ public class GalleryServiceImpl implements GalleryService {
 
 	}
 
-
 	@Override
 	public void deletePhoto(Long photoId) {
 		photoDao.deletePhoto(photoId);
@@ -62,13 +72,13 @@ public class GalleryServiceImpl implements GalleryService {
 	@Override
 	public Album getAlbumById(Long albumId) {
 		return albumDao.getAlbumById(albumId);
-		
+
 	}
 
 	@Override
 	public Photo getPhotoById(Long photoId) {
 		return photoDao.getPhotoById(photoId);
-		
+
 	}
 
 	@Override
@@ -79,7 +89,33 @@ public class GalleryServiceImpl implements GalleryService {
 	@Override
 	public void createOrUpdatePhoto(Photo photo) {
 		photoDao.createOrUpdatePhoto(photo);
-		
+
+	}
+
+	@Override
+	public byte[] getImgForAlbum(Long albumId) {
+		return photoDao.getImgForAlbum(albumId);
+	}
+
+	@Override
+	public void setPhoto(String id, byte[] img) {
+		photoDao.setPhoto(id, img);
+		photoDao.setPhotoPreview(id, getPreview(img));
+	}
+
+	private byte[] getPreview(byte[] img) {
+		BufferedImage imgage;
+		try {
+			imgage = ImageIO.read(new ByteArrayInputStream(img));
+			BufferedImage scaledImg = Scalr.resize(imgage, Method.QUALITY,
+					150, 150);
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			ImageIO.write(scaledImg, "jpg", baos);
+			return baos.toByteArray();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return new byte[0]; 
 	}
 
 }
