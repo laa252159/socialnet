@@ -70,7 +70,7 @@
 						</form:form>
 					</table>
 					<form method="post" action="uploadPhotoToGallery"
-						enctype="multipart/form-data" onsubmit="return checkSize(200152)">
+						enctype="multipart/form-data" onsubmit="return checkSize(2000152)">
 						<input type="hidden" name="id_photo" value="${photo.id}">
 						Photo to upload: <input type="file" name="file" id="upload"><br />
 						<input type="submit" value="Upload"> Press here to upload

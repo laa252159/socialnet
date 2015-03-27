@@ -155,7 +155,7 @@
 											<a href="viewAlbum?id=${album.id}" 
 												class="list-group-item">	
 													<img src="<c:url value="/albumImageDisplay?id=${album.id}"/>" 
-													     alt="Albums picture" style="width: 100px; height: 100px"
+													     alt="Albums picture" style="height: 100px"
 													     class="img-thumbnail">
 													     ${album.name}
 												

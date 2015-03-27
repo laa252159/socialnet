@@ -28,9 +28,7 @@
 			</div>
 		</div>
 		<!-- ALBUM VIEW BLOCK  -->
-		<div id="contentwrapper">
-			<div id="contentcolumn">
-				<div class="innertube">
+		<div style="border: solid 0px green; border-radius: 5px; padding:10px;">
 					<h4 style="border: solid 0px green; border-radius: 5px; padding:10px;">
 						ALBUM ${album.name} of person<a href="viewPerson?id=${person.id}" class="disablehref a">  ${person.fName} ${person.lName}</a>
 					</h4>
@@ -40,7 +38,7 @@
 						<span style="display: inline-block; border: solid 0px green; border-radius: 5px; padding: 10px; margin: 10px;">
 							${photo.name} <br> ${photo.description} &nbsp; 
 							<br>
-							<img src="<c:url value="/photoDisplay?id=${photo.id}"/>" alt="Persons photo" style="width: 100px; height: 100px" class="img-thumbnail">
+							<img src="<c:url value="/photoDisplay?id=${photo.id}"/>" alt="Persons photo"  class="img-thumbnail">
 							<a href="removePhoto?id=${photo.id}" class="disablehref a"> 
 								<span class="glyphicon glyphicon-remove"></span>
 							</a>&nbsp;
@@ -59,9 +57,7 @@
 					</c:if>
 				</div>
 				<a href="addPhoto?id=${album.id}" class="disablehref a btn btn-success">Add New Photo</a>
-			</div>
 		</div>
-	</div>
 </body>
 
 </html>
