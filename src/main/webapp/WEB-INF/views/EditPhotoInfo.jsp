@@ -14,6 +14,7 @@
 	href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />"
 	rel="stylesheet">
 <link href="<c:url value="/resources/css/my.css" />" rel="stylesheet">
+<script type="text/javascript" src="<c:url value="/resources/js/jquery-2.1.3.js" />"></script>
 <script type="text/javascript">
 	function checkSize(max_img_size) {
 		var input = document.getElementById("upload");
@@ -47,24 +48,30 @@
 		<div id="contentwrapper">
 			<div id="contentcolumn">
 				<div class="innertube">
-					<h4>${photo.name}</h4>
+					<h4>Editing photo '${photo.name}'</h4>
 					<table>
 						<form:form action="updatephotoToGallery" enctype="application/x-www-form-urlencoded; charset=UTF-8" method="post"
 							modelAttribute="photo">
 							<form:hidden path="id"/>
 							<form:hidden path="albumId"/>
 							<tr>
-								<td>Name:</td>
-								<td><form:input path="name" /></td>
+								<td><label>Name: &nbsp;&nbsp;&nbsp;</label></td>
+								<td><form:input path="name" class="form-control"/></td>
+							</tr>
+								<tr>
+								<td>&nbsp;</td>
 							</tr>
 							<tr>
-								<td>Description:</td>
-								<td><form:input path="description" /></td>
+								<td><label>Description: &nbsp;&nbsp;&nbsp;</label></td>
+								<td><form:input path="description" class="form-control"/></td>
+							</tr>
+								<tr>
+								<td>&nbsp;</td>
 							</tr>
 
 							<tr>
 								<td colspan="2" align="center"><input type="submit"
-									value="Save"></td>
+									value="Save" class="btn btn-default"></td>
 							</tr>
 
 						</form:form>
@@ -72,8 +79,8 @@
 					<form method="post" action="uploadPhotoToGallery"
 						enctype="multipart/form-data" onsubmit="return checkSize(2000152)">
 						<input type="hidden" name="id_photo" value="${photo.id}">
-						Photo to upload: <input type="file" name="file" id="upload"><br />
-						<input type="submit" value="Upload"> Press here to upload
+						Photo to upload: <input type="file" name="file" id="upload" class="btn btn-default"><br />
+						<input type="submit" value="Upload" class="btn btn-default"> Press here to upload
 						the file!
 					</form>
 				</div>
@@ -83,10 +90,10 @@
 		<!-- PHOTO BLOCK  -->
 		<div id="photo">
 			<div class="innertube">
-				<h4>${photoInfo.login}&nbsp;photo</h4>
-				<div style="border: 1px solid #cecece;">
+				<h4>${photo.name}</h4>
+				<div>
 					<img src="<c:url value="/photoDisplay?id=${photo.id}"/>"
-						alt="Mountain View" style="width: 160px; height: 160px">
+						alt="Mountain View" class="img-thumbnail">
 				</div>
 			</div>
 		</div>

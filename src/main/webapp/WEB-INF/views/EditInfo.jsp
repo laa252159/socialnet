@@ -13,7 +13,14 @@
 <link
 	href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />"
 	rel="stylesheet">
+	<link
+	href="<c:url value="/resources/css/jquery-ui.css" />"
+	rel="stylesheet">
 <link href="<c:url value="/resources/css/my.css" />" rel="stylesheet">
+<script type="text/javascript"
+	src="<c:url value="/resources/js/jquery-2.1.3.js"/>"></script>
+	<script type="text/javascript"
+	src="<c:url value="/resources/js/jquery-ui.js"/>"></script>
 <script type="text/javascript">
 	function checkSize(max_img_size) {
 		var input = document.getElementById("upload");
@@ -28,6 +35,18 @@
 
 		return true;
 	}
+</script>
+<script>
+  $(function() {
+    $( "#dob" ).datepicker();
+  });
+</script>
+<script>
+$('#formEditPerson').validate({
+    rules: {
+        dob: "required"
+    }
+});
 </script>
 </head>
 <body background="<c:url value='/resources/images/grass.jpg'/>"
@@ -49,7 +68,7 @@
 				<div class="innertube">
 					<h4>Info about ${person.fName} &nbsp; ${person.lName}</h4>
 					<table>
-						<form:form action="updatePerson" enctype="application/x-www-form-urlencoded; charset=UTF-8" method="post"
+						<form:form action="updatePerson" id="formEditPerson" enctype="application/x-www-form-urlencoded; charset=UTF-8" method="post"
 							modelAttribute="person">
 							<form:hidden path="id" />
 							<form:hidden path="password" />
@@ -68,11 +87,11 @@
 							</tr>
 							<tr>
 								<td>Birthday (mm/dd/yyyy):</td>
-								<td><input name="dob" value="<fmt:formatDate pattern="dd/MM/yyyy" value="${person.dob}" />"></td>
+								<td><input name="dob" id="dob" value="<fmt:formatDate pattern="dd/MM/yyyy" value="${person.dob}" />"></td>
 							</tr>
 							<tr>
 								<td>Phone:</td>
-								<td><form:input path="phone" /></td>
+								<td><form:input id="phone" path="phone" /></td>
 							</tr>
 							<tr>
 								<td>Address:</td>

@@ -75,6 +75,21 @@ public class GallaryController extends MainUtilController {
 		return new ModelAndView("redirect:/viewAlbum?id=" + photo.getAlbumId());
 	}
 	
+	@RequestMapping(value = "/updateAlbumInfo", method = RequestMethod.POST)
+	public ModelAndView updateAlbumInfo(@ModelAttribute Album album) {
+		galleryService.updateAlbum(album);
+		return new ModelAndView("redirect:/viewAlbum?id=" + album.getId());
+	}
+	
+	@RequestMapping(value = "/editAlbumInfo")
+	public ModelAndView editAlbumInfo(HttpServletRequest request) throws IOException {
+		Album album  = galleryService.getAlbumById(Long.parseLong(request.getParameter("id")));
+		ModelAndView model = new ModelAndView("EditAlbumInfo");
+		model.addObject("album", album);
+		return model;
+	}
+	
+	
 	@RequestMapping(value = "/photoDisplay", method = RequestMethod.GET)
 	public void showImage(@RequestParam("id") String id,
 			HttpServletResponse response, HttpServletRequest request)

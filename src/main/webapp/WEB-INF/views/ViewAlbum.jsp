@@ -29,9 +29,17 @@
 		</div>
 		<!-- ALBUM VIEW BLOCK  -->
 		<div style="border: solid 0px green; border-radius: 5px; padding:10px;">
-					<h4 style="border: solid 0px green; border-radius: 5px; padding:10px;">
-						ALBUM ${album.name} of person<a href="viewPerson?id=${person.id}" class="disablehref a">  ${person.fName} ${person.lName}</a>
-					</h4>
+					<a href="viewPerson?id=${person.id}" class="disablehref a">Return to page of 	  ${person.fName} ${person.lName}</a>
+					<h2 style="border: solid 0px green; border-radius: 5px; padding:10px;">
+						${album.name} ( ${album.description} )
+					</h2>
+					
+								<a href="removeAlbum?id=${album.id}" class="disablehref a">[Remove Album
+												<span class="glyphicon glyphicon-remove"></span>]
+											</a>&nbsp;
+											<a href="editAlbumInfo?id=${album.id}" class="disablehref a">[Edit Album <span
+												class="glyphicon glyphicon-pencil"></span>]
+											</a>
 					<!-- INSERT TAGS !!!  -->
 					<br>
 					<c:forEach var="photo" items="${photos}" varStatus="status">
@@ -39,12 +47,16 @@
 							${photo.name} <br> ${photo.description} &nbsp; 
 							<br>
 							<img src="<c:url value="/photoDisplay?id=${photo.id}"/>" alt="Persons photo"  class="img-thumbnail">
-							<a href="removePhoto?id=${photo.id}" class="disablehref a"> 
-								<span class="glyphicon glyphicon-remove"></span>
-							</a>&nbsp;
-							<a href="editPhoto?id=${photo.id}" class="disablehref a">
-								<span class="glyphicon glyphicon-pencil"></span>
+							<br>
+								<a href="editPhoto?id=${photo.id}" class="disablehref a">[Edit Photo
+								<span class="glyphicon glyphicon-pencil"></span>]
 							</a>
+							<br>
+							<br>
+							<a href="removePhoto?id=${photo.id}" class="disablehref a">[Remove Photo 
+								<span class="glyphicon glyphicon-remove"></span>]
+							</a>
+						
 						</span>
 					</c:forEach>
 					<c:if test="${photos.isEmpty()}">
