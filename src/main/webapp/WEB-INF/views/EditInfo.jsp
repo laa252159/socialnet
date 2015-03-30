@@ -79,27 +79,27 @@ $('#formEditPerson').validate({
 							</tr>
 							<tr>
 								<td>First Name:</td>
-								<td><form:input path="fName" /></td>
+								<td><form:input path="fName" class="form-control" /></td>
 							</tr>
 							<tr>
 								<td>Last Name:</td>
-								<td><form:input path="lName" /></td>
+								<td><form:input path="lName" class="form-control" /></td>
 							</tr>
 							<tr>
 								<td>Birthday (mm/dd/yyyy):</td>
-								<td><input name="dob" id="dob" value="<fmt:formatDate pattern="dd/MM/yyyy" value="${person.dob}" />"></td>
+								<td><input name="dob" id="dob" class="form-control" value="<fmt:formatDate pattern="dd/MM/yyyy" value="${person.dob}" />"></td>
 							</tr>
 							<tr>
 								<td>Phone:</td>
-								<td><form:input id="phone" path="phone" /></td>
+								<td><form:input id="phone" path="phone" class="form-control"/></td>
 							</tr>
 							<tr>
 								<td>Address:</td>
-								<td><form:input path="address" /></td>
+								<td><form:input path="address" class="form-control" /></td>
 							</tr>
 
 							<tr>
-								<td colspan="2" align="center"><input type="submit"
+								<td colspan="2" align="center"><input type="submit" class="btn btn-default"
 									value="Save"></td>
 							</tr>
 
@@ -107,9 +107,9 @@ $('#formEditPerson').validate({
 					</table>
 					<form method="post" action="uploadPhoto"
 						enctype="multipart/form-data" onsubmit="return checkSize(200152)">
-						<input type="hidden" name="id_person" value="${person.id}">
-						Photo to upload: <input type="file" name="file" id="upload"><br />
-						<input type="submit" value="Upload"> Press here to upload
+						<input type="hidden" name="id_person" class="form-control" value="${person.id}">
+						Photo to upload: <input type="file" name="file" id="upload" class="btn btn-default"><br />
+						<input type="submit" class="btn btn-default" value="Upload"> Press here to upload
 						the file!
 					</form>
 				</div>
