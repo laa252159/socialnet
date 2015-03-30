@@ -2,14 +2,34 @@ package com.epam.socialnet.model;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
+
+
 public class Person {
 	private long id;
 	private String login;
+	
+	@NotEmpty
 	private String password;
+	
+	@NotEmpty
 	private String fName;
+	
+	@NotEmpty
 	private String lName;
+	
+	@DateTimeFormat(pattern="dd/MM/yyyy")
+	@NotNull @Past
 	private Date dob;
+	
+	@NotEmpty
 	private String phone;
+	
+	@NotEmpty
 	private String address;
 
 	public Person() {

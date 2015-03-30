@@ -24,7 +24,7 @@ public class MainUtilController {
 	protected MessageService messageService;
 	
 	@Autowired GalleryService galleryService;
-
+	
 	protected void addToModelRequestersAndResponsersOfFriendshipToCurrentPerson(
 			ModelAndView model) {
 		model.addObject("requesters", personService.getFriendshipWaiters(String

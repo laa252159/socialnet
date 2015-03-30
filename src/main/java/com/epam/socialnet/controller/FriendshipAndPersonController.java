@@ -1,11 +1,16 @@
 package com.epam.socialnet.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.epam.socialnet.model.Person;
@@ -90,9 +95,14 @@ public class FriendshipAndPersonController extends MainUtilController {
 	}
 
 	@RequestMapping(value = "/updatePerson", method = RequestMethod.POST)
-	public ModelAndView updatePerson(@ModelAttribute Person person) {
-		personService.update(person);
-		return new ModelAndView("redirect:/");
+	public String updatePerson(@Valid Person person, BindingResult result, HttpServletRequest request, Model model) {
+		
+		if (result.hasErrors()) {
+			return "EditInfo";
+		} else {
+			personService.update(person);
+		}
+		return "redirect:/";
 	}
 
 	@RequestMapping(value = "/viewPerson", method = RequestMethod.GET)

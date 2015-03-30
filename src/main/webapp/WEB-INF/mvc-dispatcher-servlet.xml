@@ -37,6 +37,12 @@
 		<property name="username" value="postgres" />
 		<property name="password" value="root" />
 	</bean>
+	
+	<!-- bind messages.properties -->
+	<bean class="org.springframework.context.support.ResourceBundleMessageSource"
+		id="messageSource">
+		<property name="basename" value="messages" />
+	</bean>
 
 	<!-- declare beans -->
 	<bean id="personDao" class="com.epam.socialnet.dao.PersonDAOImpl">

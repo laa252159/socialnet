@@ -3,7 +3,7 @@
 <%@page session="true"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
 	"http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -13,13 +13,12 @@
 <link
 	href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />"
 	rel="stylesheet">
-	<link
-	href="<c:url value="/resources/css/jquery-ui.css" />"
+<link href="<c:url value="/resources/css/jquery-ui.css" />"
 	rel="stylesheet">
 <link href="<c:url value="/resources/css/my.css" />" rel="stylesheet">
 <script type="text/javascript"
 	src="<c:url value="/resources/js/jquery-2.1.3.js"/>"></script>
-	<script type="text/javascript"
+<script type="text/javascript"
 	src="<c:url value="/resources/js/jquery-ui.js"/>"></script>
 <script type="text/javascript">
 	function checkSize(max_img_size) {
@@ -37,16 +36,16 @@
 	}
 </script>
 <script>
-  $(function() {
-    $( "#dob" ).datepicker();
-  });
+	$(function() {
+		$("#dob").datepicker();
+	});
 </script>
 <script>
-$('#formEditPerson').validate({
-    rules: {
-        dob: "required"
-    }
-});
+	$('#formEditPerson').validate({
+		rules : {
+			dob : "required"
+		}
+	});
 </script>
 </head>
 <body background="<c:url value='/resources/images/grass.jpg'/>"
@@ -68,8 +67,10 @@ $('#formEditPerson').validate({
 				<div class="innertube">
 					<h4>Info about ${person.fName} &nbsp; ${person.lName}</h4>
 					<table>
-						<form:form action="updatePerson" id="formEditPerson" enctype="application/x-www-form-urlencoded; charset=UTF-8" method="post"
-							modelAttribute="person">
+						<form:form action="updatePerson" id="formEditPerson"
+							enctype="application/x-www-form-urlencoded; charset=UTF-8"
+							method="post" modelAttribute="person">
+							<form:errors path="*" cssClass="errorblock" element="div" />
 							<form:hidden path="id" />
 							<form:hidden path="password" />
 							<form:hidden path="login" />
@@ -79,38 +80,46 @@ $('#formEditPerson').validate({
 							</tr>
 							<tr>
 								<td>First Name:</td>
-								<td><form:input path="fName" class="form-control" /></td>
+								<td><form:input path="fName" class="form-control" /> <form:errors
+										path="fName" cssclass="error"></form:errors></td>
 							</tr>
 							<tr>
 								<td>Last Name:</td>
-								<td><form:input path="lName" class="form-control" /></td>
+								<td><form:input path="lName" class="form-control" /> <form:errors
+										path="lName" cssclass="error"></form:errors></td>
 							</tr>
 							<tr>
 								<td>Birthday (mm/dd/yyyy):</td>
-								<td><input name="dob" id="dob" class="form-control" value="<fmt:formatDate pattern="dd/MM/yyyy" value="${person.dob}" />"></td>
+								<td><input name="dob" id="dob" class="form-control"
+									value="<fmt:formatDate pattern="dd/MM/yyyy" value="${person.dob}" />">
+									<form:errors path="dob" cssclass="error"></form:errors></td>
 							</tr>
 							<tr>
 								<td>Phone:</td>
-								<td><form:input id="phone" path="phone" class="form-control"/></td>
+								<td><form:input id="phone" path="phone"
+										class="form-control" />
+									<form:errors path="phone" cssclass="error"></form:errors></td>
 							</tr>
 							<tr>
 								<td>Address:</td>
-								<td><form:input path="address" class="form-control" /></td>
+								<td><form:input path="address" class="form-control" />
+									<form:errors path="address" cssclass="error"></form:errors></td>
 							</tr>
 
 							<tr>
-								<td colspan="2" align="center"><input type="submit" class="btn btn-default"
-									value="Save"></td>
+								<td colspan="2" align="center"><input type="submit"
+									class="btn btn-default" value="Save"></td>
 							</tr>
 
 						</form:form>
 					</table>
 					<form method="post" action="uploadPhoto"
 						enctype="multipart/form-data" onsubmit="return checkSize(200152)">
-						<input type="hidden" name="id_person" class="form-control" value="${person.id}">
-						Photo to upload: <input type="file" name="file" id="upload" class="btn btn-default"><br />
-						<input type="submit" class="btn btn-default" value="Upload"> Press here to upload
-						the file!
+						<input type="hidden" name="id_person" class="form-control"
+							value="${person.id}"> Photo to upload: <input type="file"
+							name="file" id="upload" class="btn btn-default"><br /> <input
+							type="submit" class="btn btn-default" value="Upload">
+						Press here to upload the file!
 					</form>
 				</div>
 			</div>
