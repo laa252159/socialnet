@@ -1,16 +1,13 @@
 package com.epam.socialnet.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.epam.socialnet.model.Person;
@@ -79,24 +76,10 @@ public class FriendshipAndPersonController extends MainUtilController {
 		return model;
 	}
 
-	@RequestMapping(value = "/savePerson", method = RequestMethod.POST)
-	public ModelAndView savePerson(@ModelAttribute Person person) {
-		try {
-			person.setPassword(personService.getSHA256(person.getPassword()));
-			personService.save(person);
-		} catch (Exception e) {
-			e.printStackTrace();
-			ModelAndView model = new ModelAndView("Registration");
-			model.addObject("reasonDenine", e.getMessage().toString());
-			model.addObject("person", person);
-			return model;
-		}
-		return new ModelAndView("redirect:/");
-	}
-
 	@RequestMapping(value = "/updatePerson", method = RequestMethod.POST)
-	public String updatePerson(@Valid Person person, BindingResult result, HttpServletRequest request, Model model) {
-		
+	public String updatePerson(@Valid Person person, BindingResult result,
+			HttpServletRequest request, Model model) {
+
 		if (result.hasErrors()) {
 			return "EditInfo";
 		} else {

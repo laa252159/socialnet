@@ -1,7 +1,6 @@
 package com.epam.socialnet.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.epam.socialnet.model.Album;
-import com.epam.socialnet.model.Person;
 import com.epam.socialnet.model.Photo;
 
 @Controller

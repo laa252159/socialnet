@@ -34,22 +34,26 @@
 					<h4>Enter login and password of new user</h4>
 					<br>
 					<form:form action="savePerson" method="post"
-						modelAttribute="person">
+						modelAttribute="personDto">
 						<div class="form-group">
 							<label for="login">Login:</label>
 							<form:input path="login" class="form-control" />
+							<form:errors path="login" cssclass="error"></form:errors>
 						</div>
 						<div class="form-group">
 							<label for="password">Password:</label>
 							<form:password path="password" class="form-control" />
+							<form:errors path="password" cssclass="error"></form:errors>
 						</div>
 						<div class="form-group">
 							<label for="fname">Name:</label>
 							<form:input path="fName" class="form-control" />
+							<form:errors path="fName" cssclass="error"></form:errors>
 						</div>
 						<div class="form-group">
 							<label for="lname">Last name:</label>
 							<form:input path="lName" class="form-control" />
+							<form:errors path="lName" cssclass="error"></form:errors>
 						</div>
 
 						<input type="submit" value="Create new USER" class="btn">
@@ -60,7 +64,10 @@
 						<br>
 						<a href="goHome" class="btn btn-danger">CANCEL</a>
 					</form:form>
-					<c:if test="${not empty reasonDenine}"><div style="color: red;">Причина отказа в регистрации: "${reasonDenine}". Пробуйте снова с новыми данными.</div></c:if>
+					<c:if test="${not empty reasonDenine}">
+						<div style="color: red;">Причина отказа в регистрации:
+							"${reasonDenine}". Пробуйте снова с новыми данными.</div>
+					</c:if>
 				</div>
 
 			</div>

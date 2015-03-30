@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.imageio.ImageIO;
-import javax.imageio.stream.FileImageInputStream;
-import javax.imageio.stream.ImageInputStream;
 
 import org.imgscalr.Scalr;
 import org.imgscalr.Scalr.Method;

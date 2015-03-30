@@ -8,8 +8,11 @@ import javax.validation.constraints.Past;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.epam.socialnet.dto.PersonDto;
+
 
 public class Person {
+	
 	private long id;
 	private String login;
 	
@@ -34,6 +37,14 @@ public class Person {
 
 	public Person() {
 		super();
+	}
+	
+	public Person(PersonDto personDto){
+		super();
+		this.login = personDto.getLogin();
+		this.password = personDto.getPassword();
+		this.fName = personDto.getfName();
+		this.lName = personDto.getlName();
 	}
 
 	public Person(long id, String login) {
