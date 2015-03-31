@@ -22,19 +22,18 @@ public class AlbumDAOImpl implements AlbumDAO {
 	}
 
 	@Override
-	public void createAlbum(Album album) {
-		String sql = "INSERT INTO albums (person_id, name, description)"
-				+ " VALUES (?, ?, ?)";
-		jdbcTemplate.update(sql, album.getPersonId(), album.getName(),
-				album.getDescription());
-
-	}
-
-	@Override
-	public void updateAlbum(Album album) {
-		String sql = "UPDATE albums SET "
-				+ "name = ?, description = ? where id = ?";
-		jdbcTemplate.update(sql, album.getName(), album.getDescription(), album.getId());
+	public void createOrUpdateAlbum(Album album) {
+		if (album.getId() != null && album.getId() > 0) {
+			String sql = "UPDATE albums SET "
+					+ "name = ?, description = ? where id = ?";
+			jdbcTemplate.update(sql, album.getName(), album.getDescription(),
+					album.getId());
+		} else {
+			String sql = "INSERT INTO albums (person_id, name, description)"
+					+ " VALUES (?, ?, ?)";
+			jdbcTemplate.update(sql, album.getPersonId(), album.getName(),
+					album.getDescription());
+		}
 	}
 
 	@Override

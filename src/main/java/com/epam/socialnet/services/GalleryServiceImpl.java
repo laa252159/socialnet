@@ -39,14 +39,8 @@ public class GalleryServiceImpl implements GalleryService {
 	}
 
 	@Override
-	public void createAlbum(Album album) {
-		albumDao.createAlbum(album);
-
-	}
-
-	@Override
-	public void updateAlbum(Album album) {
-		albumDao.updateAlbum(album);
+	public void createOrUpdateAlbum(Album album) {
+		albumDao.createOrUpdateAlbum(album);
 
 	}
 

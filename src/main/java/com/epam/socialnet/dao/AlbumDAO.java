@@ -6,9 +6,7 @@ import com.epam.socialnet.model.Album;
 
 public interface AlbumDAO {
 
-	public void createAlbum(Album album);
-
-	public void updateAlbum(Album album);
+	public void createOrUpdateAlbum(Album album);
 
 	public void deleteAlbum(Long albumId);
 	

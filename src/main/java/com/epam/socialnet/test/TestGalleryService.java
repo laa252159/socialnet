@@ -44,7 +44,7 @@ public class TestGalleryService {
 		album.setDescription("Ѕыло очень круто.");
 		album.setName("‘ото с —очи");
 		album.setPersonId(2L);
-		galleryService.createAlbum(album);
+		galleryService.createOrUpdateAlbum(album);
 
 	}
 	
@@ -53,7 +53,7 @@ public class TestGalleryService {
 		Album album = galleryService.getAlbumById(2L);
 		System.out.println("Old album name was " + album.getName());
 		album.setName("Cool album " + Math.random());
-		galleryService.updateAlbum(album);
+		galleryService.createOrUpdateAlbum(album);
 		
 		System.out.println("New album name is " + galleryService.getAlbumById(2l).getName());
 

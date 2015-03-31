@@ -49,6 +49,16 @@ public class GallaryController extends MainUtilController {
 		return new ModelAndView("redirect:/viewAlbum?id=" + albumId);
 	}
 	
+	@RequestMapping(value = "/addAlbum")
+	public ModelAndView addAlbum(HttpServletRequest request) throws IOException {
+
+		long personId= Long.parseLong(request.getParameter("id"));
+		Album album = new Album();
+		album.setPersonId(personId);
+		galleryService.createOrUpdateAlbum(album);
+		return new ModelAndView("redirect:/viewPerson?id=" + personId);
+	}
+	
 	@RequestMapping(value = "/removePhoto")
 	public ModelAndView deletePhoto(HttpServletRequest request) throws IOException {
 
@@ -75,7 +85,7 @@ public class GallaryController extends MainUtilController {
 	
 	@RequestMapping(value = "/updateAlbumInfo", method = RequestMethod.POST)
 	public ModelAndView updateAlbumInfo(@ModelAttribute Album album) {
-		galleryService.updateAlbum(album);
+		galleryService.createOrUpdateAlbum(album);
 		return new ModelAndView("redirect:/viewAlbum?id=" + album.getId());
 	}
 	

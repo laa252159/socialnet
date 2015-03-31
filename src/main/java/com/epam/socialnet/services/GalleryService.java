@@ -13,9 +13,7 @@ public interface GalleryService {
 	
 	public byte[] getImgForAlbum(Long albumId);
 	
-	public void createAlbum(Album album);
-	
-	public void updateAlbum(Album album);
+	public void createOrUpdateAlbum(Album album);
 	
 	public void deleteAlbum(Long albumId);
 	
