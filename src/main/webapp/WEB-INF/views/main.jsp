@@ -149,7 +149,7 @@
 							</div>
 							<div id="collapse2" <c:if test="${!isMyPage}">class="panel-collapse collapse"</c:if> <c:if test="${isMyPage}">class="panel-collapse collapse in"</c:if>>
 								<div class="panel-body">
-									<div style="width: 400px;">
+									<div style="width: 400px; height: 360px; overflow:auto;">
 										<c:forEach var="album" items="${personsAlbums}"
 											varStatus="status">
 											<a href="viewAlbum?id=${album.id}" class="list-group-item">

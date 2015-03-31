@@ -68,6 +68,15 @@ public class GallaryController extends MainUtilController {
 		return new ModelAndView("redirect:/viewAlbum?id=" + albumId);
 	}
 	
+	@RequestMapping(value = "/removeAlbum")
+	public ModelAndView removeAlbum(HttpServletRequest request) throws IOException {
+
+		long albumId= Long.parseLong(request.getParameter("id"));
+		long personId = galleryService.getAlbumById(albumId).getPersonId();
+		galleryService.deleteAlbum(albumId);
+		return new ModelAndView("redirect:/viewPerson?id=" + personId);
+	}
+	
 	@RequestMapping(value = "/editPhoto")
 	public ModelAndView editPhoto(HttpServletRequest request) throws IOException {
 		Photo photo = galleryService.getPhotoById(Long.parseLong(request.getParameter("id")));
