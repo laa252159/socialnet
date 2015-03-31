@@ -108,13 +108,26 @@ public class GallaryController extends MainUtilController {
 	}
 	
 	
-	@RequestMapping(value = "/photoDisplay", method = RequestMethod.GET)
-	public void showImage(@RequestParam("id") String id,
+	@RequestMapping(value = "/previewImageDisplay", method = RequestMethod.GET)
+	public void showPreviewImage(@RequestParam("id") String id,
 			HttpServletResponse response, HttpServletRequest request)
 			throws ServletException, IOException {
 
 		response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
 		byte[] photo = galleryService.getImgPreView(Long.parseLong(id));
+		if (photo != null) {
+			response.getOutputStream().write(photo);
+		}
+		response.getOutputStream().close();
+	}
+	
+	@RequestMapping(value = "/imageDisplay", method = RequestMethod.GET)
+	public void showImage(@RequestParam("id") String id,
+			HttpServletResponse response, HttpServletRequest request)
+			throws ServletException, IOException {
+
+		response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
+		byte[] photo = galleryService.getImg(Long.parseLong(id));
 		if (photo != null) {
 			response.getOutputStream().write(photo);
 		}

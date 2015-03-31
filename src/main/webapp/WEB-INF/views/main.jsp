@@ -182,7 +182,7 @@
 			<div class="innertube">
 				<h4>${personInfo.fName}&nbsp;${personInfo.lName}</h4>
 				<div style="border: 1px solid #cecece;">
-					<img src="<c:url value="/imageDisplay?id=${personInfo.id}"/>"
+					<img src="<c:url value="/avatarDisplay?id=${personInfo.id}"/>"
 						alt="Persons photo" style="width: 160px; height: 160px"
 						class="img-thumbnail">
 				</div>

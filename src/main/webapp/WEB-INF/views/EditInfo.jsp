@@ -130,7 +130,7 @@
 			<div class="innertube">
 				<h4>${personInfo.login}&nbsp;photo</h4>
 				<div style="border: 1px solid #cecece;">
-					<img src="<c:url value="/imageDisplay?id=${person.id}"/>"
+					<img src="<c:url value="/avatarDisplay?id=${person.id}"/>"
 						alt="Mountain View" style="width: 160px; height: 160px">
 				</div>
 			</div>

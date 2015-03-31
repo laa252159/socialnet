@@ -47,8 +47,9 @@
 					<c:forEach var="photo" items="${photos}" varStatus="status">
 						<span style="display: inline-block; border: solid 0px green; border-radius: 5px; padding: 10px; margin: 10px;">
 							${photo.name} <br> ${photo.description} &nbsp; 
-							<br>
-							<img src="<c:url value="/photoDisplay?id=${photo.id}"/>" alt="Persons photo"  class="img-thumbnail">
+							<br><a href="<c:url value="/imageDisplay?id=${photo.id}"/>">
+							<img src="<c:url value="/previewImageDisplay?id=${photo.id}"/>" alt="Persons photo"  class="img-thumbnail">
+							</a>
 							<c:if test="${isEditor}">
 							<br>
 								<a href="editPhoto?id=${photo.id}" class="disablehref a">[Edit Photo

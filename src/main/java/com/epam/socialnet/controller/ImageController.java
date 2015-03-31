@@ -35,7 +35,7 @@ public class ImageController extends MainUtilController {
 		return model;
 	}
 
-	@RequestMapping(value = "/imageDisplay", method = RequestMethod.GET)
+	@RequestMapping(value = "/avatarDisplay", method = RequestMethod.GET)
 	public void showImage(@RequestParam("id") String id,
 			HttpServletResponse response, HttpServletRequest request)
 			throws ServletException, IOException {
