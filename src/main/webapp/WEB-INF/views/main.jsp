@@ -140,7 +140,7 @@
 								</div>
 							</div>
 						</c:if>
-						<c:if test="${isFriend}">
+						<c:if test="${isMyPage || isFriend}">
 						<!-- GALLERY SECTION  -->
 						<div class="panel panel-default">
 							<div class="panel-heading">
@@ -245,7 +245,7 @@
 				</div>
 				<br> <br>
 				<!-- SEARCH BLOCK BEGIN-->
-				<div style="background-color: #F5F5DC; padding: 10px; border: solid 1px green; border-radius: 5px; padding:10px;">
+				<div style="padding: 10px; border: solid 1px rgb(206, 206, 206); border-radius: 5px; padding:10px;">
 					<h4>Search persons form</h4>
 					<form action="viewPerson" method="post">
 						<div class="form-group">

@@ -43,7 +43,7 @@
 			<h2
 				style="border: solid 0px green; border-radius: 5px; padding: 10px;">
 				${album.name}</h2>
-			${album.description} <br>
+			${album.description} (${photos.size()} photos)<br>
 			<c:if test="${isEditor}">
 				<a href="removeAlbum?id=${album.id}" class="disablehref a">[Remove
 					Album <span class="glyphicon glyphicon-remove"></span>]
@@ -85,9 +85,10 @@
 				<h3>Album '${album.name}' doesn't have any photo</h3>
 			</c:if>
 		</div>
-		<c:if test="${isEditor}">
+		<c:if test="${isEditor && '51' gt photos.size()}">
 			<a href="addPhoto?id=${album.id}"
 				class="disablehref a btn btn-success">Add New Photo</a>
+				MayBe added ${'50' - photos.size()}  photos
 		</c:if>
 	</div>
 	
