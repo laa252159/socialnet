@@ -25,7 +25,7 @@
 	</div>
 	<div id="maincontainer" style="margin-top: 10%">
 		<div id="login-box">
-			<a href="<c:url value="/j_spring_security_logout" />"><h3>Error!!! Logout?</h3></a>
+			<h3><a href="<c:url value="/j_spring_security_logout" />">Error!!! Logout?</a></h3>
 		</div>
 	</div>
 
