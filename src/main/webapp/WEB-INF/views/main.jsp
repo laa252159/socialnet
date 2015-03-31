@@ -140,6 +140,7 @@
 								</div>
 							</div>
 						</c:if>
+						<c:if test="${isFriend}">
 						<!-- GALLERY SECTION  -->
 						<div class="panel panel-default">
 							<div class="panel-heading">
@@ -172,6 +173,7 @@
 								</div>
 							</div>
 						</div>
+						</c:if>
 					</div>
 				</div>
 			</div>
