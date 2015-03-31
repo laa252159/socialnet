@@ -5,8 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.epam.socialnet.model.Album;
 import com.epam.socialnet.model.Friendship;
 import com.epam.socialnet.model.Message;
+import com.epam.socialnet.model.Person;
+import com.epam.socialnet.model.Photo;
 import com.epam.socialnet.services.FriendshipService;
 import com.epam.socialnet.services.GalleryService;
 import com.epam.socialnet.services.MessageService;
@@ -22,9 +25,10 @@ public class MainUtilController {
 
 	@Autowired
 	protected MessageService messageService;
-	
-	@Autowired GalleryService galleryService;
-	
+
+	@Autowired
+	GalleryService galleryService;
+
 	protected void addToModelRequestersAndResponsersOfFriendshipToCurrentPerson(
 			ModelAndView model) {
 		model.addObject("requesters", personService.getFriendshipWaiters(String
@@ -66,10 +70,33 @@ public class MainUtilController {
 				.valueOf(personService.getCurrentPerson().getId()));
 		model.addObject("unreadLinks", links);
 	}
-	
-	protected void addPersonsAlbumsToModel(ModelAndView model, Long personId){
-		model.addObject("personsAlbums", galleryService.getAlbumsForPerson(personId));
+
+	protected void addPersonsAlbumsToModel(ModelAndView model, Long personId) {
+		model.addObject("personsAlbums",
+				galleryService.getAlbumsForPerson(personId));
 	}
-	
+
+	protected boolean isEditor(Object object) {
+		
+		long currentPersonId = personService.getCurrentPerson().getId();
+		
+		if(object instanceof Person){
+			Person person = (Person) object;
+			return  person.getId() == currentPersonId;
+		}
+		
+		if (object instanceof Photo) {
+			Photo photo = (Photo) object;
+			return galleryService.getAlbumById(photo.getAlbumId())
+					.getPersonId() == currentPersonId;
+		}
+		
+		if (object instanceof Album) {
+			Album album = (Album) object;
+			return album.getPersonId() == currentPersonId;
+		}
+		
+		return false;
+	}
 
 }

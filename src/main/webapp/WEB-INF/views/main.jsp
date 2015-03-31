@@ -160,10 +160,14 @@
 											</a>
 										</c:forEach>
 										<c:if test="${personsAlbums.isEmpty()}">${personInfo.fName} didn't add any album</c:if>
+										<c:if test="${isEditor}">
 										<div class="list-group-item">
+										
 											<a href="addAlbum?id=${personInfo.id}"
 												class="disablehref a btn btn-success">Add New Album</a>
+									
 										</div>
+										</c:if>
 									</div>
 								</div>
 							</div>

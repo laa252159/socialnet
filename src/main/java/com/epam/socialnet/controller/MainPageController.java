@@ -26,6 +26,7 @@ public class MainPageController extends MainUtilController {
 		model.setViewName("main");
 		model.addObject("currrentPersonId", personService.getCurrentPerson().getId());
 		addPersonsAlbumsToModel(model, personService.getCurrentPerson().getId());
+		model.addObject("isEditor", isEditor(personService.getCurrentPerson()));
 		return model;
 	}
 

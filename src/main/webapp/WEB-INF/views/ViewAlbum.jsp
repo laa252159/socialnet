@@ -31,15 +31,17 @@
 		<div style="border: solid 0px green; border-radius: 5px; padding:10px;">
 					<a href="viewPerson?id=${person.id}" class="disablehref a">Return to page of 	  ${person.fName} ${person.lName}</a>
 					<h2 style="border: solid 0px green; border-radius: 5px; padding:10px;">
-						${album.name} ( ${album.description} )
-					</h2>
-					
+						${album.name} 
+					</h2>  ${album.description} 
+					<br>
+						<c:if test="${isEditor}">
 								<a href="removeAlbum?id=${album.id}" class="disablehref a">[Remove Album
 												<span class="glyphicon glyphicon-remove"></span>]
 											</a>&nbsp;
 											<a href="editAlbumInfo?id=${album.id}" class="disablehref a">[Edit Album <span
 												class="glyphicon glyphicon-pencil"></span>]
 											</a>
+					    </c:if>
 					<!-- INSERT TAGS !!!  -->
 					<br>
 					<c:forEach var="photo" items="${photos}" varStatus="status">
@@ -47,6 +49,7 @@
 							${photo.name} <br> ${photo.description} &nbsp; 
 							<br>
 							<img src="<c:url value="/photoDisplay?id=${photo.id}"/>" alt="Persons photo"  class="img-thumbnail">
+							<c:if test="${isEditor}">
 							<br>
 								<a href="editPhoto?id=${photo.id}" class="disablehref a">[Edit Photo
 								<span class="glyphicon glyphicon-pencil"></span>]
@@ -56,7 +59,7 @@
 							<a href="removePhoto?id=${photo.id}" class="disablehref a">[Remove Photo 
 								<span class="glyphicon glyphicon-remove"></span>]
 							</a>
-						
+							</c:if>
 						</span>
 					</c:forEach>
 					<c:if test="${photos.isEmpty()}">
@@ -68,7 +71,9 @@
 						<h3>Album '${album.name}' doesn't have any photo</h3>
 					</c:if>
 				</div>
+				<c:if test="${isEditor}">
 				<a href="addPhoto?id=${album.id}" class="disablehref a btn btn-success">Add New Photo</a>
+				</c:if>
 		</div>
 </body>
 

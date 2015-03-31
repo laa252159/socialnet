@@ -36,6 +36,7 @@ public class GallaryController extends MainUtilController {
 		model.addObject("currrentPersonId", personService.getCurrentPerson()
 				.getId());
 		addPersonsAlbumsToModel(model, personService.getCurrentPerson().getId());
+		model.addObject("isEditor", isEditor(galleryService.getAlbumById(album.getId())));
 		return model;
 	}
 	

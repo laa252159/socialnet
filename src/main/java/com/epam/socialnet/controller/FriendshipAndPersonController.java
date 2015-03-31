@@ -112,6 +112,7 @@ public class FriendshipAndPersonController extends MainUtilController {
 		model.addObject("currrentPersonId", personService.getCurrentPerson()
 				.getId());
 		addPersonsAlbumsToModel(model, personId);
+		model.addObject("isEditor", isEditor(personService.get(personId)));
 		return model;
 	}
 
