@@ -59,9 +59,9 @@
 				<span
 					style="display: inline-block; border: solid 0px green; border-radius: 5px; padding: 10px; margin: 10px;">
 					${photo.name} <br> ${photo.description} &nbsp; <br>
-				<a href="<c:url value="/imageDisplay?id=${photo.id}"/>" data-gallery> <img
+				<a href="<c:url value="/imageDisplay?id=${photo.id}"/>" title="${photo.description}" data-gallery> <img
 						src="<c:url value="/previewImageDisplay?id=${photo.id}"/>"
-						alt="Persons photo" class="img-thumbnail" title="${photo.description}">
+						alt="Persons photo" class="img-thumbnail">
 				</a> <c:if test="${isEditor}">
 						<br>
 						<a href="editPhoto?id=${photo.id}" class="disablehref a">[Edit
